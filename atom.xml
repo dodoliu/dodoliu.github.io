@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>dodoliu的折腾笔记</title>
+  <subtitle>生命不息，折腾不止！</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2016-05-23T14:57:05.000Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>dodoliu</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>虚拟机下CentOS7安装Nginx及简单用法</title>
+    <link href="http://yoursite.com/2016/05/20/nginx-simple-usage/"/>
+    <id>http://yoursite.com/2016/05/20/nginx-simple-usage/</id>
+    <published>2016-05-20T14:36:41.000Z</published>
+    <updated>2016-05-23T14:57:05.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;目的&quot;&gt;&lt;a href=&quot;#目的&quot; class=&quot;headerlink&quot; title=&quot;目的:&quot;&gt;&lt;/a&gt;目的:&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;熟悉nginx的安装与使用&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot; class=&quot;headerlink&quot; title=&quot;环境:&quot;&gt;&lt;/a&gt;环境:&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;VirtualBox: 5.0.20&lt;br&gt;CentOS: CentOS-7-x86_64-Minimal-1511&lt;br&gt;Nginx: 1.10.0&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;安装步骤&quot;&gt;&lt;a href=&quot;#安装步骤&quot; class=&quot;headerlink&quot; title=&quot;安装步骤:&quot;&gt;&lt;/a&gt;安装步骤:&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Nginx下载地址: &lt;a href=&quot;http://nginx.org/download/nginx-1.10.0.tar.gz&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://nginx.org/download/nginx-1.10.0.tar.gz&lt;/a&gt;&lt;br&gt;下载完成后解压: tar zxvf nginx-1.10.0.tar.gz&lt;br&gt;然后进入解压目录: cd nginx-1.10.0&lt;br&gt;编译安装:&lt;br&gt;./configure&lt;br&gt;make &amp;amp;&amp;amp; make install&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;默认安装目录在: /usr/local/nginx&lt;/p&gt;
+&lt;h3 id=&quot;启动&quot;&gt;&lt;a href=&quot;#启动&quot; class=&quot;headerlink&quot; title=&quot;启动:&quot;&gt;&lt;/a&gt;启动:&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;cd到 nginx下的 sbin目录&lt;br&gt;执行命令 ./nginx&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;停止&quot;&gt;&lt;a href=&quot;#停止&quot; class=&quot;headerlink&quot; title=&quot;停止:&quot;&gt;&lt;/a&gt;停止:&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;使用ps命令查看 nginx的pid&lt;br&gt;ps -A | grep nginx&lt;br&gt;从容停止: kill -QUIT 查询到的nginx的pid&lt;br&gt;快速停止: kill -TERM 查询到的nginx的pid&lt;br&gt;强制停止: kill -9 查询到的nginx的pid&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;重启&quot;&gt;&lt;a href=&quot;#重启&quot; class=&quot;headerlink&quot; title=&quot;重启:&quot;&gt;&lt;/a&gt;重启:&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;cd到nginx的sbin目录&lt;br&gt;./nginx -s reload (这个命令在我测试的时候发现不能完全重启…不知为何…之后我都选择先停止,再启动)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;修改conf&quot;&gt;&lt;a href=&quot;#修改conf&quot; class=&quot;headerlink&quot; title=&quot;修改conf:&quot;&gt;&lt;/a&gt;修改conf:&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;默认配置文件在nginx的根目录的conf中&lt;br&gt;进入该目录 vim nginx.conf 进行编辑.&lt;br&gt;编辑完成后一般需要先检测配置文件是否正常再重启系统nginx,以免配置文件错误.&lt;br&gt;检测命令(假如在nginx的sbin目录下): ./nginx -t&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;目的&quot;&gt;&lt;a href=&quot;#目的&quot; class=&quot;headerlink&quot; title=&quot;目的:&quot;&gt;&lt;/a&gt;目的:&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;熟悉nginx的安装与使用&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+      <category term="CentOS" scheme="http://yoursite.com/tags/CentOS/"/>
+    
+      <category term="Nginx" scheme="http://yoursite.com/tags/Nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>记录一次VirtualBox安装Centos7的网络配置</title>
+    <link href="http://yoursite.com/2016/05/18/linux-virtualbox-centos7-network/"/>
+    <id>http://yoursite.com/2016/05/18/linux-virtualbox-centos7-network/</id>
+    <published>2016-05-18T05:07:49.000Z</published>
+    <updated>2016-05-23T14:46:48.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;目的&quot;&gt;&lt;a href=&quot;#目的&quot; class=&quot;headerlink&quot; title=&quot;目的:&quot;&gt;&lt;/a&gt;目的:&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;了解虚拟机的网络配置&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;要求&quot;&gt;&lt;a href=&quot;#要求&quot; class=&quot;headerlink&quot; title=&quot;要求:&quot;&gt;&lt;/a&gt;要求:&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;虚拟机和主机能互通&lt;br&gt;虚拟机要能访问网络&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;限制条件&quot;&gt;&lt;a href=&quot;#限制条件&quot; class=&quot;headerlink&quot; title=&quot;限制条件:&quot;&gt;&lt;/a&gt;限制条件:&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;公司环境下不允许分配独立IP&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot; class=&quot;headerlink&quot; title=&quot;环境:&quot;&gt;&lt;/a&gt;环境:&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;win7 or OSX: 10.11.4&lt;br&gt;VirtualBox: 5.0.20&lt;br&gt;CentOS: CentOS-7-x86_64-Minimal-1511&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;虚拟机要能访问网络&quot;&gt;&lt;a href=&quot;#虚拟机要能访问网络&quot; class=&quot;headerlink&quot; title=&quot;虚拟机要能访问网络:&quot;&gt;&lt;/a&gt;虚拟机要能访问网络:&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;CentOS7 默认使用ip查看IP地址&lt;br&gt;配置文件位置:  /etc/sysconfig/network-scripts/&lt;br&gt;需要修改的配置项说明:&lt;br&gt;BOOTPROTO=dhcp #自动获取ip&lt;br&gt;ONBOOT=yes #开机启动网卡&lt;br&gt;重启网卡命令: service network restart&lt;br&gt;ip addr 查看ip信息&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;VirtualBox 网络设置为 NAT模式,没有意外的话CentOS可以直接访问网络了&lt;/p&gt;
+&lt;h3 id=&quot;虚拟机和主机能互通&quot;&gt;&lt;a href=&quot;#虚拟机和主机能互通&quot; class=&quot;headerlink&quot; title=&quot;虚拟机和主机能互通:&quot;&gt;&lt;/a&gt;虚拟机和主机能互通:&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;配置一个端口映射的规则即可&lt;br&gt;如下图&lt;br&gt;&lt;img src=&quot;http://githubblog-10030337.file.myqcloud.com/linux-virtualbox-centos7-network.png?sign=sKS+edOG1gppcj+qhNL5Rxb5vDRhPTEwMDMwMzM3Jms9QUtJRGNDZFJ2aDZITWsyTE1SNDFEMHo1SERFbzlORndwcWcxJmU9MTQ2NjQzNTI3NCZ0PTE0NjM4NDMyNzQmcj02ODYxNDcyMjAmZj0vbGludXgtdmlydHVhbGJveC1jZW50b3M3LW5ldHdvcmsucG5nJmI9Z2l0aHViYmxvZw==&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;配置虚拟机的22端口映射&quot;&gt;&lt;a href=&quot;#配置虚拟机的22端口映射&quot; class=&quot;headerlink&quot; title=&quot;配置虚拟机的22端口映射&quot;&gt;&lt;/a&gt;配置虚拟机的22端口映射&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;win下使用putty进行ssh登陆&lt;br&gt;mac下使用 ssh登陆 ssh -p 12022 root@127.0.0.1&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;主机IP&lt;/th&gt;
+&lt;th&gt;主机端口&lt;/th&gt;
+&lt;th&gt;虚拟机IP&lt;/th&gt;
+&lt;th&gt;虚拟机端口&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;127.0.0.1&lt;/td&gt;
+&lt;td&gt;12022&lt;/td&gt;
+&lt;td&gt;10.0.2.15&lt;/td&gt;
+&lt;td&gt;22&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;目的&quot;&gt;&lt;a href=&quot;#目的&quot; class=&quot;headerlink&quot; title=&quot;目的:&quot;&gt;&lt;/a&gt;目的:&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;了解虚拟机的网络配置&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;要求&quot;&gt;&lt;a href=&quot;#要求&quot; 
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+      <category term="CentOS" scheme="http://yoursite.com/tags/CentOS/"/>
+    
+      <category term="VirtualBox" scheme="http://yoursite.com/tags/VirtualBox/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>FTP:远程服务器返回错误:(550)文件不可用</title>
+    <link href="http://yoursite.com/2016/05/17/ftp-error-550/"/>
+    <id>http://yoursite.com/2016/05/17/ftp-error-550/</id>
+    <published>2016-05-17T02:14:49.000Z</published>
+    <updated>2016-05-21T09:54:27.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;错误描述&quot;&gt;&lt;a href=&quot;#错误描述&quot; class=&quot;headerlink&quot; title=&quot;错误描述:&quot;&gt;&lt;/a&gt;错误描述:&lt;/h3&gt;&lt;p&gt;&amp;emsp;&amp;emsp;FTP:远程服务器返回错误:(550)文件不可用(例如,未找到文件,无法访问文件)&lt;/p&gt;
+&lt;h3 id=&quot;分析&quot;&gt;&lt;a href=&quot;#分析&quot; class=&quot;headerlink&quot; title=&quot;分析:&quot;&gt;&lt;/a&gt;分析:&lt;/h3&gt;&lt;p&gt;&amp;emsp;&amp;emsp;最近在开发多服务器FTP文件同步应用时遇到了该问题. 开始死活找不到问题所在.网上查了一下都说是检测根目录或者文件是否存在.&lt;br&gt;&amp;emsp;&amp;emsp;最后发现是 FTP账号的权限问题,我没有配置对应账号的写权限…&lt;br&gt;&amp;emsp;&amp;emsp;总结遇到这个问题的排错方式:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;确定代码没有问题&lt;/li&gt;
+&lt;li&gt;检测文件或目录是否真的存在&lt;/li&gt;
+&lt;li&gt;检测FTP账号的可读可写权限&lt;/li&gt;
+&lt;li&gt;检测FTP账号的根目录&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;错误描述&quot;&gt;&lt;a href=&quot;#错误描述&quot; class=&quot;headerlink&quot; title=&quot;错误描述:&quot;&gt;&lt;/a&gt;错误描述:&lt;/h3&gt;&lt;p&gt;&amp;emsp;&amp;emsp;FTP:远程服务器返回错误:(550)文件不可用(例如,未找到文件,无法访问文件)&lt;/p&gt;
+&lt;h
+    
+    </summary>
+    
+      <category term="CSharp" scheme="http://yoursite.com/categories/CSharp/"/>
+    
+    
+      <category term="FTP" scheme="http://yoursite.com/tags/FTP/"/>
+    
+      <category term="CSharp" scheme="http://yoursite.com/tags/CSharp/"/>
+    
+  </entry>
+  
+</feed>
