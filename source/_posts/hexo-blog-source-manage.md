@@ -55,8 +55,13 @@ git checkout blog
 ```bash
 git push origin blog
 ```
+* 提交到github时,如果不想每次都打这么多命令,可以进行这样的设置
+```bash
+git push --set-upstream origin blog
+#之后就用下面这个命令推送吧
+git push
+```
 然后到github上看看的master和blog分支的区别吧!
 以后再次提交请在blog分支下进行操作.
 到这里,恭喜你!
 大功告成,开始你的下一篇blog吧!
-
