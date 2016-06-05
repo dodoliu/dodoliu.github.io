@@ -46,10 +46,17 @@ git add . && git commit -m 'init'
 ```bash
 git remote add origin https://github.com/dodoliu/dodoliu.github.io.git
 ```
+* 然后创建一个本地分支,并切换到该分支下
+```bash
+git branch blog
+git checkout blog
+```
 * 接下来,提交代码到github线上的blog分支中
 ```bash
 git push origin blog
 ```
-到这里,恭喜你! 
+然后到github上看看的master和blog分支的区别吧!
+以后再次提交请在blog分支下进行操作.
+到这里,恭喜你!
 大功告成,开始你的下一篇blog吧!
 
