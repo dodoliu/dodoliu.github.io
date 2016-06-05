@@ -4,6 +4,43 @@
   
     
     <entry>
+      <title><![CDATA[Hexo搭建静态Blog后的源码管理]]></title>
+      <url>http://yoursite.com/2016/06/05/hexo-blog-source-manage/</url>
+      <content type="html"><![CDATA[<p>当我们使用Hexo方便快捷的搭建完静态Blog,并愉快的写完第一篇Blog发布后.可能会遇到这样的问题:<br>我的Blog源码怎么管理啊?!<br>官方的命令咋没有把源码一并提交到GitHub啊?!<br>我要是有多台电脑,还要再安装一遍不成?!<br>同志,不要怕,接下来请跟我一步一步做.</p>
+<h4 id="下面拿我的-dodoliu-blog为例-一下所有的命令操作都假设你处在blog文件夹的根目录下-且你的系统是OSX"><a href="#下面拿我的-dodoliu-blog为例-一下所有的命令操作都假设你处在blog文件夹的根目录下-且你的系统是OSX" class="headerlink" title="下面拿我的 dodoliu blog为例,一下所有的命令操作都假设你处在blog文件夹的根目录下,且你的系统是OSX"></a>下面拿我的 dodoliu blog为例,一下所有的命令操作都假设你处在blog文件夹的根目录下,且你的系统是OSX</h4><ul>
+<li><p>先删除 dodoliu blog文件夹下的 .git 文件夹,该文件夹在windows下默认是隐藏的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> dodoliu</span><br><span class="line">rm -rf .git</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>再删除 themes 主题文件夹下的 .git 文件夹,如果发现有 .github 文件夹也一并删掉.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> themes/next</span><br><span class="line">rm -rf .git .github</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后回到dodoliu blog的根目录,创建git仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> dodoliu</span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后添加文件到git仓库,在添加前确认你blog根目录下的.gitignore文件内容像我这样</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接下来把本地代码提交到本地git仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add . &amp;&amp; git commit -m <span class="string">'init'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后copy 线上 github的仓库地址,添加到本地仓库(<a href="https://github.com/dodoliu/dodoliu.github.io.git是我的github仓库地址,请替换成你自己的" target="_blank" rel="external">https://github.com/dodoliu/dodoliu.github.io.git是我的github仓库地址,请替换成你自己的</a>)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/dodoliu/dodoliu.github.io.git</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后创建一个本地分支,并切换到该分支下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch blog</span><br><span class="line">git checkout blog</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接下来,提交代码到github线上的blog分支中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin blog</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提交到github时,如果不想每次都打这么多命令,可以进行这样的设置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git push --set-upstream origin blog</span><br><span class="line"><span class="comment">#之后就用下面这个命令推送吧</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>然后到github上看看的master和blog分支的区别吧!<br>以后再次提交请在blog分支下进行操作.<br>到这里,恭喜你!<br>大功告成,开始你的下一篇blog吧!</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[使用CoffeeScript实现KnockoutJS的年月日级联选择插件]]></title>
       <url>http://yoursite.com/2016/06/05/js-coffee-ko-year-month-day/</url>
       <content type="html"><![CDATA[<p>项目中需要使用简单的年月日级联选择功能遇到了好几次.每次都要Copy,想想还是老老实实封装一下,方便复用.<br>功能展示<br><img src="http://githubblog-10030337.file.myqcloud.com/year_month_day_select.gif?sign=b5DHy+lL4iAAloRdzquaVFw2xsthPTEwMDMwMzM3Jms9QUtJRGNDZFJ2aDZITWsyTE1SNDFEMHo1SERFbzlORndwcWcxJmU9MTQ2NzY5NjU0NSZ0PTE0NjUxMDQ1NDUmcj03Mzk5NDMzNSZmPS95ZWFyX21vbnRoX2RheV9zZWxlY3QuZ2lmJmI9Z2l0aHViYmxvZw==" alt="功能展示"></p>
