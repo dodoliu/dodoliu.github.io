@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="FTP,CSharp," />
+  <meta name="keywords" content="Javascript,CoffeeScript,KnockoutJS," />
 
 
 
@@ -86,19 +86,42 @@
 
 
 
-<meta name="description" content="错误描述:&amp;emsp;&amp;emsp;FTP:远程服务器返回错误:(550)文件不可用(例如,未找到文件,无法访问文件)
-分析:&amp;emsp;&amp;emsp;最近在开发多服务器FTP文件同步应用时遇到了该问题. 开始死活找不到问题所在.网上查了一下都说是检测根目录或者文件是否存在.&amp;emsp;&amp;emsp;最后发现是 FTP账号的权限问题,我没有配置对应账号的写权限…&amp;emsp;&amp;emsp;总结遇到这个问题的">
+<meta name="description" content="项目中需要使用简单的年月日级联选择功能遇到了好几次.每次都要Copy,想想还是老老实实封装一下,方便复用.功能展示
+源码地址
+功能简介
+模式A(year_month_day_select_a): 完整的年月日控件  模式B(year_month_day_select_b): 只包含年和月的控件  基本参数的详细说明在 coffee中
+
+编译
+coffee -w -b -o . -c .
+
+用法引入">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FTP:远程服务器返回错误:(550)文件不可用">
-<meta property="og:url" content="http://yoursite.com/2016/05/17/ftp-error-550/index.html">
+<meta property="og:title" content="使用CoffeeScript实现KnockoutJS的年月日级联选择插件">
+<meta property="og:url" content="http://yoursite.com/2016/06/05/js-coffee-ko-year-month-day/index.html">
 <meta property="og:site_name" content="dodoliu的折腾笔记">
-<meta property="og:description" content="错误描述:&amp;emsp;&amp;emsp;FTP:远程服务器返回错误:(550)文件不可用(例如,未找到文件,无法访问文件)
-分析:&amp;emsp;&amp;emsp;最近在开发多服务器FTP文件同步应用时遇到了该问题. 开始死活找不到问题所在.网上查了一下都说是检测根目录或者文件是否存在.&amp;emsp;&amp;emsp;最后发现是 FTP账号的权限问题,我没有配置对应账号的写权限…&amp;emsp;&amp;emsp;总结遇到这个问题的">
-<meta property="og:updated_time" content="2016-05-21T09:54:27.000Z">
+<meta property="og:description" content="项目中需要使用简单的年月日级联选择功能遇到了好几次.每次都要Copy,想想还是老老实实封装一下,方便复用.功能展示
+源码地址
+功能简介
+模式A(year_month_day_select_a): 完整的年月日控件  模式B(year_month_day_select_b): 只包含年和月的控件  基本参数的详细说明在 coffee中
+
+编译
+coffee -w -b -o . -c .
+
+用法引入">
+<meta property="og:image" content="http://githubblog-10030337.file.myqcloud.com/year_month_day_select.gif?sign=b5DHy+lL4iAAloRdzquaVFw2xsthPTEwMDMwMzM3Jms9QUtJRGNDZFJ2aDZITWsyTE1SNDFEMHo1SERFbzlORndwcWcxJmU9MTQ2NzY5NjU0NSZ0PTE0NjUxMDQ1NDUmcj03Mzk5NDMzNSZmPS95ZWFyX21vbnRoX2RheV9zZWxlY3QuZ2lmJmI9Z2l0aHViYmxvZw==">
+<meta property="og:updated_time" content="2016-06-05T05:29:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FTP:远程服务器返回错误:(550)文件不可用">
-<meta name="twitter:description" content="错误描述:&amp;emsp;&amp;emsp;FTP:远程服务器返回错误:(550)文件不可用(例如,未找到文件,无法访问文件)
-分析:&amp;emsp;&amp;emsp;最近在开发多服务器FTP文件同步应用时遇到了该问题. 开始死活找不到问题所在.网上查了一下都说是检测根目录或者文件是否存在.&amp;emsp;&amp;emsp;最后发现是 FTP账号的权限问题,我没有配置对应账号的写权限…&amp;emsp;&amp;emsp;总结遇到这个问题的">
+<meta name="twitter:title" content="使用CoffeeScript实现KnockoutJS的年月日级联选择插件">
+<meta name="twitter:description" content="项目中需要使用简单的年月日级联选择功能遇到了好几次.每次都要Copy,想想还是老老实实封装一下,方便复用.功能展示
+源码地址
+功能简介
+模式A(year_month_day_select_a): 完整的年月日控件  模式B(year_month_day_select_b): 只包含年和月的控件  基本参数的详细说明在 coffee中
+
+编译
+coffee -w -b -o . -c .
+
+用法引入">
+<meta name="twitter:image" content="http://githubblog-10030337.file.myqcloud.com/year_month_day_select.gif?sign=b5DHy+lL4iAAloRdzquaVFw2xsthPTEwMDMwMzM3Jms9QUtJRGNDZFJ2aDZITWsyTE1SNDFEMHo1SERFbzlORndwcWcxJmU9MTQ2NzY5NjU0NSZ0PTE0NjUxMDQ1NDUmcj03Mzk5NDMzNSZmPS95ZWFyX21vbnRoX2RheV9zZWxlY3QuZ2lmJmI9Z2l0aHViYmxvZw==">
 
 
 
@@ -116,7 +139,7 @@
   };
 </script>
 
-  <title> FTP:远程服务器返回错误:(550)文件不可用 | dodoliu的折腾笔记 </title>
+  <title> 使用CoffeeScript实现KnockoutJS的年月日级联选择插件 | dodoliu的折腾笔记 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -296,7 +319,7 @@
             
             
               
-                FTP:远程服务器返回错误:(550)文件不可用
+                使用CoffeeScript实现KnockoutJS的年月日级联选择插件
               
             
           </h1>
@@ -308,8 +331,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-17T10:14:49+08:00" content="2016-05-17">
-              2016-05-17
+            <time itemprop="dateCreated" datetime="2016-06-05T12:07:02+08:00" content="2016-06-05">
+              2016-06-05
             </time>
           </span>
 
@@ -322,8 +345,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/CSharp/" itemprop="url" rel="index">
-                    <span itemprop="name">CSharp</span>
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
                   </a>
                 </span>
 
@@ -344,8 +367,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/17/ftp-error-550/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/17/ftp-error-550/" itemprop="commentsCount"></span>
+                <a href="/2016/06/05/js-coffee-ko-year-month-day/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/05/js-coffee-ko-year-month-day/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -368,14 +391,33 @@
       
 
       
-        <h3 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述:"></a>错误描述:</h3><p>&emsp;&emsp;FTP:远程服务器返回错误:(550)文件不可用(例如,未找到文件,无法访问文件)</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析:"></a>分析:</h3><p>&emsp;&emsp;最近在开发多服务器FTP文件同步应用时遇到了该问题. 开始死活找不到问题所在.网上查了一下都说是检测根目录或者文件是否存在.<br>&emsp;&emsp;最后发现是 FTP账号的权限问题,我没有配置对应账号的写权限…<br>&emsp;&emsp;总结遇到这个问题的排错方式:</p>
-<ol>
-<li>确定代码没有问题</li>
-<li>检测文件或目录是否真的存在</li>
-<li>检测FTP账号的可读可写权限</li>
-<li>检测FTP账号的根目录</li>
-</ol>
+        <p>项目中需要使用简单的年月日级联选择功能遇到了好几次.每次都要Copy,想想还是老老实实封装一下,方便复用.<br>功能展示<br><img src="http://githubblog-10030337.file.myqcloud.com/year_month_day_select.gif?sign=b5DHy+lL4iAAloRdzquaVFw2xsthPTEwMDMwMzM3Jms9QUtJRGNDZFJ2aDZITWsyTE1SNDFEMHo1SERFbzlORndwcWcxJmU9MTQ2NzY5NjU0NSZ0PTE0NjUxMDQ1NDUmcj03Mzk5NDMzNSZmPS95ZWFyX21vbnRoX2RheV9zZWxlY3QuZ2lmJmI9Z2l0aHViYmxvZw==" alt="功能展示"></p>
+<p><a href="https://github.com/dodoliu/HelperLibrary/tree/master/Javascript/year_month_day_select" target="_blank" rel="external">源码地址</a></p>
+<h3 id="功能简介"><a href="#功能简介" class="headerlink" title="功能简介"></a>功能简介</h3><blockquote>
+<p>模式A(year_month_day_select_a): 完整的年月日控件<br>  模式B(year_month_day_select_b): 只包含年和月的控件<br>  基本参数的详细说明在 coffee中</p>
+</blockquote>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><blockquote>
+<p>coffee -w -b -o . -c .</p>
+</blockquote>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>引入<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"year_month_day_select.js"</span> <span class="attr">defer</span>=<span class="string">'defer'</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">`</span><br></pre></td></tr></table></figure></p>
+<p>html中绑定<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">data-bind</span>=<span class="string">"component:'year_month_day_select_a' "</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>或<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">data-bind</span>=<span class="string">"component:'year_month_day_select_b' "</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>获取值<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> year = $(<span class="string">"#test_sl_year option:selected"</span>).val();</span><br><span class="line"><span class="keyword">var</span> month = $(<span class="string">"#test_sl_month option:selected"</span>).val();</span><br><span class="line"><span class="keyword">var</span> day = $(<span class="string">"#test_sl_day option:selected"</span>).val();</span><br><span class="line">$(<span class="string">"#span"</span>).text(year + <span class="string">'-'</span> + month + <span class="string">'-'</span> + day);</span><br></pre></td></tr></table></figure></p>
+<p>日期默认选择有三种形式</p>
+<ul>
+<li><p>年月日的默认选择为当前 日期</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> YearMonthDaySelect(&#123;</span><br><span class="line">  initSelect: <span class="literal">true</span>,</span><br><span class="line">  yearInterval: <span class="number">10</span>,</span><br><span class="line">  yearTitle: <span class="string">'年'</span>,</span><br><span class="line">  yearID: <span class="string">'test_sl_year'</span>,</span><br><span class="line">  yearName: <span class="string">'test_sl_year_name'</span>,</span><br><span class="line">  yearClass: <span class="string">'test_sl_year_class otherclassname'</span>,</span><br><span class="line">  monthTitle: <span class="string">'月'</span>,</span><br><span class="line">  monthID: <span class="string">'test_sl_month'</span>,</span><br><span class="line">  monthName: <span class="string">'test_sl_month_name'</span>,</span><br><span class="line">  monthClass: <span class="string">'test_sl_month_class otherclassname'</span>,</span><br><span class="line">  dayTitle: <span class="string">'天'</span>,</span><br><span class="line">  dayID: <span class="string">'test_sl_day'</span>,</span><br><span class="line">  dayName: <span class="string">'test_sl_day_name'</span>,</span><br><span class="line">  dayClass: <span class="string">'test_sl_day_class otherclassname'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>年月日的默认选择为 指定日期</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> YearMonthDaySelect(&#123;</span><br><span class="line">  initYear: <span class="number">2013</span>,</span><br><span class="line">  initMonth: <span class="number">3</span>,</span><br><span class="line">  initDay: <span class="number">2</span>,</span><br><span class="line">  yearInterval: <span class="number">10</span>,</span><br><span class="line">  yearTitle: <span class="string">'年'</span>,</span><br><span class="line">  yearID: <span class="string">'test_sl_year'</span>,</span><br><span class="line">  yearName: <span class="string">'test_sl_year_name'</span>,</span><br><span class="line">  yearClass: <span class="string">'test_sl_year_class otherclassname'</span>,</span><br><span class="line">  monthTitle: <span class="string">'月'</span>,</span><br><span class="line">  monthID: <span class="string">'test_sl_month'</span>,</span><br><span class="line">  monthName: <span class="string">'test_sl_month_name'</span>,</span><br><span class="line">  monthClass: <span class="string">'test_sl_month_class otherclassname'</span>,</span><br><span class="line">  dayTitle: <span class="string">'天'</span>,</span><br><span class="line">  dayID: <span class="string">'test_sl_day'</span>,</span><br><span class="line">  dayName: <span class="string">'test_sl_day_name'</span>,</span><br><span class="line">  dayClass: <span class="string">'test_sl_day_class otherclassname'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>年月日的默认选择为 年:当前年,月:1月,日:1日</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> YearMonthDaySelect(&#123;</span><br><span class="line">  yearInterval: <span class="number">10</span>,</span><br><span class="line">  yearTitle: <span class="string">'年'</span>,</span><br><span class="line">  yearID: <span class="string">'test_sl_year'</span>,</span><br><span class="line">  yearName: <span class="string">'test_sl_year_name'</span>,</span><br><span class="line">  yearClass: <span class="string">'test_sl_year_class otherclassname'</span>,</span><br><span class="line">  monthTitle: <span class="string">'月'</span>,</span><br><span class="line">  monthID: <span class="string">'test_sl_month'</span>,</span><br><span class="line">  monthName: <span class="string">'test_sl_month_name'</span>,</span><br><span class="line">  monthClass: <span class="string">'test_sl_month_class otherclassname'</span>,</span><br><span class="line">  dayTitle: <span class="string">'天'</span>,</span><br><span class="line">  dayID: <span class="string">'test_sl_day'</span>,</span><br><span class="line">  dayName: <span class="string">'test_sl_day_name'</span>,</span><br><span class="line">  dayClass: <span class="string">'test_sl_day_class otherclassname'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><blockquote>
+<p>该扩展所需依赖<br>  jquery.js<br>  helper.js<br>  knockout.js<br>  只能同时存在一种模式<br>  必须 通过 new YearMonthDaySelect() 调用,否则无法正常使用</p>
+</blockquote>
 
       
     </div>
@@ -397,9 +439,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/FTP/" rel="tag">#FTP</a>
+            <a href="/tags/Javascript/" rel="tag">#Javascript</a>
           
-            <a href="/tags/CSharp/" rel="tag">#CSharp</a>
+            <a href="/tags/CoffeeScript/" rel="tag">#CoffeeScript</a>
+          
+            <a href="/tags/KnockoutJS/" rel="tag">#KnockoutJS</a>
           
         </div>
       
@@ -408,13 +452,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/05/28/nginx-virtualbox-centos7-loadbalanciing/" rel="next" title="虚拟机下CentOS中Nginx的反向代理和负载均衡初探">
+                <i class="fa fa-chevron-left"></i> 虚拟机下CentOS中Nginx的反向代理和负载均衡初探
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/18/linux-virtualbox-centos7-network/" rel="prev" title="记录一次VirtualBox安装Centos7的网络配置">
-                记录一次VirtualBox安装Centos7的网络配置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -440,8 +484,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/17/ftp-error-550/"
-           data-title="FTP:远程服务器返回错误:(550)文件不可用" data-url="http://yoursite.com/2016/05/17/ftp-error-550/">
+      <div class="ds-thread" data-thread-key="2016/06/05/js-coffee-ko-year-month-day/"
+           data-title="使用CoffeeScript实现KnockoutJS的年月日级联选择插件" data-url="http://yoursite.com/2016/06/05/js-coffee-ko-year-month-day/">
       </div>
     
   </div>
@@ -539,7 +583,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#错误描述"><span class="nav-number">1.</span> <span class="nav-text">错误描述:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#功能简介"><span class="nav-number">1.</span> <span class="nav-text">功能简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译"><span class="nav-number">2.</span> <span class="nav-text">编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用法"><span class="nav-number">3.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">4.</span> <span class="nav-text">注意事项</span></a></li></ol></div>
             
           </div>
         </section>
