@@ -22,7 +22,6 @@ date: 2016-06-05 12:07:02
 > coffee -w -b -o . -c .
 
 ### 用法
->
 引入
 ```html
 <script type="text/javascript" src="year_month_day_select.js" defer='defer'></script>
