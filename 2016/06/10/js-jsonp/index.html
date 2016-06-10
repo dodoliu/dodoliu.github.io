@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Javascript," />
 
 
 
@@ -86,15 +86,16 @@
 
 
 
-<meta name="description" content="爱生活，爱折腾！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="dodoliu的折腾笔记">
-<meta property="og:url" content="http://yoursite.com/archives/2016/06/index.html">
+<meta name="description" content="之前在做统计分析系统的时候需要跨域请求数据.Jquery已经封装了jsonp的实现,但是考虑到统计代码的大小,决定弃用jquery.自己实现一下.jsonp的原理其实很简单,通过script标签发送一个callback参数到后端,后端返回数据时,使用这个callback函数包裹一下.这样,在前端接收到后端的返回后,就可以执行这个callback函数.在使用jsonp时需要注意,jsonp只能发送g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSONP的原理与实现">
+<meta property="og:url" content="http://yoursite.com/2016/06/10/js-jsonp/index.html">
 <meta property="og:site_name" content="dodoliu的折腾笔记">
-<meta property="og:description" content="爱生活，爱折腾！">
+<meta property="og:description" content="之前在做统计分析系统的时候需要跨域请求数据.Jquery已经封装了jsonp的实现,但是考虑到统计代码的大小,决定弃用jquery.自己实现一下.jsonp的原理其实很简单,通过script标签发送一个callback参数到后端,后端返回数据时,使用这个callback函数包裹一下.这样,在前端接收到后端的返回后,就可以执行这个callback函数.在使用jsonp时需要注意,jsonp只能发送g">
+<meta property="og:updated_time" content="2016-06-10T07:11:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="dodoliu的折腾笔记">
-<meta name="twitter:description" content="爱生活，爱折腾！">
+<meta name="twitter:title" content="JSONP的原理与实现">
+<meta name="twitter:description" content="之前在做统计分析系统的时候需要跨域请求数据.Jquery已经封装了jsonp的实现,但是考虑到统计代码的大小,决定弃用jquery.自己实现一下.jsonp的原理其实很简单,通过script标签发送一个callback参数到后端,后端返回数据时,使用这个callback函数包裹一下.这样,在前端接收到后端的返回后,就可以执行这个callback函数.在使用jsonp时需要注意,jsonp只能发送g">
 
 
 
@@ -112,7 +113,7 @@
   };
 </script>
 
-  <title> 归档 | dodoliu的折腾笔记 </title>
+  <title> JSONP的原理与实现 | dodoliu的折腾笔记 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -150,7 +151,7 @@
   
   
 
-  <div class="container one-collumn   page-archive  ">
+  <div class="container one-collumn  page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -271,140 +272,154 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 7 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/06/10/js-jsonp/" itemprop="url">
-              
-                <span itemprop="name">JSONP的原理与实现</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-06-10T14:34:16+08:00"
-              content="2016-06-10" >
-          06-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/06/05/hexo-blog-source-manage/" itemprop="url">
-              
-                <span itemprop="name">Hexo搭建静态Blog后的源码管理</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-06-05T14:59:18+08:00"
-              content="2016-06-05" >
-          06-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/06/05/js-coffee-ko-year-month-day/" itemprop="url">
-              
-                <span itemprop="name">使用CoffeeScript实现KnockoutJS的年月日级联选择插件</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-06-05T12:07:02+08:00"
-              content="2016-06-05" >
-          06-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
+  
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JSONP的原理与实现
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-10T14:34:16+08:00" content="2016-06-10">
+              2016-06-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+<span id="busuanzi_container_page_pv">
+       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
+       </span>
+
+
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/10/js-jsonp/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/10/js-jsonp/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>之前在做统计分析系统的时候需要跨域请求数据.Jquery已经封装了jsonp的实现,但是考虑到统计代码的大小,决定弃用jquery.自己实现一下.<br>jsonp的原理其实很简单,通过script标签发送一个callback参数到后端,后端返回数据时,使用这个callback函数包裹一下.这样,在前端接收到后端的返回后,就可以执行这个callback函数.<br>在使用jsonp时需要注意,jsonp只能发送get请求.<br>下面是jsonp的实现代码.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _ajax = &#123;</span><br><span class="line">    ajax_jsonp: &#123;</span><br><span class="line">        <span class="comment">//获取当前时间戳</span></span><br><span class="line">        now: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">Date</span>()).getTime();</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//获取16位随机数</span></span><br><span class="line">        rand: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">Math</span>.random().toString().substr(<span class="number">2</span>);</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//url组装</span></span><br><span class="line">        parse_data: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> ret = <span class="string">""</span>;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> data === <span class="string">"string"</span>) &#123;</span><br><span class="line">                ret = data;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> data === <span class="string">"object"</span>) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> data) &#123;</span><br><span class="line">                    ret += <span class="string">"&amp;"</span> + key + <span class="string">"="</span> + <span class="built_in">encodeURIComponent</span>(data[key]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//加上时间戳</span></span><br><span class="line">            ret += <span class="string">"&amp;_time="</span> + <span class="keyword">this</span>.now();</span><br><span class="line">            <span class="keyword">return</span> ret;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">/**</span><br><span class="line">        * jsonp调用的方法</span><br><span class="line">        * @param &#123;object&#125; url 请求的url</span><br><span class="line">        * @param &#123;object&#125; data 请求的data</span><br><span class="line">        */</span></span><br><span class="line">        jsonp: <span class="function"><span class="keyword">function</span> (<span class="params">url, data</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> name;</span><br><span class="line">            url = url + (url.indexOf(<span class="string">"?"</span>) === <span class="number">-1</span> ? <span class="string">"?"</span> : <span class="string">"&amp;"</span>) + <span class="keyword">this</span>.parse_data(data);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//检测callback的函数名是否已经定义</span></span><br><span class="line">            <span class="keyword">var</span> match = <span class="regexp">/callback=([a-zA-Z\._]+)/</span>.exec(url);</span><br><span class="line">            <span class="keyword">if</span> (match &amp;&amp; match[<span class="number">1</span>]) &#123;</span><br><span class="line">                name = match[<span class="number">1</span>].replace(<span class="regexp">/\./g</span>, <span class="string">"_"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//如果url中没有callback,直接返回</span></span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"invalid callback param"</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//创建script标签</span></span><br><span class="line">            <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</span><br><span class="line">            script.type = <span class="string">"text/javascript"</span>;</span><br><span class="line">            script.src = url;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//在head里面插入script元素</span></span><br><span class="line">            <span class="keyword">var</span> head = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"head"</span>);</span><br><span class="line">            <span class="keyword">if</span> (head &amp;&amp; head[<span class="number">0</span>]) &#123;</span><br><span class="line">                head[<span class="number">0</span>].appendChild(script);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>调用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_ajax.ajax_jsonp.jsonp(_url, data);</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Javascript/" rel="tag">#Javascript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/05/hexo-blog-source-manage/" rel="next" title="Hexo搭建静态Blog后的源码管理">
+                <i class="fa fa-chevron-left"></i> Hexo搭建静态Blog后的源码管理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -412,6 +427,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/10/js-jsonp/"
+           data-title="JSONP的原理与实现" data-url="http://yoursite.com/2016/06/10/js-jsonp/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -431,8 +454,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -489,6 +521,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -591,11 +634,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   

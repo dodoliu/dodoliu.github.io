@@ -103,7 +103,7 @@
 
 编译">
 <meta property="og:image" content="http://githubblog-10030337.file.myqcloud.com/year_month_day_select.gif?sign=b5DHy+lL4iAAloRdzquaVFw2xsthPTEwMDMwMzM3Jms9QUtJRGNDZFJ2aDZITWsyTE1SNDFEMHo1SERFbzlORndwcWcxJmU9MTQ2NzY5NjU0NSZ0PTE0NjUxMDQ1NDUmcj03Mzk5NDMzNSZmPS95ZWFyX21vbnRoX2RheV9zZWxlY3QuZ2lmJmI9Z2l0aHViYmxvZw==">
-<meta property="og:updated_time" content="2016-06-07T14:21:12.000Z">
+<meta property="og:updated_time" content="2016-06-07T14:23:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用CoffeeScript实现KnockoutJS的年月日级联选择插件">
 <meta name="twitter:description" content="项目中需要使用简单的年月日级联选择功能遇到了好几次.每次都要Copy,想想还是老老实实封装一下,方便复用.功能展示
@@ -390,7 +390,7 @@
 <h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><blockquote>
 <p>coffee -w -b -o . -c .</p>
 </blockquote>
-<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>&gt;<br>引入<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"year_month_day_select.js"</span> <span class="attr">defer</span>=<span class="string">'defer'</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>引入<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"year_month_day_select.js"</span> <span class="attr">defer</span>=<span class="string">'defer'</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>html中绑定<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">data-bind</span>=<span class="string">"component:'year_month_day_select_a' "</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>或<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">data-bind</span>=<span class="string">"component:'year_month_day_select_b' "</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>获取值<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> year = $(<span class="string">"#test_sl_year option:selected"</span>).val();</span><br><span class="line"><span class="keyword">var</span> month = $(<span class="string">"#test_sl_month option:selected"</span>).val();</span><br><span class="line"><span class="keyword">var</span> day = $(<span class="string">"#test_sl_day option:selected"</span>).val();</span><br><span class="line">$(<span class="string">"#span"</span>).text(year + <span class="string">'-'</span> + month + <span class="string">'-'</span> + day);</span><br></pre></td></tr></table></figure></p>
@@ -528,7 +528,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
