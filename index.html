@@ -295,6 +295,133 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/18/ruby-existing-mysql-generate-model/" itemprop="url">
+                  基于一个已经存在的MySql库创建Rails的Model
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-18T15:16:27+08:00" content="2016-06-18">
+              2016-06-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Ruby/" itemprop="url" rel="index">
+                    <span itemprop="name">Ruby</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+<span id="busuanzi_container_page_pv">
+       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
+       </span>
+
+
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/18/ruby-existing-mysql-generate-model/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/18/ruby-existing-mysql-generate-model/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>我有一个很奇葩的需求!<br>我需要在不改变现有MySql表结构的情况下使用Rails访问MySql.目前只需要用到ActiveRecord的查询功能.<br>为何会有这种奇葩需求呢?!<br>现有系统的数据架构是运行很久且稳定的,且现有系统不允许添加一些方便平时使用的小功能.那只能另辟蹊径了.又因为我想尝试下在Windows下搞Rails开发.于是乎,这个奇葩需求就产生了.<br>既然有想法了,那么就动手做吧!<br>windows下安装Rails环境就不说了,网上一堆.<br>访问MySql使用mysql2.如果在确认数据库配置没有任何问题的前提下,还是无法访问MySql.请尝试下载安装MySql的动态链接库文件libmysql.dll.这是<a href="http://www.mysql.com/downloads/connector/c/" target="_blank" rel="external">下载地址</a><br>如果没有意外,安装完动态链接库后一切就正常了.如何还不正常…请问Google!<br>这个需求的唯一关键点就是设置Model的默认访问table名称.因为按照Rails的约定,Model是单数,数据库中的表必须是复数.比如有Account这个Model,如果数据库中的表是account,那么需要按照下面代码中的设置来创建Model.<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Account</span> &lt; ActiveRecord::Base</span></span><br><span class="line">    <span class="keyword">self</span>.table_name = <span class="string">'account'</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<p>这样设置之后,就可以愉快的使用ActiveRecord的强大功能了.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/10/js-jsonp/" itemprop="url">
                   JSONP的原理与实现
                 </a>
@@ -912,153 +1039,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/20/nginx-simple-usage/" itemprop="url">
-                  虚拟机下CentOS7安装Nginx及简单用法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-20T22:36:41+08:00" content="2016-05-20">
-              2016-05-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-<span id="busuanzi_container_page_pv">
-       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
-       </span>
-
-
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/20/nginx-simple-usage/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/20/nginx-simple-usage/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="目的"><a href="#目的" class="headerlink" title="目的:"></a>目的:</h3><blockquote>
-<p>熟悉nginx的安装与使用</p>
-</blockquote>
-<h3 id="环境"><a href="#环境" class="headerlink" title="环境:"></a>环境:</h3><blockquote>
-<p>VirtualBox: 5.0.20<br>CentOS: CentOS-7-x86_64-Minimal-1511<br>Nginx: 1.10.0</p>
-</blockquote>
-<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤:"></a>安装步骤:</h3><blockquote>
-<p>Nginx下载地址: <a href="http://nginx.org/download/nginx-1.10.0.tar.gz" target="_blank" rel="external">http://nginx.org/download/nginx-1.10.0.tar.gz</a><br>下载完成后解压: tar zxvf nginx-1.10.0.tar.gz<br>然后进入解压目录: cd nginx-1.10.0<br>编译安装:<br>./configure<br>make &amp;&amp; make install</p>
-</blockquote>
-<p>默认安装目录在: /usr/local/nginx</p>
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动:"></a>启动:</h3><blockquote>
-<p>cd到 nginx下的 sbin目录<br>执行命令 ./nginx</p>
-</blockquote>
-<h3 id="停止"><a href="#停止" class="headerlink" title="停止:"></a>停止:</h3><blockquote>
-<p>使用ps命令查看 nginx的pid<br>ps -A | grep nginx<br>从容停止: kill -QUIT 查询到的nginx的pid<br>快速停止: kill -TERM 查询到的nginx的pid<br>强制停止: kill -9 查询到的nginx的pid</p>
-</blockquote>
-<h3 id="重启"><a href="#重启" class="headerlink" title="重启:"></a>重启:</h3><blockquote>
-<p>cd到nginx的sbin目录<br>./nginx -s reload (这个命令在我测试的时候发现不能完全重启…不知为何…之后我都选择先停止,再启动)</p>
-</blockquote>
-<h3 id="修改conf"><a href="#修改conf" class="headerlink" title="修改conf:"></a>修改conf:</h3><blockquote>
-<p>默认配置文件在nginx的根目录的conf中<br>进入该目录 vim nginx.conf 进行编辑.<br>编辑完成后一般需要先检测配置文件是否正常再重启系统nginx,以免配置文件错误.<br>检测命令(假如在nginx的sbin目录下): ./nginx -t</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1104,7 +1084,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1112,7 +1092,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1121,7 +1101,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

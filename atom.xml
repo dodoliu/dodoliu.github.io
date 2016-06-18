@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-10T07:20:28.000Z</updated>
+  <updated>2016-06-18T07:57:48.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基于一个已经存在的MySql库创建Rails的Model</title>
+    <link href="http://yoursite.com/2016/06/18/ruby-existing-mysql-generate-model/"/>
+    <id>http://yoursite.com/2016/06/18/ruby-existing-mysql-generate-model/</id>
+    <published>2016-06-18T07:16:27.000Z</published>
+    <updated>2016-06-18T07:57:48.000Z</updated>
+    
+    <content type="html">&lt;p&gt;我有一个很奇葩的需求!&lt;br&gt;我需要在不改变现有MySql表结构的情况下使用Rails访问MySql.目前只需要用到ActiveRecord的查询功能.&lt;br&gt;为何会有这种奇葩需求呢?!&lt;br&gt;现有系统的数据架构是运行很久且稳定的,且现有系统不允许添加一些方便平时使用的小功能.那只能另辟蹊径了.又因为我想尝试下在Windows下搞Rails开发.于是乎,这个奇葩需求就产生了.&lt;br&gt;既然有想法了,那么就动手做吧!&lt;br&gt;windows下安装Rails环境就不说了,网上一堆.&lt;br&gt;访问MySql使用mysql2.如果在确认数据库配置没有任何问题的前提下,还是无法访问MySql.请尝试下载安装MySql的动态链接库文件libmysql.dll.这是&lt;a href=&quot;http://www.mysql.com/downloads/connector/c/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;下载地址&lt;/a&gt;&lt;br&gt;如果没有意外,安装完动态链接库后一切就正常了.如何还不正常…请问Google!&lt;br&gt;这个需求的唯一关键点就是设置Model的默认访问table名称.因为按照Rails的约定,Model是单数,数据库中的表必须是复数.比如有Account这个Model,如果数据库中的表是account,那么需要按照下面代码中的设置来创建Model.&lt;br&gt;&lt;figure class=&quot;highlight ruby&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Account&lt;/span&gt; &amp;lt; ActiveRecord::Base&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;self&lt;/span&gt;.table_name = &lt;span class=&quot;string&quot;&gt;&#39;account&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这样设置之后,就可以愉快的使用ActiveRecord的强大功能了.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我有一个很奇葩的需求!&lt;br&gt;我需要在不改变现有MySql表结构的情况下使用Rails访问MySql.目前只需要用到ActiveRecord的查询功能.&lt;br&gt;为何会有这种奇葩需求呢?!&lt;br&gt;现有系统的数据架构是运行很久且稳定的,且现有系统不允许添加一些方便平时使用的小功
+    
+    </summary>
+    
+      <category term="Ruby" scheme="http://yoursite.com/categories/Ruby/"/>
+    
+    
+      <category term="Ruby" scheme="http://yoursite.com/tags/Ruby/"/>
+    
+      <category term="Ruby On Rails" scheme="http://yoursite.com/tags/Ruby-On-Rails/"/>
+    
+      <category term="MySql" scheme="http://yoursite.com/tags/MySql/"/>
+    
+  </entry>
   
   <entry>
     <title>JSONP的原理与实现</title>

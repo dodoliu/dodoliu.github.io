@@ -295,6 +295,153 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/20/nginx-simple-usage/" itemprop="url">
+                  虚拟机下CentOS7安装Nginx及简单用法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-20T22:36:41+08:00" content="2016-05-20">
+              2016-05-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+<span id="busuanzi_container_page_pv">
+       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
+       </span>
+
+
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/20/nginx-simple-usage/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/20/nginx-simple-usage/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="目的"><a href="#目的" class="headerlink" title="目的:"></a>目的:</h3><blockquote>
+<p>熟悉nginx的安装与使用</p>
+</blockquote>
+<h3 id="环境"><a href="#环境" class="headerlink" title="环境:"></a>环境:</h3><blockquote>
+<p>VirtualBox: 5.0.20<br>CentOS: CentOS-7-x86_64-Minimal-1511<br>Nginx: 1.10.0</p>
+</blockquote>
+<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤:"></a>安装步骤:</h3><blockquote>
+<p>Nginx下载地址: <a href="http://nginx.org/download/nginx-1.10.0.tar.gz" target="_blank" rel="external">http://nginx.org/download/nginx-1.10.0.tar.gz</a><br>下载完成后解压: tar zxvf nginx-1.10.0.tar.gz<br>然后进入解压目录: cd nginx-1.10.0<br>编译安装:<br>./configure<br>make &amp;&amp; make install</p>
+</blockquote>
+<p>默认安装目录在: /usr/local/nginx</p>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动:"></a>启动:</h3><blockquote>
+<p>cd到 nginx下的 sbin目录<br>执行命令 ./nginx</p>
+</blockquote>
+<h3 id="停止"><a href="#停止" class="headerlink" title="停止:"></a>停止:</h3><blockquote>
+<p>使用ps命令查看 nginx的pid<br>ps -A | grep nginx<br>从容停止: kill -QUIT 查询到的nginx的pid<br>快速停止: kill -TERM 查询到的nginx的pid<br>强制停止: kill -9 查询到的nginx的pid</p>
+</blockquote>
+<h3 id="重启"><a href="#重启" class="headerlink" title="重启:"></a>重启:</h3><blockquote>
+<p>cd到nginx的sbin目录<br>./nginx -s reload (这个命令在我测试的时候发现不能完全重启…不知为何…之后我都选择先停止,再启动)</p>
+</blockquote>
+<h3 id="修改conf"><a href="#修改conf" class="headerlink" title="修改conf:"></a>修改conf:</h3><blockquote>
+<p>默认配置文件在nginx的根目录的conf中<br>进入该目录 vim nginx.conf 进行编辑.<br>编辑完成后一般需要先检测配置文件是否正常再重启系统nginx,以免配置文件错误.<br>检测命令(假如在nginx的sbin目录下): ./nginx -t</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/18/linux-virtualbox-centos7-network/" itemprop="url">
                   记录一次VirtualBox安装Centos7的网络配置
                 </a>
@@ -617,7 +764,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -625,7 +772,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -634,7 +781,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
