@@ -37,7 +37,7 @@ VirtualBox 网络设置为 NAT模式,没有意外的话CentOS可以直接访问�
 ### 虚拟机和主机能互通:
 > 配置一个端口映射的规则即可
 如下图
-![1](http://githubblog-10030337.file.myqcloud.com/linux-virtualbox-centos7-network.png?sign=sKS+edOG1gppcj+qhNL5Rxb5vDRhPTEwMDMwMzM3Jms9QUtJRGNDZFJ2aDZITWsyTE1SNDFEMHo1SERFbzlORndwcWcxJmU9MTQ2NjQzNTI3NCZ0PTE0NjM4NDMyNzQmcj02ODYxNDcyMjAmZj0vbGludXgtdmlydHVhbGJveC1jZW50b3M3LW5ldHdvcmsucG5nJmI9Z2l0aHViYmxvZw==)
+![1](http://githubblog-10030337.cos.myqcloud.com/linux-virtualbox-centos7-network.png?sign=pzMiwzChOjnJP2exdey0+5h05MZhPTEwMDMwMzM3Jms9QUtJRGNDZFJ2aDZITWsyTE1SNDFEMHo1SERFbzlORndwcWcxJmU9MTQ2OTE1NDk0MiZ0PTE0NjY1NjI5NDImcj0xNDM1NjQyOTUxJmY9L2xpbnV4LXZpcnR1YWxib3gtY2VudG9zNy1uZXR3b3JrLnBuZyZiPWdpdGh1YmJsb2c=)
 
 ### 配置虚拟机的22端口映射
 > win下使用putty进行ssh登陆
