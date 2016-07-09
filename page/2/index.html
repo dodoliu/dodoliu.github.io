@@ -295,6 +295,161 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/05/js-coffee-ko-year-month-day/" itemprop="url">
+                  使用CoffeeScript实现KnockoutJS的年月日级联选择插件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-05T12:07:02+08:00" content="2016-06-05">
+              2016-06-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+<span id="busuanzi_container_page_pv">
+       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
+       </span>
+
+
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/05/js-coffee-ko-year-month-day/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/05/js-coffee-ko-year-month-day/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>项目中需要使用简单的年月日级联选择功能遇到了好几次.每次都要Copy,想想还是老老实实封装一下,方便复用.<br>功能展示<br><img src="http://githubblog-10030337.file.myqcloud.com/year_month_day_select.gif?sign=b5DHy+lL4iAAloRdzquaVFw2xsthPTEwMDMwMzM3Jms9QUtJRGNDZFJ2aDZITWsyTE1SNDFEMHo1SERFbzlORndwcWcxJmU9MTQ2NzY5NjU0NSZ0PTE0NjUxMDQ1NDUmcj03Mzk5NDMzNSZmPS95ZWFyX21vbnRoX2RheV9zZWxlY3QuZ2lmJmI9Z2l0aHViYmxvZw==" alt="功能展示"></p>
+<p><a href="https://github.com/dodoliu/HelperLibrary/tree/master/Javascript/year_month_day_select" target="_blank" rel="external">源码地址</a></p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><blockquote>
+<p>使用KnockoutJS实现年月日三个下拉级联,方便复用<br>  模式A(year_month_day_select_a): 完整的年月日控件<br>  模式B(year_month_day_select_b): 只包含年和月的控件<br>  基本参数的详细说明在 coffee中</p>
+</blockquote>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><blockquote>
+<p>coffee -w -b -o . -c .</p>
+</blockquote>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>引入<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"year_month_day_select.js"</span> <span class="attr">defer</span>=<span class="string">'defer'</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>html中绑定<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">data-bind</span>=<span class="string">"component:'year_month_day_select_a' "</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>或<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">data-bind</span>=<span class="string">"component:'year_month_day_select_b' "</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>获取值<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> year = $(<span class="string">"#test_sl_year option:selected"</span>).val();</span><br><span class="line"><span class="keyword">var</span> month = $(<span class="string">"#test_sl_month option:selected"</span>).val();</span><br><span class="line"><span class="keyword">var</span> day = $(<span class="string">"#test_sl_day option:selected"</span>).val();</span><br><span class="line">$(<span class="string">"#span"</span>).text(year + <span class="string">'-'</span> + month + <span class="string">'-'</span> + day);</span><br></pre></td></tr></table></figure></p>
+<p>日期默认选择有三种形式</p>
+<ul>
+<li><p>模式1,默认选种 年月日</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">new</span> YearMonthDaySelect(&#123;</span><br><span class="line">  initSelect: <span class="number">2</span>,</span><br><span class="line">  yearDefault: <span class="string">'year'</span>,</span><br><span class="line">  monthDefault: <span class="string">'month'</span>,</span><br><span class="line">  dayDefault: <span class="string">'day'</span>,</span><br><span class="line">  yearInterval: <span class="number">10</span>,</span><br><span class="line">  yearTitle: <span class="string">'年'</span>,</span><br><span class="line">  yearID: <span class="string">'test_sl_year'</span>,</span><br><span class="line">  yearName: <span class="string">'test_sl_year_name'</span>,</span><br><span class="line">  yearClass: <span class="string">'test_sl_year_class otherclassname'</span>,</span><br><span class="line">  monthTitle: <span class="string">'月'</span>,</span><br><span class="line">  monthID: <span class="string">'test_sl_month'</span>,</span><br><span class="line">  monthName: <span class="string">'test_sl_month_name'</span>,</span><br><span class="line">  monthClass: <span class="string">'test_sl_month_class otherclassname'</span>,</span><br><span class="line">  dayTitle: <span class="string">'日'</span>,</span><br><span class="line">  dayID: <span class="string">'test_sl_day'</span>,</span><br><span class="line">  dayName: <span class="string">'test_sl_day_name'</span>,</span><br><span class="line">  dayClass: <span class="string">'test_sl_day_class otherclassname'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>模式2, 默认选中 当前 年月日</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> YearMonthDaySelect(&#123;</span><br><span class="line">  initSelect: <span class="number">2</span>,</span><br><span class="line">  yearInterval: <span class="number">10</span>,</span><br><span class="line">  yearTitle: <span class="string">'年'</span>,</span><br><span class="line">  yearID: <span class="string">'test_sl_year'</span>,</span><br><span class="line">  yearName: <span class="string">'test_sl_year_name'</span>,</span><br><span class="line">  yearClass: <span class="string">'test_sl_year_class otherclassname'</span>,</span><br><span class="line">  monthTitle: <span class="string">'月'</span>,</span><br><span class="line">  monthID: <span class="string">'test_sl_month'</span>,</span><br><span class="line">  monthName: <span class="string">'test_sl_month_name'</span>,</span><br><span class="line">  monthClass: <span class="string">'test_sl_month_class otherclassname'</span>,</span><br><span class="line">  dayTitle: <span class="string">'日'</span>,</span><br><span class="line">  dayID: <span class="string">'test_sl_day'</span>,</span><br><span class="line">  dayName: <span class="string">'test_sl_day_name'</span>,</span><br><span class="line">  dayClass: <span class="string">'test_sl_day_class otherclassname'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>模式3, 默认选中 当前 年,1月,1日</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> YearMonthDaySelect(&#123;</span><br><span class="line">  initSelect: <span class="number">3</span>,</span><br><span class="line">  yearInterval: <span class="number">10</span>,</span><br><span class="line">  yearTitle: <span class="string">'年'</span>,</span><br><span class="line">  yearID: <span class="string">'test_sl_year'</span>,</span><br><span class="line">  yearName: <span class="string">'test_sl_year_name'</span>,</span><br><span class="line">  yearClass: <span class="string">'test_sl_year_class otherclassname'</span>,</span><br><span class="line">  monthTitle: <span class="string">'月'</span>,</span><br><span class="line">  monthID: <span class="string">'test_sl_month'</span>,</span><br><span class="line">  monthName: <span class="string">'test_sl_month_name'</span>,</span><br><span class="line">  monthClass: <span class="string">'test_sl_month_class otherclassname'</span>,</span><br><span class="line">  dayTitle: <span class="string">'日'</span>,</span><br><span class="line">  dayID: <span class="string">'test_sl_day'</span>,</span><br><span class="line">  dayName: <span class="string">'test_sl_day_name'</span>,</span><br><span class="line">  dayClass: <span class="string">'test_sl_day_class otherclassname'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>无论处于何种模式下,只要传入了默认值则选中指定的年月日</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> YearMonthDaySelect(&#123;</span><br><span class="line">  initYear: <span class="number">2013</span>,</span><br><span class="line">  initMonth: <span class="number">3</span>,</span><br><span class="line">  initDay: <span class="number">2</span>,</span><br><span class="line">  yearInterval: <span class="number">10</span>,</span><br><span class="line">  yearTitle: <span class="string">'年'</span>,</span><br><span class="line">  yearID: <span class="string">'test_sl_year'</span>,</span><br><span class="line">  yearName: <span class="string">'test_sl_year_name'</span>,</span><br><span class="line">  yearClass: <span class="string">'test_sl_year_class otherclassname'</span>,</span><br><span class="line">  monthTitle: <span class="string">'月'</span>,</span><br><span class="line">  monthID: <span class="string">'test_sl_month'</span>,</span><br><span class="line">  monthName: <span class="string">'test_sl_month_name'</span>,</span><br><span class="line">  monthClass: <span class="string">'test_sl_month_class otherclassname'</span>,</span><br><span class="line">  dayTitle: <span class="string">'日'</span>,</span><br><span class="line">  dayID: <span class="string">'test_sl_day'</span>,</span><br><span class="line">  dayName: <span class="string">'test_sl_day_name'</span>,</span><br><span class="line">  dayClass: <span class="string">'test_sl_day_class otherclassname'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><blockquote>
+<p>该扩展所需依赖<br>  jquery.js<br>  helper.js<br>  knockout.js<br>  只能同时存在一种模式<br>  必须 通过 new YearMonthDaySelect() 调用,否则无法正常使用</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/28/nginx-virtualbox-centos7-loadbalanciing/" itemprop="url">
                   虚拟机下CentOS中Nginx的反向代理和负载均衡初探
                 </a>
@@ -964,7 +1119,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -972,7 +1127,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
