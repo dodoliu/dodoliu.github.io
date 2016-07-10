@@ -295,6 +295,162 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/05/hexo-blog-source-manage/" itemprop="url">
+                  Hexo搭建静态Blog后的源码管理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-05T14:59:18+08:00" content="2016-06-05">
+              2016-06-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+<span id="busuanzi_container_page_pv">
+       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
+       </span>
+
+
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/05/hexo-blog-source-manage/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/05/hexo-blog-source-manage/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>当我们使用Hexo方便快捷的搭建完静态Blog,并愉快的写完第一篇Blog发布后.可能会遇到这样的问题:<br>我的Blog源码怎么管理啊?!<br>官方的命令咋没有把源码一并提交到GitHub啊?!<br>我要是有多台电脑,还要再安装一遍不成?!<br>同志,不要怕,接下来请跟我一步一步做.</p>
+<h4 id="下面拿我的-dodoliu-blog为例-以下所有的命令操作都假设你处在blog文件夹的根目录下-且你的系统是OSX"><a href="#下面拿我的-dodoliu-blog为例-以下所有的命令操作都假设你处在blog文件夹的根目录下-且你的系统是OSX" class="headerlink" title="下面拿我的 dodoliu blog为例,以下所有的命令操作都假设你处在blog文件夹的根目录下,且你的系统是OSX"></a>下面拿我的 dodoliu blog为例,以下所有的命令操作都假设你处在blog文件夹的根目录下,且你的系统是OSX</h4><ul>
+<li><p>先删除 dodoliu blog文件夹下的 .git 文件夹,该文件夹在windows下默认是隐藏的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> dodoliu</span><br><span class="line">rm -rf .git</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>再删除 themes 主题文件夹下的 .git 文件夹,如果发现有 .github 文件夹也一并删掉.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> themes/next</span><br><span class="line">rm -rf .git .github</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后回到dodoliu blog的根目录,创建git仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> dodoliu</span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后添加文件到git仓库,在添加前确认你blog根目录下的.gitignore文件内容像我这样</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接下来把本地代码提交到本地git仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add . &amp;&amp; git commit -m <span class="string">'init'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后copy 线上 github的仓库地址,添加到本地仓库(<a href="https://github.com/dodoliu/dodoliu.github.io.git是我的github仓库地址,请替换成你自己的" target="_blank" rel="external">https://github.com/dodoliu/dodoliu.github.io.git是我的github仓库地址,请替换成你自己的</a>)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/dodoliu/dodoliu.github.io.git</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后创建一个本地分支,并切换到该分支下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch blog</span><br><span class="line">git checkout blog</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接下来,提交代码到github线上的blog分支中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin blog</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提交到github时,如果不想每次都打这么多命令,可以进行这样的设置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git push --set-upstream origin blog</span><br><span class="line"><span class="comment">#之后就用下面这个命令推送吧</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>然后到github上看看的master和blog分支的区别吧!<br>以后再次提交请在blog分支下进行操作.<br>到这里,恭喜你!<br>大功告成,开始你的下一篇blog吧!</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/05/js-coffee-ko-year-month-day/" itemprop="url">
                   使用CoffeeScript实现KnockoutJS的年月日级联选择插件
                 </a>
@@ -941,144 +1097,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/17/ftp-error-550/" itemprop="url">
-                  FTP:远程服务器返回错误:(550)文件不可用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-17T10:14:49+08:00" content="2016-05-17">
-              2016-05-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/CSharp/" itemprop="url" rel="index">
-                    <span itemprop="name">CSharp</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-<span id="busuanzi_container_page_pv">
-       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
-       </span>
-
-
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/17/ftp-error-550/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/17/ftp-error-550/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述:"></a>错误描述:</h3><p>&emsp;&emsp;FTP:远程服务器返回错误:(550)文件不可用(例如,未找到文件,无法访问文件)</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析:"></a>分析:</h3><p>&emsp;&emsp;最近在开发多服务器FTP文件同步应用时遇到了该问题. 开始死活找不到问题所在.网上查了一下都说是检测根目录或者文件是否存在.<br>&emsp;&emsp;最后发现是 FTP账号的权限问题,我没有配置对应账号的写权限…<br>&emsp;&emsp;总结遇到这个问题的排错方式:</p>
-<ol>
-<li>确定代码没有问题</li>
-<li>检测文件或目录是否真的存在</li>
-<li>检测FTP账号的可读可写权限</li>
-<li>检测FTP账号的根目录</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1119,7 +1142,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1127,7 +1150,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1136,7 +1159,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

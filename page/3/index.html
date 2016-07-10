@@ -89,7 +89,7 @@
 <meta name="description" content="爱生活，爱折腾！">
 <meta property="og:type" content="website">
 <meta property="og:title" content="dodoliu的折腾笔记">
-<meta property="og:url" content="http://yoursite.com/tags/Ruby-On-Rails/index.html">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="dodoliu的折腾笔记">
 <meta property="og:description" content="爱生活，爱折腾！">
 <meta name="twitter:card" content="summary">
@@ -112,7 +112,7 @@
   };
 </script>
 
-  <title> 标签: Ruby On Rails | dodoliu的折腾笔记 </title>
+  <title> dodoliu的折腾笔记 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -150,7 +150,9 @@
   
   
 
-  <div class="container one-collumn   ">
+  <div class="container one-collumn  
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -270,75 +272,148 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        Ruby On Rails
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <section id="posts" class="posts-expand">
     
       
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/09/rails-error-loaderror-libmysqlclient/" itemprop="url">
-              
-                <span itemprop="name">Rails Error:libmysqlclient loaderror</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-09T17:53:19+08:00"
-              content="2016-07-09" >
-          07-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/06/18/ruby-existing-mysql-generate-model/" itemprop="url">
-              
-                <span itemprop="name">基于一个已经存在的MySql库创建Rails的Model</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-06-18T15:16:27+08:00"
-              content="2016-06-18" >
-          06-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/17/ftp-error-550/" itemprop="url">
+                  FTP:远程服务器返回错误:(550)文件不可用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-17T10:14:49+08:00" content="2016-05-17">
+              2016-05-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/CSharp/" itemprop="url" rel="index">
+                    <span itemprop="name">CSharp</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+<span id="busuanzi_container_page_pv">
+       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
+       </span>
+
+
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/17/ftp-error-550/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/17/ftp-error-550/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述:"></a>错误描述:</h3><p>&emsp;&emsp;FTP:远程服务器返回错误:(550)文件不可用(例如,未找到文件,无法访问文件)</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析:"></a>分析:</h3><p>&emsp;&emsp;最近在开发多服务器FTP文件同步应用时遇到了该问题. 开始死活找不到问题所在.网上查了一下都说是检测根目录或者文件是否存在.<br>&emsp;&emsp;最后发现是 FTP账号的权限问题,我没有配置对应账号的写权限…<br>&emsp;&emsp;总结遇到这个问题的排错方式:</p>
+<ol>
+<li>确定代码没有问题</li>
+<li>检测文件或目录是否真的存在</li>
+<li>检测FTP账号的可读可写权限</li>
+<li>检测FTP账号的根目录</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
 
 
           </div>
