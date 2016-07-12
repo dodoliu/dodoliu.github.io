@@ -295,6 +295,318 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/20/nginx-simple-usage/" itemprop="url">
+                  虚拟机下CentOS7安装Nginx及简单用法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-20T22:36:41+08:00" content="2016-05-20">
+              2016-05-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+<span id="busuanzi_container_page_pv">
+       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
+       </span>
+
+
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/20/nginx-simple-usage/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/20/nginx-simple-usage/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="目的"><a href="#目的" class="headerlink" title="目的:"></a>目的:</h3><blockquote>
+<p>熟悉nginx的安装与使用</p>
+</blockquote>
+<h3 id="环境"><a href="#环境" class="headerlink" title="环境:"></a>环境:</h3><blockquote>
+<p>VirtualBox: 5.0.20<br>CentOS: CentOS-7-x86_64-Minimal-1511<br>Nginx: 1.10.0</p>
+</blockquote>
+<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤:"></a>安装步骤:</h3><blockquote>
+<p>Nginx下载地址: <a href="http://nginx.org/download/nginx-1.10.0.tar.gz" target="_blank" rel="external">http://nginx.org/download/nginx-1.10.0.tar.gz</a><br>下载完成后解压: tar zxvf nginx-1.10.0.tar.gz<br>然后进入解压目录: cd nginx-1.10.0<br>编译安装:<br>./configure<br>make &amp;&amp; make install</p>
+</blockquote>
+<p>默认安装目录在: /usr/local/nginx</p>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动:"></a>启动:</h3><blockquote>
+<p>cd到 nginx下的 sbin目录<br>执行命令 ./nginx</p>
+</blockquote>
+<h3 id="停止"><a href="#停止" class="headerlink" title="停止:"></a>停止:</h3><blockquote>
+<p>使用ps命令查看 nginx的pid<br>ps -A | grep nginx<br>从容停止: kill -QUIT 查询到的nginx的pid<br>快速停止: kill -TERM 查询到的nginx的pid<br>强制停止: kill -9 查询到的nginx的pid</p>
+</blockquote>
+<h3 id="重启"><a href="#重启" class="headerlink" title="重启:"></a>重启:</h3><blockquote>
+<p>cd到nginx的sbin目录<br>./nginx -s reload (这个命令在我测试的时候发现不能完全重启…不知为何…之后我都选择先停止,再启动)</p>
+</blockquote>
+<h3 id="修改conf"><a href="#修改conf" class="headerlink" title="修改conf:"></a>修改conf:</h3><blockquote>
+<p>默认配置文件在nginx的根目录的conf中<br>进入该目录 vim nginx.conf 进行编辑.<br>编辑完成后一般需要先检测配置文件是否正常再重启系统nginx,以免配置文件错误.<br>检测命令(假如在nginx的sbin目录下): ./nginx -t</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/18/linux-virtualbox-centos7-network/" itemprop="url">
+                  记录一次VirtualBox安装Centos7的网络配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-18T13:07:49+08:00" content="2016-05-18">
+              2016-05-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+<span id="busuanzi_container_page_pv">
+       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
+       </span>
+
+
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/18/linux-virtualbox-centos7-network/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/18/linux-virtualbox-centos7-network/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="目的"><a href="#目的" class="headerlink" title="目的:"></a>目的:</h3><blockquote>
+<p>了解虚拟机的网络配置</p>
+</blockquote>
+<h3 id="要求"><a href="#要求" class="headerlink" title="要求:"></a>要求:</h3><blockquote>
+<p>虚拟机和主机能互通<br>虚拟机要能访问网络</p>
+</blockquote>
+<h3 id="限制条件"><a href="#限制条件" class="headerlink" title="限制条件:"></a>限制条件:</h3><blockquote>
+<p>公司环境下不允许分配独立IP</p>
+</blockquote>
+<h3 id="环境"><a href="#环境" class="headerlink" title="环境:"></a>环境:</h3><blockquote>
+<p>win7 or OSX: 10.11.4<br>VirtualBox: 5.0.20<br>CentOS: CentOS-7-x86_64-Minimal-1511</p>
+</blockquote>
+<h3 id="虚拟机要能访问网络"><a href="#虚拟机要能访问网络" class="headerlink" title="虚拟机要能访问网络:"></a>虚拟机要能访问网络:</h3><blockquote>
+<p>CentOS7 默认使用ip查看IP地址<br>配置文件位置:  /etc/sysconfig/network-scripts/<br>需要修改的配置项说明:<br>BOOTPROTO=dhcp #自动获取ip<br>ONBOOT=yes #开机启动网卡<br>重启网卡命令: service network restart<br>ip addr 查看ip信息</p>
+</blockquote>
+<p>VirtualBox 网络设置为 NAT模式,没有意外的话CentOS可以直接访问网络了</p>
+<h3 id="虚拟机和主机能互通"><a href="#虚拟机和主机能互通" class="headerlink" title="虚拟机和主机能互通:"></a>虚拟机和主机能互通:</h3><blockquote>
+<p>配置一个端口映射的规则即可<br>如下图<br><img src="http://githubblog-10030337.cos.myqcloud.com/linux-virtualbox-centos7-network.png?sign=pzMiwzChOjnJP2exdey0+5h05MZhPTEwMDMwMzM3Jms9QUtJRGNDZFJ2aDZITWsyTE1SNDFEMHo1SERFbzlORndwcWcxJmU9MTQ2OTE1NDk0MiZ0PTE0NjY1NjI5NDImcj0xNDM1NjQyOTUxJmY9L2xpbnV4LXZpcnR1YWxib3gtY2VudG9zNy1uZXR3b3JrLnBuZyZiPWdpdGh1YmJsb2c=" alt="1"></p>
+</blockquote>
+<h3 id="配置虚拟机的22端口映射"><a href="#配置虚拟机的22端口映射" class="headerlink" title="配置虚拟机的22端口映射"></a>配置虚拟机的22端口映射</h3><blockquote>
+<p>win下使用putty进行ssh登陆<br>mac下使用 ssh登陆 ssh -p 12022 root@127.0.0.1</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>主机IP</th>
+<th>主机端口</th>
+<th>虚拟机IP</th>
+<th>虚拟机端口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>127.0.0.1</td>
+<td>12022</td>
+<td>10.0.2.15</td>
+<td>22</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/17/ftp-error-550/" itemprop="url">
                   FTP:远程服务器返回错误:(550)文件不可用
                 </a>
@@ -452,7 +764,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
