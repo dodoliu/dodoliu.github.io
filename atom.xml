@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-07-12T16:04:13.000Z</updated>
+  <updated>2016-07-16T07:57:41.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Rials Tip:select多选后,后台如何接收参数数组</title>
+    <link href="http://yoursite.com/2016/07/13/rails-tip-select-multiple/"/>
+    <id>http://yoursite.com/2016/07/13/rails-tip-select-multiple/</id>
+    <published>2016-07-13T09:53:19.000Z</published>
+    <updated>2016-07-16T07:57:41.000Z</updated>
+    
+    <content type="html">&lt;p&gt;在rails中,当下拉框select 可以多选时,如果需要在后台接收到数组参数,需要进行如下设置.&lt;br&gt;1,html中 name属性需要设置为数组形式,如下&lt;br&gt;&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;site_event[]&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;id&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;site_event&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;v-model&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&#39;site_event_selected&#39;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;multiple&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;option&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;value&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;-1&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;selected&lt;/span&gt;&amp;gt;&lt;/span&gt;--选择站点事件--&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;option&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;option&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;v-for&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&#39;option in site_event_options&#39;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;v-bind&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;&amp;#123;value: option.eventid&amp;#125;&quot;&lt;/span&gt; &amp;gt;&lt;/span&gt;&amp;#123;&amp;#123;option.actionname&amp;#125;&amp;#125;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;option&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;select&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;2,后台接收时如下&lt;br&gt;&lt;figure class=&quot;highlight ruby&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;query_pv_uv_by_day&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  site_events = params[&lt;span class=&quot;symbol&quot;&gt;:site_event&lt;/span&gt;].flatten&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  puts site_events&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在rails中,当下拉框select 可以多选时,如果需要在后台接收到数组参数,需要进行如下设置.&lt;br&gt;1,html中 name属性需要设置为数组形式,如下&lt;br&gt;&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;g
+    
+    </summary>
+    
+      <category term="Ruby On Rails" scheme="http://yoursite.com/categories/Ruby-On-Rails/"/>
+    
+    
+      <category term="Ruby On Rails" scheme="http://yoursite.com/tags/Ruby-On-Rails/"/>
+    
+  </entry>
   
   <entry>
     <title>Rails Error:too few arguments</title>

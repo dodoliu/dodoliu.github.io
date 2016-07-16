@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Ruby On Rails," />
 
 
 
@@ -86,15 +86,16 @@
 
 
 
-<meta name="description" content="爱生活，爱折腾！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="dodoliu的折腾笔记">
-<meta property="og:url" content="http://yoursite.com/categories/Linux/index.html">
+<meta name="description" content="在rails中,当下拉框select 可以多选时,如果需要在后台接收到数组参数,需要进行如下设置.1,html中 name属性需要设置为数组形式,如下1234&amp;lt;select name=&quot;site_event[]&quot; id=&quot;site_event&quot; v-model=&apos;site_event_selected&apos; multiple&amp;gt;  &amp;lt;option value=&quot;-1&quot; selected">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rials Tip:select多选后,后台如何接收参数数组">
+<meta property="og:url" content="http://yoursite.com/2016/07/13/rails-tip-select-multiple/index.html">
 <meta property="og:site_name" content="dodoliu的折腾笔记">
-<meta property="og:description" content="爱生活，爱折腾！">
+<meta property="og:description" content="在rails中,当下拉框select 可以多选时,如果需要在后台接收到数组参数,需要进行如下设置.1,html中 name属性需要设置为数组形式,如下1234&amp;lt;select name=&quot;site_event[]&quot; id=&quot;site_event&quot; v-model=&apos;site_event_selected&apos; multiple&amp;gt;  &amp;lt;option value=&quot;-1&quot; selected">
+<meta property="og:updated_time" content="2016-07-16T07:57:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="dodoliu的折腾笔记">
-<meta name="twitter:description" content="爱生活，爱折腾！">
+<meta name="twitter:title" content="Rials Tip:select多选后,后台如何接收参数数组">
+<meta name="twitter:description" content="在rails中,当下拉框select 可以多选时,如果需要在后台接收到数组参数,需要进行如下设置.1,html中 name属性需要设置为数组形式,如下1234&amp;lt;select name=&quot;site_event[]&quot; id=&quot;site_event&quot; v-model=&apos;site_event_selected&apos; multiple&amp;gt;  &amp;lt;option value=&quot;-1&quot; selected">
 
 
 
@@ -112,7 +113,7 @@
   };
 </script>
 
-  <title> 分类: Linux | dodoliu的折腾笔记 </title>
+  <title> Rials Tip:select多选后,后台如何接收参数数组 | dodoliu的折腾笔记 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -150,7 +151,7 @@
   
   
 
-  <div class="container one-collumn   ">
+  <div class="container one-collumn  page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -271,103 +272,154 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        Linux
-        <small>分类</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/05/28/nginx-virtualbox-centos7-loadbalanciing/" itemprop="url">
-              
-                <span itemprop="name">虚拟机下CentOS中Nginx的反向代理和负载均衡初探</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-05-28T16:16:56+08:00"
-              content="2016-05-28" >
-          05-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/05/20/nginx-simple-usage/" itemprop="url">
-              
-                <span itemprop="name">虚拟机下CentOS7安装Nginx及简单用法</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-05-20T22:36:41+08:00"
-              content="2016-05-20" >
-          05-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/05/18/linux-virtualbox-centos7-network/" itemprop="url">
-              
-                <span itemprop="name">记录一次VirtualBox安装Centos7的网络配置</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-05-18T13:07:49+08:00"
-              content="2016-05-18" >
-          05-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </section>
 
   
+  
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Rials Tip:select多选后,后台如何接收参数数组
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-13T17:53:19+08:00" content="2016-07-13">
+              2016-07-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Ruby-On-Rails/" itemprop="url" rel="index">
+                    <span itemprop="name">Ruby On Rails</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+<span id="busuanzi_container_page_pv">
+       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
+       </span>
+
+
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/13/rails-tip-select-multiple/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/13/rails-tip-select-multiple/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在rails中,当下拉框select 可以多选时,如果需要在后台接收到数组参数,需要进行如下设置.<br>1,html中 name属性需要设置为数组形式,如下<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">"site_event[]"</span> <span class="attr">id</span>=<span class="string">"site_event"</span> <span class="attr">v-model</span>=<span class="string">'site_event_selected'</span> <span class="attr">multiple</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"-1"</span> <span class="attr">selected</span>&gt;</span>--选择站点事件--<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">v-for</span>=<span class="string">'option in site_event_options'</span> <span class="attr">v-bind</span>=<span class="string">"&#123;value: option.eventid&#125;"</span> &gt;</span>&#123;&#123;option.actionname&#125;&#125;<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>2,后台接收时如下<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">query_pv_uv_by_day</span></span></span><br><span class="line">  site_events = params[<span class="symbol">:site_event</span>].flatten</span><br><span class="line">  puts site_events</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Ruby-On-Rails/" rel="tag">#Ruby On Rails</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/12/rails-error-too-few-arguments/" rel="next" title="Rails Error:too few arguments">
+                <i class="fa fa-chevron-left"></i> Rails Error:too few arguments
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -375,6 +427,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/13/rails-tip-select-multiple/"
+           data-title="Rials Tip:select多选后,后台如何接收参数数组" data-url="http://yoursite.com/2016/07/13/rails-tip-select-multiple/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -394,8 +454,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -452,6 +521,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -554,6 +634,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
