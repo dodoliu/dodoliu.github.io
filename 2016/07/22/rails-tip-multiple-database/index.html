@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Ruby On Rails," />
 
 
 
@@ -86,15 +86,16 @@
 
 
 
-<meta name="description" content="爱生活，爱折腾！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="dodoliu的折腾笔记">
-<meta property="og:url" content="http://yoursite.com/archives/2016/07/index.html">
+<meta name="description" content="我有个需求需要Rails连接mysql和sqlserver,这就需要rails的多数据库操作支持.rails对mysql原生支持是很好的,所以不需要改动什么.但是操作sqlserver就需要手动配置一下了.查了一堆资料后记录如下:需要用到的gem:github地址12gem &apos;tiny_tds&apos;gem &apos;activerecord-sqlserver-adapter&apos;, &apos;~&amp;gt; 4.2.0&apos;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rials Tip:多库操作">
+<meta property="og:url" content="http://yoursite.com/2016/07/22/rails-tip-multiple-database/index.html">
 <meta property="og:site_name" content="dodoliu的折腾笔记">
-<meta property="og:description" content="爱生活，爱折腾！">
+<meta property="og:description" content="我有个需求需要Rails连接mysql和sqlserver,这就需要rails的多数据库操作支持.rails对mysql原生支持是很好的,所以不需要改动什么.但是操作sqlserver就需要手动配置一下了.查了一堆资料后记录如下:需要用到的gem:github地址12gem &apos;tiny_tds&apos;gem &apos;activerecord-sqlserver-adapter&apos;, &apos;~&amp;gt; 4.2.0&apos;">
+<meta property="og:updated_time" content="2016-07-23T01:54:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="dodoliu的折腾笔记">
-<meta name="twitter:description" content="爱生活，爱折腾！">
+<meta name="twitter:title" content="Rials Tip:多库操作">
+<meta name="twitter:description" content="我有个需求需要Rails连接mysql和sqlserver,这就需要rails的多数据库操作支持.rails对mysql原生支持是很好的,所以不需要改动什么.但是操作sqlserver就需要手动配置一下了.查了一堆资料后记录如下:需要用到的gem:github地址12gem &apos;tiny_tds&apos;gem &apos;activerecord-sqlserver-adapter&apos;, &apos;~&amp;gt; 4.2.0&apos;">
 
 
 
@@ -112,7 +113,7 @@
   };
 </script>
 
-  <title> 归档 | dodoliu的折腾笔记 </title>
+  <title> Rials Tip:多库操作 | dodoliu的折腾笔记 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -150,7 +151,7 @@
   
   
 
-  <div class="container one-collumn   page-archive  ">
+  <div class="container one-collumn  page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -271,218 +272,160 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 16 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/23/ruby-debug/" itemprop="url">
-              
-                <span itemprop="name">如何单步调试ruby代码</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-23T14:31:48+08:00"
-              content="2016-07-23" >
-          07-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/22/rails-tip-multiple-database/" itemprop="url">
-              
-                <span itemprop="name">Rials Tip:多库操作</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-22T17:53:19+08:00"
-              content="2016-07-22" >
-          07-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/13/rails-tip-select-multiple/" itemprop="url">
-              
-                <span itemprop="name">Rials Tip:select多选后,后台如何接收参数数组</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-13T17:53:19+08:00"
-              content="2016-07-13" >
-          07-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/12/rails-error-too-few-arguments/" itemprop="url">
-              
-                <span itemprop="name">Rails Error:too few arguments</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-12T17:53:19+08:00"
-              content="2016-07-12" >
-          07-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/10/algorithm-quick-sort/" itemprop="url">
-              
-                <span itemprop="name">算法:快速排序</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-10T15:23:09+08:00"
-              content="2016-07-10" >
-          07-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2016/07/page/2/">2</a><a class="extend next" rel="next" href="/archives/2016/07/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Rials Tip:多库操作
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-22T17:53:19+08:00" content="2016-07-22">
+              2016-07-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Ruby-On-Rails/" itemprop="url" rel="index">
+                    <span itemprop="name">Ruby On Rails</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+<span id="busuanzi_container_page_pv">
+       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
+       </span>
 
 
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/22/rails-tip-multiple-database/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/22/rails-tip-multiple-database/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我有个需求需要Rails连接mysql和sqlserver,这就需要rails的多数据库操作支持.<br>rails对mysql原生支持是很好的,所以不需要改动什么.但是操作sqlserver就需要手动配置一下了.<br>查了一堆资料后记录如下:<br>需要用到的gem:<br><a href="https://github.com/rails-sqlserver/activerecord-sqlserver-adapter" target="_blank" rel="external">github地址</a><br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gem <span class="string">'tiny_tds'</span></span><br><span class="line">gem <span class="string">'activerecord-sqlserver-adapter'</span>, <span class="string">'~&gt; 4.2.0'</span></span><br></pre></td></tr></table></figure></p>
+<p>database.yml针对sqlserver的配置<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">sqlserver_db:</span></span><br><span class="line">  <span class="symbol">adapter:</span> sqlserver</span><br><span class="line">  <span class="symbol">encoding:</span> utf8</span><br><span class="line">  <span class="symbol">host:</span> localhost</span><br><span class="line">  <span class="symbol">port:</span> <span class="number">6381</span></span><br><span class="line">  <span class="symbol">database:</span> sqlserver_db</span><br><span class="line">  <span class="symbol">username:</span> sa</span><br><span class="line">  <span class="symbol">password:</span> <span class="number">123456</span></span><br></pre></td></tr></table></figure></p>
+<p>model的设置:<br><a href="http://technology.customink.com/blog/2015/06/22/rails-multi-database-best-practices-roundup/" target="_blank" rel="external">具体原因参考</a><br>在models文件夹下创建一个sqlserver_base.rb的文件,代码为:<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SqlserverBase</span> &lt; ActiveRecord::Base</span></span><br><span class="line">  establish_connection configurations[<span class="string">'sqlserver_db'</span>]  <span class="comment">#切换到sqlserver</span></span><br><span class="line">  <span class="keyword">self</span>.abstract_class = <span class="literal">true</span>  <span class="comment">#声明该类为抽象类</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<p>sqlserver表对应的model这样声明:<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Friend</span> &lt; SqlserverBase</span></span><br><span class="line">  <span class="keyword">self</span>.table_name = <span class="string">'Friend'</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Ruby-On-Rails/" rel="tag">#Ruby On Rails</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/13/rails-tip-select-multiple/" rel="next" title="Rials Tip:select多选后,后台如何接收参数数组">
+                <i class="fa fa-chevron-left"></i> Rials Tip:select多选后,后台如何接收参数数组
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/23/ruby-debug/" rel="prev" title="如何单步调试ruby代码">
+                如何单步调试ruby代码 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -490,6 +433,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/22/rails-tip-multiple-database/"
+           data-title="Rials Tip:多库操作" data-url="http://yoursite.com/2016/07/22/rails-tip-multiple-database/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -509,8 +460,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -567,6 +527,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -669,11 +640,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   
