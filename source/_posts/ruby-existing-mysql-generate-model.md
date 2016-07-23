@@ -1,10 +1,8 @@
 ---
 title: 基于一个已经存在的MySql库创建Rails的Model
-category: Ruby
+category: Ruby On Rails
 tags:
-  - Ruby
   - Ruby On Rails
-  - MySql
 date: 2016-06-18 15:16:27
 ---
 我有一个很奇葩的需求!
