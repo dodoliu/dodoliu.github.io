@@ -295,6 +295,136 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/29/rails-read-railstutorial4th-notes/" itemprop="url">
+                  看《Ruby on Rails 教程（第四版）》杂记 (持续更新...)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-29T22:07:13+08:00" content="2016-08-29">
+              2016-08-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Ruby-On-Rails/" itemprop="url" rel="index">
+                    <span itemprop="name">Ruby On Rails</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+<span id="busuanzi_container_page_pv">
+       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
+       </span>
+
+
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/29/rails-read-railstutorial4th-notes/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/29/rails-read-railstutorial4th-notes/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>以下内容均为《Ruby on Rails 教程（第四版）》学习摘要!</p>
+<ul>
+<li><strong><em>编写测试的指导方针</em></strong><br>与应用代码相比,如果测试代码特别简短,倾向于先编写测试;<br>如果对想实现的功能不是特别清楚,倾向于先编写应用代码,然后再编写测试,并改进实现方式;<br>安全是头等大事,保险起见,要为安全相关的功能线编写测试;<br>只要发现一个问题,就编写一个测试重现这种问题,避免回归,然后再编写应用代码修正问题;<br>尽量不为以后可能修改的代码(例如HTML结构的细节)编写测试;<br>重构之前要编写测试,集中测试容易出错的代码.<br>在实际的开发中,根据上述方针,我们一般先编写控制器和模型测试,然后再编写集成测试(测试模型、试视图和控制器在一起时的表现)。如果应用代码很容易出错，或者经常变动（视图就是这样），我们就完全不测试。</li>
+<li><strong><em>assert_select</em></strong><br>test中的辅助函数,用于检测html中是否有指定的html标签,这个方法有时也叫”选择符”<br>assert_select ‘title’,’Home I Ruby on Rails Tutorial Sample App’ #含义: 检测有没有&lt; title >标签,以及其中的内容是不是 “Home I Ruby on Rails Tutorial Sample App”</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/11/hexo-error-module-did-not-self-register/" itemprop="url">
                   Hexo Error:Module did not self-register
                 </a>
@@ -801,145 +931,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/23/ruby-debug/" itemprop="url">
-                  如何单步调试ruby代码
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-23T14:31:48+08:00" content="2016-07-23">
-              2016-07-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Ruby/" itemprop="url" rel="index">
-                    <span itemprop="name">Ruby</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-<span id="busuanzi_container_page_pv">
-       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
-       </span>
-
-
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/23/ruby-debug/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/23/ruby-debug/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>C#写习惯了,当使用Sublime写Ruby时没有IDE进行debug,实在是不习惯.<br>怎么办?!<br>不能debug,创造条件也要debug!<br>经过一番搜索加实践,记录如下.</p>
-<p>需要的gem<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gem install pry</div><div class="line">gem install pry-byebug <span class="comment">#支持ruby2.0.0,如果需要支持低版本的ruby可以使用 pry-debugger这个gem</span></div></pre></td></tr></table></figure></p>
-<p>安装了上述gem后,在需要debug的代码中添加 binding.pry<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="string">'pry'</span></div><div class="line"></div><div class="line">binding.pry</div><div class="line">quick_sort! [<span class="number">66</span>,<span class="number">13</span>,<span class="number">51</span>,<span class="number">76</span>,<span class="number">81</span>,<span class="number">26</span>,<span class="number">57</span>,<span class="number">69</span>,<span class="number">23</span>], <span class="number">0</span>, <span class="number">8</span></div></pre></td></tr></table></figure></p>
-<p>当代码运行起来后就会停在binding.pry下一行代码的位置.<br>pry是不支持单步调试的,为啥呢?!<br>如果需要单步调试就需要 pry-byebug这个gem.<br><a href="https://github.com/pry/pry" target="_blank" rel="external">pry文档</a><br><a href="https://github.com/deivid-rodriguez/pry-byebug" target="_blank" rel="external">pry-byebug文档</a></p>
-<p>pry-byebug的一些用法</p>
-<p>使用简化的命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#在用户根目录下创建 .pryrc配置文件</div><div class="line">vim ~/.pryrc</div><div class="line">#输入内容</div><div class="line">if defined?(PryByebug)</div><div class="line">  Pry.commands.alias_command &apos;c&apos;, &apos;continue&apos;</div><div class="line">  Pry.commands.alias_command &apos;s&apos;, &apos;step&apos;</div><div class="line">  Pry.commands.alias_command &apos;n&apos;, &apos;next&apos;</div><div class="line">  Pry.commands.alias_command &apos;f&apos;, &apos;finish&apos;</div><div class="line">end</div></pre></td></tr></table></figure></p>
-<p>如果需要通过按enter键达到执行上一次输入的命令的效果,则在配置文件中输入以下内容.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># Hit Enter to repeat last command</div><div class="line">Pry::Commands.command /^$/, &quot;repeat last command&quot; do</div><div class="line">  _pry_.run_command Pry.history.to_a.last</div><div class="line">end</div></pre></td></tr></table></figure></p>
-<p>断点用法:<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">break</span> SomeClass<span class="comment">#run            #断点打在 SomeClass这个类下的run方法上</span></div><div class="line"><span class="keyword">break</span> Foo<span class="comment">#bar if baz?          #当baz?返回true时,断点打在 Foo类下的bar方法上</span></div><div class="line"><span class="keyword">break</span> app/models/user.<span class="symbol">rb:</span><span class="number">15</span>    <span class="comment">#断点打在 user.rb的第15行</span></div><div class="line"><span class="keyword">break</span> <span class="number">14</span>                       <span class="comment">#断点打在第14行</span></div><div class="line"></div><div class="line"><span class="keyword">break</span> --condition <span class="number">4</span> x &gt; <span class="number">2</span>      <span class="comment">#当x&gt;2时,命中第四个断点</span></div><div class="line"><span class="keyword">break</span> --condition <span class="number">3</span>            <span class="comment">#删除命中第三个断点的条件</span></div><div class="line"></div><div class="line"><span class="keyword">break</span> --delete <span class="number">5</span>               <span class="comment">#删除第5个断点</span></div><div class="line"><span class="keyword">break</span> --disable-all            <span class="comment">#禁用所有断点</span></div><div class="line"></div><div class="line"><span class="keyword">break</span>                          <span class="comment">#显示出所有断点的位置</span></div><div class="line"><span class="keyword">break</span> --show <span class="number">2</span>                 <span class="comment">#显示第二个断点附近的代码</span></div><div class="line"></div><div class="line"><span class="keyword">break</span> --delete-all             <span class="comment">#删除所有断点</span></div><div class="line"><span class="keyword">break</span> --enable <span class="number">2</span>               <span class="comment">#启用第二个断点...为毛没有一次启用所有断点的功能?!</span></div></pre></td></tr></table></figure></p>
-<p>退出pry<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">exit!</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -980,7 +976,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -4,6 +4,17 @@
   
     
     <entry>
+      <title><![CDATA[看《Ruby on Rails 教程（第四版）》杂记 (持续更新...)]]></title>
+      <url>http://yoursite.com/2016/08/29/rails-read-railstutorial4th-notes/</url>
+      <content type="html"><![CDATA[<p>以下内容均为《Ruby on Rails 教程（第四版）》学习摘要!</p>
+<ul>
+<li><strong><em>编写测试的指导方针</em></strong><br>与应用代码相比,如果测试代码特别简短,倾向于先编写测试;<br>如果对想实现的功能不是特别清楚,倾向于先编写应用代码,然后再编写测试,并改进实现方式;<br>安全是头等大事,保险起见,要为安全相关的功能线编写测试;<br>只要发现一个问题,就编写一个测试重现这种问题,避免回归,然后再编写应用代码修正问题;<br>尽量不为以后可能修改的代码(例如HTML结构的细节)编写测试;<br>重构之前要编写测试,集中测试容易出错的代码.<br>在实际的开发中,根据上述方针,我们一般先编写控制器和模型测试,然后再编写集成测试(测试模型、试视图和控制器在一起时的表现)。如果应用代码很容易出错，或者经常变动（视图就是这样），我们就完全不测试。</li>
+<li><strong><em>assert_select</em></strong><br>test中的辅助函数,用于检测html中是否有指定的html标签,这个方法有时也叫”选择符”<br>assert_select ‘title’,’Home I Ruby on Rails Tutorial Sample App’ #含义: 检测有没有&lt; title >标签,以及其中的内容是不是 “Home I Ruby on Rails Tutorial Sample App”</li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Hexo Error:Module did not self-register]]></title>
       <url>http://yoursite.com/2016/08/11/hexo-error-module-did-not-self-register/</url>
       <content type="html"><![CDATA[<p>在启动hexo服务时遇到该问题.<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">hexo s</div><div class="line">[Error: Module did not self-register.]</div><div class="line">&#123; [Error: Cannot find module './build/default/DTraceProviderBindings'] code:'MODULE<span class="emphasis">_NOT_</span>FOUND' &#125;</div><div class="line">&#123; [Error: Cannot find module './build/Debug/DTraceProviderBindings'] code:'MODULE<span class="emphasis">_NOT_</span>FOUND' &#125;</div><div class="line">INFO  Start processing</div><div class="line">INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</div></pre></td></tr></table></figure></p>
@@ -80,7 +91,7 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Rials Tip:select多选后,后台如何接收参数数组]]></title>
+      <title><![CDATA[Rails Tip:select多选后,后台如何接收参数数组]]></title>
       <url>http://yoursite.com/2016/07/13/rails-tip-select-multiple/</url>
       <content type="html"><![CDATA[<p>在rails中,当下拉框select 可以多选时,如果需要在后台接收到数组参数,需要进行如下设置.<br>1,html中 name属性需要设置为数组形式,如下<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">"site_event[]"</span> <span class="attr">id</span>=<span class="string">"site_event"</span> <span class="attr">v-model</span>=<span class="string">'site_event_selected'</span> <span class="attr">multiple</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"-1"</span> <span class="attr">selected</span>&gt;</span>--选择站点事件--<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">v-for</span>=<span class="string">'option in site_event_options'</span> <span class="attr">v-bind</span>=<span class="string">"&#123;value: option.eventid&#125;"</span> &gt;</span>&#123;&#123;option.actionname&#125;&#125;<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <p>2,后台接收时如下<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">query_pv_uv_by_day</span></span></div><div class="line">  site_events = params[<span class="symbol">:site_event</span>].flatten</div><div class="line">  puts site_events</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
