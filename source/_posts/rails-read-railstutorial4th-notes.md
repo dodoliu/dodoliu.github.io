@@ -6,7 +6,7 @@ tags:
   - Ruby
 date: 2016-08-29 22:07:13
 ---
-以下内容均为《Ruby on Rails 教程（第四版）》学习摘要!
+以下内容均为《Ruby on Rails 教程（第四版）》学习摘要及总结!
 
 ##### 编写测试的指导方针
 与应用代码相比,如果测试代码特别简短,倾向于先编写测试;
@@ -124,5 +124,65 @@ guard :minitest, spring: true, all_on_start: false do
 2.3.1 :012 > a.map(&:downcase)
  => ["2", "5", "9", "bbb", "dddd"]
 ```
+##### hash
+```ruby
+#几种写法 及 多层嵌套后的hash取值方式
+2.3.1 :001 > a = { "a1" => 1, "a2" => 2  }
+ => {"a1"=>1, "a2"=>2}
+2.3.1 :002 > b = { :b1 => 1, :b2 => 2 }
+ => {:b1=>1, :b2=>2}
+2.3.1 :003 > c = { c1: 1, c2: 2 }
+ => {:c1=>1, :c2=>2}
+
+ #多层嵌套后的hash取值
+ 2.3.1 :004 > d = { d1: { dd1: { ddd1: 6, ddd2: 7}, dd2: 4 }, d2: 3 }
+ => {:d1=>{:dd1=>{:ddd1=>6, :ddd2=>7}, :dd2=>4}, :d2=>3}
+
+2.3.1 :011 > d[:d1]
+ => {:dd1=>{:ddd1=>6, :ddd2=>7}, :dd2=>4}
+2.3.1 :012 > d[:d1][:dd1]
+ => {:ddd1=>6, :ddd2=>7}
+2.3.1 :013 > d[:d1][:dd1][:ddd2]
+ => 7
+
+#hash的merge方法
+2.3.1 :018 > a
+ => {"a1"=>1, "a2"=>2}
+2.3.1 :019 > b
+ => {:b1=>1, :b2=>2}
+2.3.1 :020 > a.merge b
+ => {"a1"=>1, "a2"=>2, :b1=>1, :b2=>2}
+
+#函数调用时,如果哈希是最后一个参数,可以省略花括号.比如:
+stylesheet_link_tag 'application', { media: 'all', 'data-turbolinks-track': 'reload'}
+stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+```
+##### 字符串、数组、hash、Range的声明
+```ruby
+a = ''
+a = String.new
+a = String.new('dd')
+b = []
+b = Array.new
+c = {}
+c = Hash.new
+d = Range.new(0,2)  #声明一个范围
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
