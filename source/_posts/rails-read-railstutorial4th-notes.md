@@ -19,6 +19,18 @@ date: 2016-08-29 22:07:13
 ##### assert_select
 test中的辅助函数,用于检测html中是否有指定的html标签,这个方法有时也叫"选择符"
 assert_select 'title','Home I Ruby on Rails Tutorial Sample App' #含义: 检测有没有< title \>标签,以及其中的内容是不是 "Home I Ruby on Rails Tutorial Sample App"
+一些用法:
+| 代码        | 匹配HTML         |
+| ------------- |:-------------:|
+| assert_select 'div'      | < div>foobar< /div> |
+| assert_select 'div','foobar'     | < div>foorbar< /div> |
+| assert_select 'div.nav'     | < div class='nav'>foorbar< /div> |
+| assert_select 'div#profile'     | < div id='profile'>foorbar< /div> |
+| assert_select 'div[name=yo]'     | < div name='yo'>hey< /div> |
+| assert_select "a[href=?]",'/',count:1    | < div href='/'>foo< /div> |
+| assert_select "a[href=?]",'/',text: "foo"    | < div href='/'>foo< /div> |
+
+
 ##### provide 帮助方法
 ```ruby
 <% provide(:title, "Home") %>
@@ -72,7 +84,7 @@ guard :minitest, spring: true, all_on_start: false do
     end
     watch(%r{app/views/users/*}) do
             resource_tests('users') +
-    ['test/integration/microposts_interface_test.rb'] 
+    ['test/integration/microposts_interface_test.rb']
     end
 end
 
@@ -89,7 +101,7 @@ end
 def resource_tests(resource)
     integration_tests(resource) << controller_test(resource)
 end
-#下面这行会让 Guard 使用 Rails 提供的 Spring 服务器减少加载时间,而且启动时不运行整个测试组件。 
+#下面这行会让 Guard 使用 Rails 提供的 Spring 服务器减少加载时间,而且启动时不运行整个测试组件。
 guard :minitest, spring: true, all_on_start: false do
 #使用 Guard 时,为了避免 Spring 和 Git 发生冲突,应该把 spring/ 文件夹加到 .gitignore 文件中,让 Git 忽 略这个文件夹。
 ```
@@ -168,10 +180,44 @@ c = {}
 c = Hash.new
 d = Range.new(0,2)  #声明一个范围
 ```
-
-
-
-
+##### 预处理引擎的执行顺序
+从右向左执行
+foobar.js.erb.coffee #先通过coffee处理,再通过ruby处理
+##### 路由的 _path 和 _url
+root_path -> '/'
+root_url -> 'http://www.example.com/'
+约定 只有重定向使用_url形式,其余都使用_path形式.(因为HTTP标准严格要求重定向的URL必须完整.不过在大多数浏览器中,两种形式都可以正常使用)
+##### 测试方法 assert_template
+检查路由是否使用正确的视图渲染
+get root_path
+assert_template 'static_pages/home'
+\#请求root路由,看root路由是否使用了static_pages下的home视图渲染.
+##### 沙盒模式
+rails console --sandbox
+在沙盒模式下做的所有修改都不会影响实际数据.
+在控制台下可以使用 reload方法重新加载环境
+##### ActiveRecord的一些方法
+user.new #在内存中创建对象
+user.save #保存到数据库,save方法会返回true和false
+以上两步和
+user.create #create方法会返回对象的实例
+等效.
+user.valid? #只检测对象是否有效
+user.destroy #create方法的逆操作,也会返回对象的实例.(销毁的对象还在内存中)
+user.update_attributes(name: 'The Dude', email: 'dude@abides.org') #更新name和email属性,返回ture和false.该方法无法跳过验证
+user.update_attribute(:name, 'El Duderino') #更新单个属性,该方法可以跳过验证
+##### Model的验证
+validate :email, format: { with: /<regular expression>/ } #validate可以有format参数,提供正则验证
+```ruby
+VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+validates :email, presence: true, length: {maximum: 255 }, format: {with: VALID_EMAIL_REGEX }
+```
+##### 正则表达式 /i,/g,/m,/gi,/ig 区别
+/i (忽略大小写)
+/g (全文查找出现的所有匹配字符)
+/m (多行查找)
+/gi(全文查找、忽略大小写)
+/ig(全文查找、忽略大小写)
 
 
 
