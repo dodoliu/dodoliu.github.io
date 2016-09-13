@@ -218,6 +218,42 @@ validates :email, presence: true, length: {maximum: 255 }, format: {with: VALID_
 /m (多行查找)
 /gi(全文查找、忽略大小写)
 /ig(全文查找、忽略大小写)
+##### 产生7位随机的字符
+('a'..'z').to_a.shuffle[0..7].join
+##### dup方法复制一个对象
+duplicate_user = @user.dup
+##### model的 before_save 方法
+```ruby
+class User < ApplicationRecord
+    before_save { self.email = email.downcase } #在执行save方法前,先把email转换为小写
+    validates :name, presence: true, length: { maximum: 50 }
+end
+```
+##### has_secure_password 方法
+```ruby
+calss User < ApplicationRecord
+    has_secure_password
+end
+```
+在模型中调用了该方法后,会自动添加以下功能:
+在数据库中的password_digest列存储安全的密码哈希值;
+获得一对虚拟属性,password和password_confirmation,而且创建用户对象时会执行存在性验证和匹配验证;
+获得authenticate方法,如果密码正确,返回对应的用户对象,否则返回false;
+这个方法需要表有 password_digest字段
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
