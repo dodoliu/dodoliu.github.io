@@ -239,13 +239,40 @@ end
 在数据库中的password_digest列存储安全的密码哈希值;
 获得一对虚拟属性,password和password_confirmation,而且创建用户对象时会执行存在性验证和匹配验证;
 获得authenticate方法,如果密码正确,返回对应的用户对象,否则返回false;
-这个方法需要表有 password_digest字段
-
-
-
-
-
-
+这个方法需要表有 password_digest字段.
+##### 可以根据环境的不同展示debug信息
+```html
+<div>
+<% debug(params) if Rails.env.development?  % >
+</div>
+```
+##### 在指定的环境下执行命令
+```ruby
+rails console test #在test环境下启用rails console
+rails server --enviroment production #在production环境下运行服务
+rails db:migrate RAILS_ENV=production #迁移production环境数据库
+#控制台,服务器,迁移命令 这几个命令中都可以使用RAILS_ENV=<env>,比如: RAILS_ENV=production rails server
+```
+##### 健壮参数
+```ruby
+params.require(:user).permit(:name,:email,:password,:password_confirmation)
+```
+##### model的erros对象
+```ruby
+user.errors.full_messages #查看所有错误信息,是一个数组
+user.errors.empty? #判断是否存在错误信息
+user.errors.any?  #判断是否存在错误信息,可以empty?含义相反
+```
+##### helper的pluralize方法
+该方法返回正确的单复数形式
+```ruby
+helper.pluralize(1,"error") # 1 error
+helper.pluralize(2,"error") # 2 errors
+```
+##### redirect_to
+redirect_to @user
+redirect_to user_url(@user)
+以上两种形式的含义相同
 
 
 
