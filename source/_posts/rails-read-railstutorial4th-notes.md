@@ -1,12 +1,11 @@
 ---
-title: 看《Ruby on Rails 教程（第四版）》杂记 (持续更新...)
+title: 《Ruby on Rails 教程》读书笔记 (持续更新...)
 category: Ruby On Rails
 tags:
   - Ruby On Rails
   - Ruby
 date: 2016-08-29 22:07:13
 ---
-以下内容均为《Ruby on Rails 教程（第四版）》学习摘要及总结!
 
 ##### 编写测试的指导方针
 与应用代码相比,如果测试代码特别简短,倾向于先编写测试;
@@ -206,6 +205,7 @@ user.valid? #只检测对象是否有效
 user.destroy #create方法的逆操作,也会返回对象的实例.(销毁的对象还在内存中)
 user.update_attributes(name: 'The Dude', email: 'dude@abides.org') #更新name和email属性,返回ture和false.该方法无法跳过验证
 user.update_attribute(:name, 'El Duderino') #更新单个属性,该方法可以跳过验证
+User.find(params[:id]).destroy #可以再查询到的结果上直接调用destroy方法删除对象,物理删除...
 ##### Model的验证
 validate :email, format: { with: /<regular expression>/ } #validate可以有format参数,提供正则验证
 ```ruby
@@ -273,11 +273,79 @@ helper.pluralize(2,"error") # 2 errors
 redirect_to @user
 redirect_to user_url(@user)
 以上两种形式的含义相同
+##### ||= 或等运算符
+a ||= b
+相当于 a = a || b
+当a为真时返回a的值,当a为假时返回b的值
+##### if(a=b)
+```ruby
+a = 1
+b = nil
+if a = b
+  puts a
+else
+  puts 3
+end
+```
+上面的代码意思是当b存在时,把b赋给a,然后打印a,当b不存在时,打印3
+##### activerecord的new_record?方法
+User.new.new_record? # true
+User.first.new_record? #false
+用于检测对象是新创建的还是存在于数据库中.
+##### model的validates允许为空的验证
+```ruby
+validates :password, presence: true, length: {minimum: 6}, allow_nil: true
+```
+##### 权限验证使用过滤器实现
+```ruby
+class ApplicationController < ApplicationController
+    before_action :logged_in_user, only: [:edit, :update]
+    before_action :correct_user, only: [:edit, :update]
 
+    private
+        def loggent_in_user
+            unless logged_in?
+                flash[:danger] = '.....'
+                redirect_to login_url
+            end
+        end
+        def correct_user
+            @user = User.find(params[:id])
+            redirect_to(root_url) unless @user == current_user
+        end
+end
+```
+删除用户的链接只有管理员才能看到
+```ruby
+<% if current_user.admin? && !current_user?(user) % >
+<% link_to "delete", user, method: :delete, data: {confirm: 'You sure?'} % >
+<% end % >
+```
+为了限制只有管理员才能删除用户信息,需要这样做
+```ruby
+class UserController < ApplicationController
+    before_action :admin_user, only: :destroy
 
-
-
-
+    private
+        def admin_user
+            redirect_to(root_url) unless current_user.admin?
+        end
+end
+```
+在数据保存,创建之前都有相应的过滤器
+比如: before_create, before_save 等
+##### send方法
+```ruby
+2.3.1 :004 > a = [1,2,3]
+ => [1, 2, 3]
+2.3.1 :005 > a.length
+ => 3
+2.3.1 :006 > a.send(:length)
+ => 3
+2.3.1 :007 > a.send("length")
+ => 3
+```
+可见send方法可以在对象上调用以字符串或符号方式传入的参数的方法
 
 
 
