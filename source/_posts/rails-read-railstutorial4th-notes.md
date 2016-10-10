@@ -29,6 +29,9 @@ assert_select 'title','Home I Ruby on Rails Tutorial Sample App' #含义: 检测
 | assert_select "a[href=?]",'/',count:1    | < div href='/'>foo< /div> |
 | assert_select "a[href=?]",'/',text: "foo"    | < div href='/'>foo< /div> |
 
+选择这样一个input标签的assert_select写法为:
+< input id="email" name="email" type="hidden" value="a@mail.com" / >
+assert_select "input[name=email][type=hidden][value=?]", 'a@mail.com'
 
 ##### provide 帮助方法
 ```ruby
@@ -346,15 +349,56 @@ end
  => 3
 ```
 可见send方法可以在对象上调用以字符串或符号方式传入的参数的方法
+##### flash
+falsh[:info] = "111" #用在redirect_to中,数据存在session中
+falsh.now[:danger] = "111" #用在render中,数据存在request中
+##### has_many 和 belongs_to
+当micropost模型和 user模型进行 belongs_to/has_many关联后会获得这些方法:
+micropost.user #返回与微博关联的用户对象
+user.microposts #返回用户发布的所有微博
+user.microposts.create(arg) #创建一篇user发布的微博
+user.microposts.create!(arg) #创建一篇user发布的微博(失败时抛出异常)
+user.microposts.build(arg) #返回一个user发布的新微博对象
+user.microposts.find_by(id:1) #查找user发布的一篇微博,而且微博的id为1
+```ruby
+class Micropost < ApplicationRecord
+    belongs_to :user
+end
+class User < ApplicationRecord
+    has_many :microposts, dependent: :destroy  #dependent: :destroy 的作用是再用户被删除的时候,把这个用户发布的微博也删除.
+end
+```
+##### scope
+```ruby
+class Micropost < ApplicationRecord
+    belongs_to :user
+    default_scope -> { order(create_ar: :desc) } #默认的scope
+    scope :tmp, -> {  }
+end
+```
+##### Proc(procedure) 匿名函数
+-> 接受一个代码块,返回一个Proc,然后再这个Proc上调用call方法执行其中代码.
+```ruby
+2.3.1 :002 > a = -> { puts 'b' }
+ => #<Proc:0x007f9f338bfc98@(irb):2 (lambda)>
+2.3.1 :003 > a.call
+b
+ => nil
+2.3.1 :004 > -> { puts 'c' }.call
+c
+ => nil
+```
+#### render传递参数
+```ruby
+<%= for_for(@micropost) do |f|  % >
+<%= render 'shared/error_mesages', object: f.object % >
+<% end % >
 
-
-
-
-
-
-
-
-
+#app/views/shared/_error_messages.html
+<% if object.errors.any? % >
+    <div id="error" >1 <\/ div >
+< % end % >
+```
 
 
 
