@@ -4,7 +4,14 @@
   
     
     <entry>
-      <title><![CDATA[《Ruby on Rails 教程》读书笔记 (持续更新...)]]></title>
+      <title><![CDATA[致2017]]></title>
+      <url>http://yoursite.com/2016/12/31/road-to-2017/</url>
+      <content type="html"><![CDATA[<p>2016稍纵即逝!<br>回顾这一年有喜有悲又有无奈!好在过去的都已过去!<br>展望2017,新的朝阳已经升起,怎能不为自己做一个新的新年规划呢!<br>在新的一年里:<br>至少读两本文学书!<br>学一门新技术语言!<br>至少看两本技术书籍!<br>坚持写技术Blog!<br>坚持看技术blog!<br>坚持使用默默背单词!<br>坚持锻炼身体!</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[《Ruby on Rails 教程》读书笔记]]></title>
       <url>http://yoursite.com/2016/08/29/rails-read-railstutorial4th-notes/</url>
       <content type="html"><![CDATA[<h5 id="编写测试的指导方针"><a href="#编写测试的指导方针" class="headerlink" title="编写测试的指导方针"></a>编写测试的指导方针</h5><p>与应用代码相比,如果测试代码特别简短,倾向于先编写测试;<br>如果对想实现的功能不是特别清楚,倾向于先编写应用代码,然后再编写测试,并改进实现方式;<br>安全是头等大事,保险起见,要为安全相关的功能线编写测试;<br>只要发现一个问题,就编写一个测试重现这种问题,避免回归,然后再编写应用代码修正问题;<br>尽量不为以后可能修改的代码(例如HTML结构的细节)编写测试;<br>重构之前要编写测试,集中测试容易出错的代码.<br>在实际的开发中,根据上述方针,我们一般先编写控制器和模型测试,然后再编写集成测试(测试模型、试视图和控制器在一起时的表现)。如果应用代码很容易出错，或者经常变动（视图就是这样），我们就完全不测试。</p>
 <h5 id="assert-select"><a href="#assert-select" class="headerlink" title="assert_select"></a>assert_select</h5><p>test中的辅助函数,用于检测html中是否有指定的html标签,这个方法有时也叫”选择符”<br>assert_select ‘title’,’Home I Ruby on Rails Tutorial Sample App’ #含义: 检测有没有&lt; title >标签,以及其中的内容是不是 “Home I Ruby on Rails Tutorial Sample App”<br>一些用法:<br>| 代码        | 匹配HTML         |<br>| ————- |:————-:|<br>| assert_select ‘div’      | &lt; div&gt;foobar&lt; /div&gt; |<br>| assert_select ‘div’,’foobar’     | &lt; div&gt;foorbar&lt; /div&gt; |<br>| assert_select ‘div.nav’     | &lt; div class=’nav’&gt;foorbar&lt; /div&gt; |<br>| assert_select ‘div#profile’     | &lt; div id=’profile’&gt;foorbar&lt; /div&gt; |<br>| assert_select ‘div[name=yo]’     | &lt; div name=’yo’&gt;hey&lt; /div&gt; |<br>| assert_select “a[href=?]”,’/‘,count:1    | &lt; div href=’/‘&gt;foo&lt; /div&gt; |<br>| assert_select “a[href=?]”,’/‘,text: “foo”    | &lt; div href=’/‘&gt;foo&lt; /div&gt; |</p>

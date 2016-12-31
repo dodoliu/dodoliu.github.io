@@ -295,6 +295,134 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/24/algorithm-insertion-sort/" itemprop="url">
+                  算法:插入排序
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-24T15:08:28+08:00" content="2016-07-24">
+              2016-07-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+<span id="busuanzi_container_page_pv">
+       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
+       </span>
+
+
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/24/algorithm-insertion-sort/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/24/algorithm-insertion-sort/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>插入排序的原理:<br>1.从第一个元素开始,该元素可以认为是已经被排序<br>2.取出下一个元素,在已经排序的元素序列中从后向前扫描<br>3.如果该元素(已排序)大于新元素,将该元素移动到下一个位置<br>4.重复步骤3,知道找到已排序的元素小于或等于新元素的位置<br>5.将新元素插入到该位置<br>6.重复步骤2-5</p>
+<p>下面是实现代码:<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="string">'pry'</span></div><div class="line"><span class="comment">#插入排序</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert_sort</span><span class="params">(arr)</span></span></div><div class="line">    i,j = <span class="number">1</span>,<span class="number">0</span></div><div class="line">    count = arr.length</div><div class="line">    <span class="keyword">while</span> i &lt; count</div><div class="line">        point = arr[i]</div><div class="line">        j = i - <span class="number">1</span></div><div class="line">        <span class="keyword">while</span> j &gt;= <span class="number">0</span> &amp;&amp; arr[j] &gt; point</div><div class="line">            arr[j + <span class="number">1</span>] = arr[j]</div><div class="line">            p arr</div><div class="line">            j -= <span class="number">1</span></div><div class="line">        <span class="keyword">end</span></div><div class="line">        arr[j + <span class="number">1</span>] = point</div><div class="line">        p arr</div><div class="line">        i += <span class="number">1</span></div><div class="line">    <span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="comment"># binding.pry</span></div><div class="line">insert_sort [<span class="number">66</span>,<span class="number">13</span>,<span class="number">51</span>,<span class="number">76</span>,<span class="number">81</span>,<span class="number">26</span>,<span class="number">57</span>,<span class="number">69</span>,<span class="number">23</span>]</div></pre></td></tr></table></figure></p>
+<p>排序过程<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">[<span class="number">66</span>, <span class="number">66</span>, <span class="number">51</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">66</span>, <span class="number">51</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">66</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">81</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">51</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">81</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">76</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>]</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/23/ruby-debug/" itemprop="url">
                   如何单步调试ruby代码
                 </a>
@@ -794,134 +922,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/10/algorithm-quick-sort/" itemprop="url">
-                  算法:快速排序
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-10T15:23:09+08:00" content="2016-07-10">
-              2016-07-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-<span id="busuanzi_container_page_pv">
-       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
-       </span>
-
-
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/10/algorithm-quick-sort/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/algorithm-quick-sort/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>快速排序算法的原理:<br>在一个长度不小于3的序列A[0..n-1]中,对于任何 0 &lt; n &lt; n-1,以每一个元素p = A[n]为界,都可以将序列分隔为前、后两个子序列 A1 ＝ A[0..n]和 A2 ＝ A[n..n-1],则称p为序列A的轴点。然后对两个子序列排序，当子序列排序完成即可得到整个序列的排序结果(又称为 分治法)。<br>轴点的要点为：若一个元素是轴点，则经过排序之后，它的位置不应发生变化。<br>但是，实际应用中，序列中可能不存在这样一个轴点。所以需要选取轴点。<br>一般轴点的选取都选择数组的第一项或最后一项,但是最高效的方式是随机选取轴点.<br>下面的代码将采用固定轴点的方式演示快速排序.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="string">'pry'</span></div><div class="line"><span class="comment">#快速排序</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">division</span><span class="params">(arr, left, right)</span></span></div><div class="line">  <span class="comment"># point = arr[Random.new.rand(arr.length - 1)]</span></div><div class="line">  <span class="comment">#确定基点</span></div><div class="line">  point = arr[left]</div><div class="line">  <span class="keyword">while</span> left &lt; right</div><div class="line">    <span class="comment">#如果右边的数大于基点,则不操作,反之交换位置</span></div><div class="line">    <span class="keyword">while</span> left &lt; right &amp;&amp; arr[right] &gt;= point</div><div class="line">      right -= <span class="number">1</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">    swap arr, left, right</div><div class="line">    <span class="comment">#如果左边的数小于基点,则不操作,反之交换位置</span></div><div class="line">    <span class="keyword">while</span> left &lt; right &amp;&amp; arr[left] &lt;= point</div><div class="line">      left += <span class="number">1</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">    swap arr, right, left</div><div class="line">  <span class="keyword">end</span></div><div class="line">  <span class="comment">#返回轴点下标</span></div><div class="line">  left</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="comment">#交换位置</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">swap</span><span class="params">(arr,l,h)</span></span></div><div class="line">  arr[l],arr[h] = arr[h],arr[l]</div><div class="line">  p arr</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort!</span><span class="params">(arr, left, right)</span></span></div><div class="line">  <span class="keyword">if</span> left &lt; right</div><div class="line">    p = division arr, left, right</div><div class="line">    <span class="comment">#递归</span></div><div class="line">    quick_sort! arr, left, p - <span class="number">1</span></div><div class="line">    quick_sort! arr, p + <span class="number">1</span>, right</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">binding.pry</div><div class="line">quick_sort! [<span class="number">66</span>,<span class="number">13</span>,<span class="number">51</span>,<span class="number">76</span>,<span class="number">81</span>,<span class="number">26</span>,<span class="number">57</span>,<span class="number">69</span>,<span class="number">23</span>], <span class="number">0</span>, <span class="number">8</span></div></pre></td></tr></table></figure>
-<p>排序过程<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">66</span>]</div><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">26</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">26</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">26</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">26</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">26</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">69</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">69</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>]</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -967,7 +967,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -975,7 +975,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
