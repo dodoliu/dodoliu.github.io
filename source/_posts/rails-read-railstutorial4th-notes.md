@@ -1,5 +1,5 @@
 ---
-title: 《Ruby on Rails 教程》读书笔记 (持续更新...)
+title: 《Ruby on Rails 教程》读书笔记
 category: Ruby On Rails
 tags:
   - Ruby On Rails
