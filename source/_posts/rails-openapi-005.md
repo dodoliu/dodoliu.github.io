@@ -1,7 +1,8 @@
 ---
-title: rails-openapi-005
-category: category
+title: 用Rails实现一个系统(测试)(待完善)
+category: Ruby On Rails
 tags:
-  - tags
-date: 2017-02-06 21:28:16
+  - Ruby On Rails
+  - Ruby
+date: 2017-01-20 00:11:18
 ---

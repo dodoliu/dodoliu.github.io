@@ -1,5 +1,5 @@
 ---
-title: 用Rails实现一个系统(CRUD)
+title: 用Rails实现一个系统(CRUD)(待完善)
 category: Ruby On Rails
 tags:
   - Ruby On Rails

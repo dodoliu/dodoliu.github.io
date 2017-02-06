@@ -29,7 +29,7 @@ ruby  2.3.0
 用Rails实现一个系统(CRUD)
 用Rails实现一个系统(国际化)
 用Rails实现一个系统(翻页和查询)
-用Rails实现一个系统(补全测试)
+用Rails实现一个系统(测试)
 用Rails实现一个系统(has_many)
 用Rails实现一个系统(friendly_id的使用)
 用Rails实现一个系统(无刷新的翻页和查询)

@@ -1,7 +1,8 @@
 ---
-title: rails-openapi-006
-category: category
+title: 用Rails实现一个系统(has_many)(待完善)
+category: Ruby On Rails
 tags:
-  - tags
-date: 2017-02-06 21:28:44
+  - Ruby On Rails
+  - Ruby
+date: 2017-01-21 00:11:18
 ---

@@ -1,7 +1,8 @@
 ---
-title: rails-openapi-003
-category: category
+title: 用Rails实现一个系统(国际化)(待完善)
+category: Ruby On Rails
 tags:
-  - tags
-date: 2017-02-06 21:28:02
+  - Ruby On Rails
+  - Ruby
+date: 2017-01-18 00:11:18
 ---
