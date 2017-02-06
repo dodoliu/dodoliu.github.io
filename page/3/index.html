@@ -295,8 +295,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/10/algorithm-quick-sort/" itemprop="url">
-                  算法:快速排序
+                <a class="post-title-link" href="/2016/08/11/hexo-error-module-did-not-self-register/" itemprop="url">
+                  Hexo Error:Module did not self-register
                 </a>
               
             
@@ -309,8 +309,407 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-10T15:23:09+08:00" content="2016-07-10">
-              2016-07-10
+            <time itemprop="dateCreated" datetime="2016-08-11T08:28:05+08:00" content="2016-08-11">
+              2016-08-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+<span id="busuanzi_container_page_pv">
+       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
+       </span>
+
+
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/11/hexo-error-module-did-not-self-register/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/11/hexo-error-module-did-not-self-register/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在启动hexo服务时遇到该问题.<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">hexo s</div><div class="line">[Error: Module did not self-register.]</div><div class="line">&#123; [Error: Cannot find module './build/default/DTraceProviderBindings'] code:'MODULE<span class="emphasis">_NOT_</span>FOUND' &#125;</div><div class="line">&#123; [Error: Cannot find module './build/Debug/DTraceProviderBindings'] code:'MODULE<span class="emphasis">_NOT_</span>FOUND' &#125;</div><div class="line">INFO  Start processing</div><div class="line">INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</div></pre></td></tr></table></figure></p>
+<p>分析原因,应该是昨天安装了iTerm后使用了zsh,然后好多命令都找不到了…然后各种幺蛾子问题都出来了!!!<br>这是因为mac默认使用的是bash,现在设置成zsh后,好多命令都不存在了…最简单的方式是就重装一次!!!!<br>我再尝试 升级 nvm<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | bash</div></pre></td></tr></table></figure></p>
+<p>然后重装 node和hexo后解决了该问题<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nvm install node</div><div class="line">npm install hexo --no-optional</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/10/ruby-error-encoding-compatibility-error/" itemprop="url">
+                  Ruby Error:"in `match':incompatible encoding regexp match (UTF-8 regexp with ASCII-8BIT string) (Encoding::CompatibilityError)"
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-10T23:42:43+08:00" content="2016-08-10">
+              2016-08-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Ruby/" itemprop="url" rel="index">
+                    <span itemprop="name">Ruby</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+<span id="busuanzi_container_page_pv">
+       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
+       </span>
+
+
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/10/ruby-error-encoding-compatibility-error/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/10/ruby-error-encoding-compatibility-error/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>我在抓取一个中文网页时遇到该问题.<br>出现该问题的原因是字符编码不一致导致的.查看获取到的网页内容编码是 ASCII-8BIT的,所以需要强制转换为UTF-8.<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">code_html = HTTP.get(<span class="string">'http://www.stats.gov.cn/tjsj/tjbz/xzqhdm/201401/t20140116_501070.html'</span>).to_s</div><div class="line">puts code_html.encoding.name</div><div class="line">tmp_result = code_html.force_encoding(<span class="string">"UTF-8"</span>).scan(<span class="regexp">/\d&#123;6&#125;&amp;nbsp;&amp;nbsp;&amp;nbsp; [\u4e00-\u9fa5]+/</span>)</div><div class="line">puts tmp_result</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/07/ruby-tdd-development-gem/" itemprop="url">
+                  使用BDD方式开发一个gem
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-07T09:31:28+08:00" content="2016-08-07">
+              2016-08-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Ruby/" itemprop="url" rel="index">
+                    <span itemprop="name">Ruby</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+<span id="busuanzi_container_page_pv">
+       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
+       </span>
+
+
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/07/ruby-tdd-development-gem/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/07/ruby-tdd-development-gem/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>你应该遇到过通过区县查省份,通过区县查邮编的时候.一般我们会打开浏览器google一下.但是,我不想,我想敲一行代码就能迅速的查到,谁让咱是程序员呢😊.这就是我这篇记录的产生原因.<br><a href="https://github.com/dodoliu/china_district_code" target="_blank" rel="external">源码地址</a><br>本文将记录采用行为驱动开发(BDD)的方式,创建一个gem到发布的真实过程.<br>安装bundler<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem install bundler</div></pre></td></tr></table></figure></p>
+<p>创建gem项目(项目名称为 china_district_code)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bundler gem china_district_code</div></pre></td></tr></table></figure></p>
+<p>生成的目录结构应该是这样<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">china_district_code</div><div class="line">- bin</div><div class="line">- lib</div><div class="line">.gitignore</div><div class="line">china_district_code.gemspec</div><div class="line">Gemfile</div><div class="line">Rakefile</div><div class="line">README.md</div></pre></td></tr></table></figure></p>
+<p>引入测试gem.打开gemfile文件,输入以下内容后运行命令: bundle install<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">source <span class="string">'https://gems.ruby-china.org'</span></div><div class="line"></div><div class="line">gem <span class="string">'rspec'</span></div><div class="line">gem <span class="string">'rspec-core'</span></div><div class="line">gem <span class="string">'guard-rspec'</span> <span class="comment">#自动化测试插件</span></div></pre></td></tr></table></figure></p>
+<p>生成配置文件<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rspec --init <span class="comment">#初始化rspec</span></div></pre></td></tr></table></figure></p>
+<p>执行完成后,目录结构应该像这样子<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">china_district_code</div><div class="line">- bin</div><div class="line">- lib</div><div class="line">- spec</div><div class="line">- - spec_helper.rb</div><div class="line">.gitignore</div><div class="line">.rspec</div><div class="line">china_district_code.gemspec</div><div class="line">Gemfile</div><div class="line">Rakefile</div><div class="line">README.md</div></pre></td></tr></table></figure></p>
+<p>然后生成我们的测试文件<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">touch spec/china_district_code_spec.rb</div></pre></td></tr></table></figure></p>
+<p>生成自动化测试配置文件,下面的命令执行完成后,文件夹内会多出一个Guardfile文件(自动化测试Guard的配置文件,默认不用修改).<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">guard init rspec</div></pre></td></tr></table></figure></p>
+<p>然后可以启动我们的自动化测试,监控文件变化.<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bundle exec guard</div></pre></td></tr></table></figure></p>
+<p>关于自动化测试插件 guard的用法可以参考<br><a href="https://github.com/guard/guard#readme" target="_blank" rel="external">Guard的Github地址</a><br><a href="https://github.com/guard/guard/wiki/Command-line-options-for-Guard" target="_blank" rel="external">命令说明地址</a><br>以上的基础工作完成,下面开始写我们的行为测试.<br>打开china_district_code_spec.rb,输入以下内容(请无视我的中国味英语o(╯□╰)o)<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="string">'spec_helper'</span></div><div class="line"></div><div class="line">describe <span class="string">"China district code"</span> <span class="keyword">do</span></div><div class="line">  context <span class="string">"district"</span> <span class="keyword">do</span></div><div class="line">    it <span class="string">"get province,city,area info"</span></div><div class="line">    it <span class="string">"find citys by province"</span></div><div class="line">    it <span class="string">"find areas by city"</span></div><div class="line">    it <span class="string">"find province by city"</span></div><div class="line">    it <span class="string">"find city,province by area"</span></div><div class="line">    it <span class="string">"find area by district code"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  context <span class="string">"post code"</span> <span class="keyword">do</span></div><div class="line">    it <span class="string">"find post code  by district code"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>保存后,你会发现Guard已经自动运行了测试,并给出提示,所有的测试都是pending状态.<br>shell中应该像这样:<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">00:13:39 - INFO - Running: spec/china<span class="emphasis">_district_</span>code_spec.rb</div><div class="line"><span class="strong">*****</span>**</div><div class="line"></div><div class="line">Pending: (Failures listed here are expected and do not affect your suite's status)</div><div class="line"></div><div class="line">  1) China district code district get province,city,area info</div><div class="line"><span class="code">     # Not yet implemented</span></div><div class="line"><span class="code">     # ./spec/china_district_code_spec.rb:5</span></div><div class="line"></div><div class="line">  2) China district code district find citys by province</div><div class="line"><span class="code">     # Not yet implemented</span></div><div class="line"><span class="code">     # ./spec/china_district_code_spec.rb:6</span></div><div class="line"></div><div class="line">  3) China district code district find areas by city</div><div class="line"><span class="code">     # Not yet implemented</span></div><div class="line"><span class="code">     # ./spec/china_district_code_spec.rb:7</span></div><div class="line"></div><div class="line">  4) China district code district find province by city</div><div class="line"><span class="code">     # Not yet implemented</span></div><div class="line"><span class="code">     # ./spec/china_district_code_spec.rb:8</span></div><div class="line"></div><div class="line">  5) China district code district find city,province by area</div><div class="line"><span class="code">     # Not yet implemented</span></div><div class="line"><span class="code">     # ./spec/china_district_code_spec.rb:9</span></div><div class="line"></div><div class="line">  6) China district code district find area by district code</div><div class="line"><span class="code">     # Not yet implemented</span></div><div class="line"><span class="code">     # ./spec/china_district_code_spec.rb:10</span></div><div class="line"></div><div class="line">  7) China district code post code find post code  by district code</div><div class="line"><span class="code">     # Not yet implemented</span></div><div class="line"><span class="code">     # ./spec/china_district_code_spec.rb:14</span></div><div class="line"></div><div class="line"></div><div class="line">Finished in 0.00123 seconds (files took 0.14289 seconds to load)</div><div class="line">7 examples, 0 failures, 7 pending</div></pre></td></tr></table></figure></p>
+<p>然后,我们来实现我们的行为,忽略折腾的过程….直接上完成的code.<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">china_district_code_spec.rb</div><div class="line"></div><div class="line"><span class="keyword">require</span> <span class="string">'spec_helper'</span></div><div class="line"><span class="keyword">require</span> <span class="string">'china_district_code'</span></div><div class="line"><span class="keyword">require</span> <span class="string">'csv'</span></div><div class="line"></div><div class="line">describe <span class="string">"China district code"</span> <span class="keyword">do</span></div><div class="line">  context <span class="string">"district"</span> <span class="keyword">do</span></div><div class="line">    it <span class="string">"get province,city,area info"</span> <span class="keyword">do</span></div><div class="line">      ChinaDistrictCode::load_china_district_code</div><div class="line">      csv_folder_path = File.join(File.expand_path(<span class="string">'../..'</span>,__FILE_<span class="number">_</span>),<span class="string">'lib'</span>,<span class="string">'china_district_code'</span>,<span class="string">'csv'</span>)</div><div class="line">      provinces = CSV.read(File.join(csv_folder_path,<span class="string">'province.csv'</span>))</div><div class="line">      expect(provinces[<span class="number">0</span>][<span class="number">0</span>]).to eq(<span class="string">'11'</span>)</div><div class="line">    <span class="keyword">end</span></div><div class="line">    it <span class="string">"find citys by province"</span> <span class="keyword">do</span></div><div class="line">      expect(ChinaDistrictCode::find_citys_by_province(<span class="string">'河北省'</span>)).to <span class="keyword">include</span>([<span class="string">"130100"</span>, <span class="string">"石家庄市"</span>])</div><div class="line">    <span class="keyword">end</span></div><div class="line">    it <span class="string">"find areas by city"</span> <span class="keyword">do</span></div><div class="line">      expect(ChinaDistrictCode::find_areas_by_city(<span class="string">'石家庄市'</span>)).to <span class="keyword">include</span>([<span class="string">"130103"</span>, <span class="string">"桥东区"</span>])</div><div class="line">    <span class="keyword">end</span></div><div class="line">    it <span class="string">"find province by city"</span> <span class="keyword">do</span></div><div class="line">      expect(ChinaDistrictCode::find_province_by_city(<span class="string">'太原'</span>)).to eql([<span class="string">"140000"</span>, <span class="string">"山西省"</span>])</div><div class="line">    <span class="keyword">end</span></div><div class="line">    it <span class="string">"find city,province by area"</span> <span class="keyword">do</span></div><div class="line">      expect(ChinaDistrictCode::find_province_city_by_area(<span class="string">'桥东区'</span>)).to eql([[<span class="string">"130000"</span>, <span class="string">"河北省"</span>], [<span class="string">"130100"</span>, <span class="string">"石家庄市"</span>]])</div><div class="line">    <span class="keyword">end</span></div><div class="line">    <span class="comment"># it "find area by district code"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  context <span class="string">"post code"</span> <span class="keyword">do</span></div><div class="line">    it <span class="string">"find post code  by district code"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>然后,一个个实现我们的需求,享受由红变绿的过程(囧)<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#encoding: utf-8</span></div><div class="line"><span class="keyword">require</span> <span class="string">'logger'</span></div><div class="line"></div><div class="line"><span class="keyword">require</span> <span class="string">"china_district_code/version"</span></div><div class="line"><span class="keyword">require</span> <span class="string">'china_district_code/china_district_code/loader'</span></div><div class="line"></div><div class="line">LOGGER = Logger.new(File.join(File.dirname(__FILE_<span class="number">_</span>),<span class="string">'/china_district_code/log/debug.log'</span>))</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">module</span> <span class="title">ChinaDistrictCode</span></span></div><div class="line"></div><div class="line">  load_file <span class="string">'models'</span></div><div class="line">  load_file <span class="string">'helpers'</span></div><div class="line"></div><div class="line">  <span class="keyword">include</span> CsvHelper</div><div class="line">  <span class="keyword">include</span> DistrictHelper</div><div class="line"></div><div class="line">  <span class="comment">#reload china district code from 'http://www.stats.gov.cn/tjsj/tjbz/xzqhdm/201401/t20140116_501070.html'</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">load_china_district_code</span></span></div><div class="line">    DistrictHelper::get_china_district_code</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="comment">#find citys by province  </span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">find_citys_by_province</span><span class="params">(name)</span></span></div><div class="line">    result = DistrictHelper::find_citys_by_province(name)</div><div class="line">    puts result.to_s</div><div class="line">    result</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="comment">#find areas by city</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">find_areas_by_city</span><span class="params">(name)</span></span></div><div class="line">    result = DistrictHelper::find_areas_by_city(name)</div><div class="line">    puts result.to_s</div><div class="line">    result</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="comment">#find province by city</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">find_province_by_city</span><span class="params">(name)</span></span></div><div class="line">    result = DistrictHelper::find_province_by_city(name)</div><div class="line">    puts result.to_s</div><div class="line">    result</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="comment">#find province,city by area</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">find_province_city_by_area</span><span class="params">(name)</span></span></div><div class="line">    result = DistrictHelper::find_province_city_by_area(name)</div><div class="line">    puts result.to_s</div><div class="line">    result</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>完成了gem的开发,接下来需要编译并发布.我们先修改一下gem的配置项.<br>打开 ‘china_district_code.gemspec’,修改如下<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding: utf-8</span></div><div class="line">lib = File.expand_path(<span class="string">'../lib'</span>, __FILE_<span class="number">_</span>)</div><div class="line">$LOAD_PATH.unshift(lib) <span class="keyword">unless</span> $LOAD_PATH.<span class="keyword">include</span>?(lib)</div><div class="line"><span class="keyword">require</span> <span class="string">'china_district_code/version'</span></div><div class="line"></div><div class="line">Gem::Specification.new <span class="keyword">do</span> <span class="params">|spec|</span></div><div class="line">  spec.name          = <span class="string">"china_district_code"</span></div><div class="line">  spec.version       = ChinaDistrictCode::VERSION</div><div class="line">  spec.authors       = [<span class="string">"dodoliu"</span>]</div><div class="line">  spec.email         = [<span class="string">"donliu29@gmail.com"</span>]</div><div class="line"></div><div class="line">  spec.summary       = <span class="string">%q&#123; China District Code Query plugin &#125;</span></div><div class="line">  spec.description   = <span class="string">%q&#123; China District Code Query plugin &#125;</span></div><div class="line">  spec.homepage      = <span class="string">"https://github.com/dodoliu/china_district_code"</span></div><div class="line"></div><div class="line">  spec.files         = <span class="string">`git ls-files -z`</span>.split(<span class="string">"\x0"</span>).reject &#123; <span class="params">|f|</span> f.match(<span class="regexp">%r&#123;^(test|spec|features)/&#125;</span>) &#125;</div><div class="line">  spec.bindir        = <span class="string">"exe"</span></div><div class="line">  spec.executables   = spec.files.grep(<span class="regexp">%r&#123;^exe/&#125;</span>) &#123; <span class="params">|f|</span> File.basename(f) &#125;</div><div class="line">  spec.require_paths = [<span class="string">"lib"</span>]</div><div class="line"></div><div class="line">  spec.add_development_dependency <span class="string">"bundler"</span>, <span class="string">"~&gt; 1.12"</span></div><div class="line">  spec.add_development_dependency <span class="string">"rake"</span>, <span class="string">"~&gt; 10.0"</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>在发布之前,我们先安装到本地试用一下,(可以用 rake -T 查看rake任务)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">修改版本号为 VERSION = <span class="string">"0.0.1"</span></div><div class="line">rake build <span class="comment">#编译gem</span></div><div class="line">rake install <span class="comment">#安装到本地</span></div><div class="line"></div><div class="line"> -&gt; ⮀ china_district_code ⮀ ⭠ master± ⮀ rake build</div><div class="line">china_district_code 0.0.1 built to pkg/china_district_code-0.0.1.gem.</div><div class="line"> -&gt; ⮀ china_district_code ⮀ ⭠ master± ⮀ rake install</div><div class="line">china_district_code 0.0.1 built to pkg/china_district_code-0.0.1.gem.</div><div class="line">china_district_code (0.0.1) installed.</div><div class="line"><span class="comment">#然后irb调用一下</span></div><div class="line">2.3.1 :003 &gt; require <span class="string">'china_district_code'</span></div><div class="line"> =&gt; <span class="literal">true</span></div><div class="line">2.3.1 :004 &gt; ChinaDistrictCode.find_citys_by_province <span class="string">'湖南'</span></div><div class="line">[[<span class="string">"430100"</span>, <span class="string">"长沙市"</span>], [<span class="string">"430200"</span>, <span class="string">"株洲市"</span>], [<span class="string">"430300"</span>, <span class="string">"湘潭市"</span>], [<span class="string">"430400"</span>, <span class="string">"衡阳市"</span>], [<span class="string">"430500"</span>, <span class="string">"邵阳市"</span>], [<span class="string">"430600"</span>, <span class="string">"岳阳市"</span>], [<span class="string">"430700"</span>, <span class="string">"常德市"</span>], [<span class="string">"430800"</span>, <span class="string">"张家界市"</span>], [<span class="string">"430900"</span>, <span class="string">"益阳市"</span>], [<span class="string">"431000"</span>, <span class="string">"郴州市"</span>], [<span class="string">"431100"</span>, <span class="string">"永州市"</span>], [<span class="string">"431200"</span>, <span class="string">"怀化市"</span>], [<span class="string">"431300"</span>, <span class="string">"娄底市"</span>], [<span class="string">"433100"</span>, <span class="string">"湘西土家族苗族自治州"</span>]]</div><div class="line"> =&gt; [[<span class="string">"430100"</span>, <span class="string">"长沙市"</span>], [<span class="string">"430200"</span>, <span class="string">"株洲市"</span>], [<span class="string">"430300"</span>, <span class="string">"湘潭市"</span>], [<span class="string">"430400"</span>, <span class="string">"衡阳市"</span>], [<span class="string">"430500"</span>, <span class="string">"邵阳市"</span>], [<span class="string">"430600"</span>, <span class="string">"岳阳市"</span>], [<span class="string">"430700"</span>, <span class="string">"常德市"</span>], [<span class="string">"430800"</span>, <span class="string">"张家界市"</span>], [<span class="string">"430900"</span>, <span class="string">"益阳市"</span>], [<span class="string">"431000"</span>, <span class="string">"郴州市"</span>], [<span class="string">"431100"</span>, <span class="string">"永州市"</span>], [<span class="string">"431200"</span>, <span class="string">"怀化市"</span>], [<span class="string">"431300"</span>, <span class="string">"娄底市"</span>], [<span class="string">"433100"</span>, <span class="string">"湘西土家族苗族自治州"</span>]]</div><div class="line">2.3.1 :005 &gt;</div></pre></td></tr></table></figure></p>
+<p>完成以上步骤后,可以确认我们的gem是没有问题的.下面打包发布到<a href="https://rubygems.org/" target="_blank" rel="external">https://rubygems.org/</a><br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rake release</div></pre></td></tr></table></figure></p>
+<p>你有可能会遇到这样的错误提示!(可以通过将代码提交到本地git仓库解决.(git add . &amp;&amp; git commit -m ‘first commit’))<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"> -&gt; ⮀ china_district_code ⮀ ⭠ master± ⮀ rake release</div><div class="line">china_district_code 0.0.1 built to pkg/china_district_code-0.0.1.gem.</div><div class="line">rake aborted!</div><div class="line">There are files that need to be committed first.</div><div class="line">/Users/dodoliu/.rvm/gems/ruby-2.3.1/gems/bundler-1.12.5/lib/bundler/gem_helper.rb:131:in `guard_clean&apos;</div><div class="line">/Users/dodoliu/.rvm/gems/ruby-2.3.1/gems/bundler-1.12.5/lib/bundler/gem_helper.rb:60:in `block in install&apos;</div><div class="line">Tasks: TOP =&gt; release =&gt; release:guard_clean</div><div class="line">(See full trace by running task with --trace)</div></pre></td></tr></table></figure></p>
+<p>然后再次运行 rake release时,可能还会遇到下面这个错误(这是要求你的代码需要提交到远程仓库.我选择提交到github)<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"> ✘ ⮀ -&gt; ⮀ china<span class="emphasis">_district_</span>code ⮀ ⭠ master± ⮀ rake release</div><div class="line">china<span class="emphasis">_district_</span>code 0.0.1 built to pkg/china<span class="emphasis">_district_</span>code-0.0.1.gem.</div><div class="line">Tagged v0.0.1.</div><div class="line">Untagging v0.0.1 due to error.</div><div class="line">rake aborted!</div><div class="line">Couldn't git push. `git push ' failed with the following output:</div><div class="line"></div><div class="line">fatal: No configured push destination.</div><div class="line">Either specify the URL from the command-line or configure a remote repository using</div><div class="line"></div><div class="line"><span class="code">    git remote add &lt;name&gt; &lt;url&gt;</span></div><div class="line"></div><div class="line">and then push using the remote name</div><div class="line"></div><div class="line"><span class="code">    git push &lt;name&gt;</span></div><div class="line"></div><div class="line"></div><div class="line">/Users/dodoliu/.rvm/gems/ruby-2.3.1/gems/bundler-1.12.5/lib/bundler/gem<span class="emphasis">_helper.rb:121:in `perform_</span>git_push'</div><div class="line">/Users/dodoliu/.rvm/gems/ruby-2.3.1/gems/bundler-1.12.5/lib/bundler/gem<span class="emphasis">_helper.rb:113:in `git_</span>push'</div><div class="line">/Users/dodoliu/.rvm/gems/ruby-2.3.1/gems/bundler-1.12.5/lib/bundler/gem_helper.rb:64:in `block (2 levels) in install'</div><div class="line">/Users/dodoliu/.rvm/gems/ruby-2.3.1/gems/bundler-1.12.5/lib/bundler/gem<span class="emphasis">_helper.rb:145:in `tag_</span>version'</div><div class="line">/Users/dodoliu/.rvm/gems/ruby-2.3.1/gems/bundler-1.12.5/lib/bundler/gem_helper.rb:64:in `block in install'</div><div class="line">Tasks: TOP =&gt; release =&gt; release:source<span class="emphasis">_control_</span>push</div><div class="line">(See full trace by running task with --trace)</div></pre></td></tr></table></figure></p>
+<p>提交完成后,再次执行 rake release,看到以下内容则表示成功了.啦啦啦<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> -&gt; ⮀ china_district_code ⮀ ⭠ master ⮀ rake release</div><div class="line">china_district_code 0.0.1 built to pkg/china_district_code-0.0.1.gem.</div><div class="line">Tagged v0.0.1.</div><div class="line">Pushed git commits and tags.</div><div class="line">Pushed china_district_code 0.0.1 to rubygems.org.</div></pre></td></tr></table></figure></p>
+<p>然后自己装一下,让下载次数加1…😄</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/24/algorithm-insertion-sort/" itemprop="url">
+                  算法:插入排序
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-24T15:08:28+08:00" content="2016-07-24">
+              2016-07-24
             </time>
           </span>
 
@@ -345,8 +744,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/10/algorithm-quick-sort/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/algorithm-quick-sort/" itemprop="commentsCount"></span>
+                <a href="/2016/07/24/algorithm-insertion-sort/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/24/algorithm-insertion-sort/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -371,9 +770,9 @@
       
         
           
-            <p>快速排序算法的原理:<br>在一个长度不小于3的序列A[0..n-1]中,对于任何 0 &lt; n &lt; n-1,以每一个元素p = A[n]为界,都可以将序列分隔为前、后两个子序列 A1 ＝ A[0..n]和 A2 ＝ A[n..n-1],则称p为序列A的轴点。然后对两个子序列排序，当子序列排序完成即可得到整个序列的排序结果(又称为 分治法)。<br>轴点的要点为：若一个元素是轴点，则经过排序之后，它的位置不应发生变化。<br>但是，实际应用中，序列中可能不存在这样一个轴点。所以需要选取轴点。<br>一般轴点的选取都选择数组的第一项或最后一项,但是最高效的方式是随机选取轴点.<br>下面的代码将采用固定轴点的方式演示快速排序.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="string">'pry'</span></div><div class="line"><span class="comment">#快速排序</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">division</span><span class="params">(arr, left, right)</span></span></div><div class="line">  <span class="comment"># point = arr[Random.new.rand(arr.length - 1)]</span></div><div class="line">  <span class="comment">#确定基点</span></div><div class="line">  point = arr[left]</div><div class="line">  <span class="keyword">while</span> left &lt; right</div><div class="line">    <span class="comment">#如果右边的数大于基点,则不操作,反之交换位置</span></div><div class="line">    <span class="keyword">while</span> left &lt; right &amp;&amp; arr[right] &gt;= point</div><div class="line">      right -= <span class="number">1</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">    swap arr, left, right</div><div class="line">    <span class="comment">#如果左边的数小于基点,则不操作,反之交换位置</span></div><div class="line">    <span class="keyword">while</span> left &lt; right &amp;&amp; arr[left] &lt;= point</div><div class="line">      left += <span class="number">1</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">    swap arr, right, left</div><div class="line">  <span class="keyword">end</span></div><div class="line">  <span class="comment">#返回轴点下标</span></div><div class="line">  left</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="comment">#交换位置</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">swap</span><span class="params">(arr,l,h)</span></span></div><div class="line">  arr[l],arr[h] = arr[h],arr[l]</div><div class="line">  p arr</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort!</span><span class="params">(arr, left, right)</span></span></div><div class="line">  <span class="keyword">if</span> left &lt; right</div><div class="line">    p = division arr, left, right</div><div class="line">    <span class="comment">#递归</span></div><div class="line">    quick_sort! arr, left, p - <span class="number">1</span></div><div class="line">    quick_sort! arr, p + <span class="number">1</span>, right</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">binding.pry</div><div class="line">quick_sort! [<span class="number">66</span>,<span class="number">13</span>,<span class="number">51</span>,<span class="number">76</span>,<span class="number">81</span>,<span class="number">26</span>,<span class="number">57</span>,<span class="number">69</span>,<span class="number">23</span>], <span class="number">0</span>, <span class="number">8</span></div></pre></td></tr></table></figure>
-<p>排序过程<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">66</span>]</div><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">26</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">26</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">26</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">26</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">26</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">69</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">69</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>]</div></pre></td></tr></table></figure></p>
+            <p>插入排序的原理:<br>1.从第一个元素开始,该元素可以认为是已经被排序<br>2.取出下一个元素,在已经排序的元素序列中从后向前扫描<br>3.如果该元素(已排序)大于新元素,将该元素移动到下一个位置<br>4.重复步骤3,知道找到已排序的元素小于或等于新元素的位置<br>5.将新元素插入到该位置<br>6.重复步骤2-5</p>
+<p>下面是实现代码:<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="string">'pry'</span></div><div class="line"><span class="comment">#插入排序</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert_sort</span><span class="params">(arr)</span></span></div><div class="line">    i,j = <span class="number">1</span>,<span class="number">0</span></div><div class="line">    count = arr.length</div><div class="line">    <span class="keyword">while</span> i &lt; count</div><div class="line">        point = arr[i]</div><div class="line">        j = i - <span class="number">1</span></div><div class="line">        <span class="keyword">while</span> j &gt;= <span class="number">0</span> &amp;&amp; arr[j] &gt; point</div><div class="line">            arr[j + <span class="number">1</span>] = arr[j]</div><div class="line">            p arr</div><div class="line">            j -= <span class="number">1</span></div><div class="line">        <span class="keyword">end</span></div><div class="line">        arr[j + <span class="number">1</span>] = point</div><div class="line">        p arr</div><div class="line">        i += <span class="number">1</span></div><div class="line">    <span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="comment"># binding.pry</span></div><div class="line">insert_sort [<span class="number">66</span>,<span class="number">13</span>,<span class="number">51</span>,<span class="number">76</span>,<span class="number">81</span>,<span class="number">26</span>,<span class="number">57</span>,<span class="number">69</span>,<span class="number">23</span>]</div></pre></td></tr></table></figure></p>
+<p>排序过程<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">[<span class="number">66</span>, <span class="number">66</span>, <span class="number">51</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">66</span>, <span class="number">51</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">66</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">81</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">51</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">81</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">23</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">76</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">26</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>]</div></pre></td></tr></table></figure></p>
 
           
         
@@ -423,8 +822,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/10/algorithm-bubble-sort/" itemprop="url">
-                  算法:冒泡排序
+                <a class="post-title-link" href="/2016/07/23/ruby-debug/" itemprop="url">
+                  如何单步调试ruby代码
                 </a>
               
             
@@ -437,8 +836,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-10T10:40:29+08:00" content="2016-07-10">
-              2016-07-10
+            <time itemprop="dateCreated" datetime="2016-07-23T14:31:48+08:00" content="2016-07-23">
+              2016-07-23
             </time>
           </span>
 
@@ -451,8 +850,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/Ruby/" itemprop="url" rel="index">
+                    <span itemprop="name">Ruby</span>
                   </a>
                 </span>
 
@@ -473,8 +872,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/10/algorithm-bubble-sort/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/algorithm-bubble-sort/" itemprop="commentsCount"></span>
+                <a href="/2016/07/23/ruby-debug/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/23/ruby-debug/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -499,392 +898,15 @@
       
         
           
-            <p>冒泡排序算法的原理:<br>有一组数列A[0..n-1],重复遍历该数列,一次比较两个相邻的元素A[i]和A[i+1],如果A[i]&lt;=A[i+1]则不需要交换位置,如果A[i]&gt;A[i+1],则需要交换位置.<br>实现:<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="string">'benchmark'</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">bubble_sort!</span><span class="params">(args)</span></span></div><div class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..(args.length-<span class="number">1</span>)</div><div class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="number">0</span>..(args.length-i-<span class="number">2</span>)</div><div class="line">      <span class="keyword">if</span> (args[j+<span class="number">1</span>] &lt;=&gt; args[j]) == -<span class="number">1</span></div><div class="line">        args[j], args[j+<span class="number">1</span>] = args[j+<span class="number">1</span>], args[j]</div><div class="line">        <span class="comment"># p args</span></div><div class="line">      <span class="keyword">end</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">Benchmark.bm(<span class="number">7</span>) <span class="keyword">do</span> <span class="params">|x|</span></div><div class="line">  x.report(<span class="string">'冒泡排序:'</span>) &#123; bubble_sort! [<span class="number">8</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">4</span>] &#125;</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
-<p>遍历过程<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[<span class="number">3</span>, <span class="number">1</span>, <span class="number">8</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">4</span>]</div><div class="line">[<span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">8</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">4</span>]</div><div class="line">[<span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">5</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">4</span>]</div><div class="line">[<span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">4</span>]</div><div class="line">[<span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">4</span>, <span class="number">10</span>]</div><div class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">4</span>, <span class="number">10</span>]</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">4</span>, <span class="number">10</span>]</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">4</span>, <span class="number">10</span>]</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">10</span>]</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/09/rails-error-loaderror-libmysqlclient/" itemprop="url">
-                  Rails Error:libmysqlclient loaderror
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-09T17:53:19+08:00" content="2016-07-09">
-              2016-07-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Ruby-On-Rails/" itemprop="url" rel="index">
-                    <span itemprop="name">Ruby On Rails</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-<span id="busuanzi_container_page_pv">
-       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
-       </span>
-
-
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/09/rails-error-loaderror-libmysqlclient/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/09/rails-error-loaderror-libmysqlclient/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>环境:<br>osx 10.11.5</p>
-<p>ruby ‘2.2.0’<br>gem ‘rails’, ‘4.2.3’<br>gem ‘mysql2’, ‘~&gt; 0.3.18’</p>
-<p>今天在折腾rails时，遇到mysql2与rails版本匹配问题, 虽然mysql2已经指定了 ‘~&gt; 0.3.18’ 版本。报错信息：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">LiudongyuematoMacBook-<span class="symbol">Air:</span>r_admin_demo liudongyue$ rails s</div><div class="line">/Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>/gems/mysql2-<span class="number">0</span>.<span class="number">3.20</span>/lib/mysql2.<span class="symbol">rb:</span><span class="number">31</span><span class="symbol">:in</span> <span class="string">'require'</span>: dlopen(<span class="regexp">/Users/liudongyue</span><span class="regexp">/.rvm/gems</span><span class="regexp">/ruby-2.2.0/gems</span><span class="regexp">/mysql2-0.3.20/lib</span><span class="regexp">/mysql2/mysql</span>2.bundle, <span class="number">9</span>): Library <span class="keyword">not</span> <span class="symbol">loaded:</span> /usr/local/lib/libmysqlclient.<span class="number">18</span>.dylib (LoadError)</div><div class="line">  Referenced <span class="symbol">from:</span> /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>/gems/mysql2-<span class="number">0</span>.<span class="number">3.20</span>/lib/mysql2/mysql2.bundle</div><div class="line">  <span class="symbol">Reason:</span> image <span class="keyword">not</span> found - <span class="regexp">/Users/liudongyue</span><span class="regexp">/.rvm/gems</span><span class="regexp">/ruby-2.2.0/gems</span><span class="regexp">/mysql2-0.3.20/lib</span><span class="regexp">/mysql2/mysql</span>2.bundle</div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>/gems/mysql2-<span class="number">0</span>.<span class="number">3.20</span>/lib/mysql2.<span class="symbol">rb:</span><span class="number">31</span><span class="symbol">:in</span> <span class="string">'&lt;top (required)&gt;'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>@global/gems/bundler-<span class="number">1.9</span>.<span class="number">2</span>/lib/bundler/runtime.<span class="symbol">rb:</span><span class="number">76</span><span class="symbol">:in</span> <span class="string">'require'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>@global/gems/bundler-<span class="number">1.9</span>.<span class="number">2</span>/lib/bundler/runtime.<span class="symbol">rb:</span><span class="number">76</span><span class="symbol">:in</span> <span class="string">'block (2 levels) in require'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>@global/gems/bundler-<span class="number">1.9</span>.<span class="number">2</span>/lib/bundler/runtime.<span class="symbol">rb:</span><span class="number">72</span><span class="symbol">:in</span> <span class="string">'each'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>@global/gems/bundler-<span class="number">1.9</span>.<span class="number">2</span>/lib/bundler/runtime.<span class="symbol">rb:</span><span class="number">72</span><span class="symbol">:in</span> <span class="string">'block in require'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>@global/gems/bundler-<span class="number">1.9</span>.<span class="number">2</span>/lib/bundler/runtime.<span class="symbol">rb:</span><span class="number">61</span><span class="symbol">:in</span> <span class="string">'each'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>@global/gems/bundler-<span class="number">1.9</span>.<span class="number">2</span>/lib/bundler/runtime.<span class="symbol">rb:</span><span class="number">61</span><span class="symbol">:in</span> <span class="string">'require'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>@global/gems/bundler-<span class="number">1.9</span>.<span class="number">2</span>/lib/bundler.<span class="symbol">rb:</span><span class="number">134</span><span class="symbol">:in</span> <span class="string">'require'</span></div><div class="line">  from /Users/liudongyue/LDY/Test/r_admin_demo/config/application.<span class="symbol">rb:</span><span class="number">16</span><span class="symbol">:in</span> <span class="string">'&lt;top (required)&gt;'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>/gems/railties-<span class="number">4.2</span>.<span class="number">3</span>/lib/rails/commands/commands_tasks.<span class="symbol">rb:</span><span class="number">78</span><span class="symbol">:in</span> <span class="string">'require'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>/gems/railties-<span class="number">4.2</span>.<span class="number">3</span>/lib/rails/commands/commands_tasks.<span class="symbol">rb:</span><span class="number">78</span><span class="symbol">:in</span> <span class="string">'block in server'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>/gems/railties-<span class="number">4.2</span>.<span class="number">3</span>/lib/rails/commands/commands_tasks.<span class="symbol">rb:</span><span class="number">75</span><span class="symbol">:in</span> <span class="string">'tap'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>/gems/railties-<span class="number">4.2</span>.<span class="number">3</span>/lib/rails/commands/commands_tasks.<span class="symbol">rb:</span><span class="number">75</span><span class="symbol">:in</span> <span class="string">'server'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>/gems/railties-<span class="number">4.2</span>.<span class="number">3</span>/lib/rails/commands/commands_tasks.<span class="symbol">rb:</span><span class="number">39</span><span class="symbol">:in</span> <span class="string">'run_command!'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>/gems/railties-<span class="number">4.2</span>.<span class="number">3</span>/lib/rails/commands.<span class="symbol">rb:</span><span class="number">17</span><span class="symbol">:in</span> <span class="string">'&lt;top (required)&gt;'</span></div><div class="line">  from bin/<span class="symbol">rails:</span><span class="number">4</span><span class="symbol">:in</span> <span class="string">'require'</span></div><div class="line">  from bin/<span class="symbol">rails:</span><span class="number">4</span><span class="symbol">:in</span> <span class="string">'&lt;main&gt;'</span></div></pre></td></tr></table></figure></p>
-<p>可能的解决方法：<br>重装mysql,重装mysql2<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">brew uninstall mysql</div><div class="line">brew install mysql</div><div class="line">gem uninstall mysql2</div><div class="line">gem install mysql</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/03/js-call-apply/" itemprop="url">
-                  Javascript中的call和apply理解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-03T14:50:21+08:00" content="2016-07-03">
-              2016-07-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">Javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-<span id="busuanzi_container_page_pv">
-       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
-       </span>
-
-
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/03/js-call-apply/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/03/js-call-apply/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Javascript中的call和apply让人觉得很神奇和好玩.有了它俩,js的面向对象编程方便了一大截.<br>下面通过两个例子来理解call和apply.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//有 egg 这样一个类</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">egg</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"></div><div class="line"><span class="comment">//为 egg 设置属性和方法</span></div><div class="line">egg.prototype = &#123;</div><div class="line">  egg_type: <span class="string">'未知动物'</span>,</div><div class="line">  hatch: <span class="function"><span class="keyword">function</span>(<span class="params">legs</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span> (!legs) &#123;</div><div class="line">      legs = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'孵化出一只 '</span> + <span class="keyword">this</span>.egg_type + <span class="string">',有 '</span> + legs + <span class="string">' 条腿'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//实例化一个 egg 类</span></div><div class="line">tmp_egg = <span class="keyword">new</span> egg();</div><div class="line">tmp_egg.hatch();</div><div class="line"><span class="comment">//p 孵化出一只 未知动物,有 0 条腿</span></div><div class="line"></div><div class="line"><span class="comment">//实例化一个 鸭蛋类</span></div><div class="line">duck_egg = &#123; egg_type: <span class="string">'小鸭子'</span> &#125;;</div><div class="line">tmp_egg.hatch.call(duck_egg,<span class="number">2</span>);</div><div class="line"><span class="comment">//p 孵化出一只 小鸭子,有 2 条腿</span></div><div class="line"></div><div class="line"><span class="comment">//实例化一个 鳄鱼蛋类</span></div><div class="line">crocodile_egg = &#123; egg_type: <span class="string">'小鳄鱼'</span>&#125;;</div><div class="line">tmp_egg.hatch.apply(crocodile_egg,[<span class="number">4</span>]);</div><div class="line"><span class="comment">//p 孵化出一只 小鳄鱼,有 4 条腿</span></div></pre></td></tr></table></figure></p>
-<p>多重继承<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//有一个动物类</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">animal</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = <span class="function"><span class="keyword">function</span> (<span class="params">name</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'我是 '</span> + name);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//有一个 动物叫声类</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">cry</span>(<span class="params">sound</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.sound = <span class="function"><span class="keyword">function</span>(<span class="params">sound</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'我的叫声 '</span> + sound);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//有一个 家禽类</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fowl</span>(<span class="params"></span>)</span></div><div class="line">&#123;</div><div class="line">  <span class="comment">//实现多重继承</span></div><div class="line">  animal.call(<span class="keyword">this</span>);</div><div class="line">  cry.apply(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">tmp_chicken = <span class="keyword">new</span> fowl();</div><div class="line">tmp_chicken.name(<span class="string">'鸡'</span>);</div><div class="line">tmp_chicken.sound(<span class="string">'咕咕咕'</span>);</div><div class="line"><span class="comment">//p 我是 鸡</span></div><div class="line"><span class="comment">//p 我的叫声 咕咕咕</span></div><div class="line"></div><div class="line">tmp_duck = <span class="keyword">new</span> fowl();</div><div class="line">tmp_duck.name(<span class="string">'鸭'</span>);</div><div class="line">tmp_duck.sound(<span class="string">'嘎嘎嘎'</span>);</div><div class="line"><span class="comment">//p 我是 鸭</span></div><div class="line"><span class="comment">//p 我的叫声 嘎嘎嘎</span></div></pre></td></tr></table></figure></p>
-<p>总结:<br>call和apply功能相同,都是用来改变函数体内部 this 指向的.<br>call和apply的区别是,apply的第二个参数是个数组.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/18/ruby-existing-mysql-generate-model/" itemprop="url">
-                  基于一个已经存在的MySql库创建Rails的Model
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-18T15:16:27+08:00" content="2016-06-18">
-              2016-06-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Ruby-On-Rails/" itemprop="url" rel="index">
-                    <span itemprop="name">Ruby On Rails</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-<span id="busuanzi_container_page_pv">
-       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
-       </span>
-
-
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/18/ruby-existing-mysql-generate-model/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/18/ruby-existing-mysql-generate-model/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>我有一个很奇葩的需求!<br>我需要在不改变现有MySql表结构的情况下使用Rails访问MySql.目前只需要用到ActiveRecord的查询功能.<br>为何会有这种奇葩需求呢?!<br>现有系统的数据架构是运行很久且稳定的,且现有系统不允许添加一些方便平时使用的小功能.那只能另辟蹊径了.又因为我想尝试下在Windows下搞Rails开发.于是乎,这个奇葩需求就产生了.<br>既然有想法了,那么就动手做吧!<br>windows下安装Rails环境就不说了,网上一堆.<br>访问MySql使用mysql2.如果在确认数据库配置没有任何问题的前提下,还是无法访问MySql.请尝试下载安装MySql的动态链接库文件libmysql.dll.这是<a href="http://www.mysql.com/downloads/connector/c/" target="_blank" rel="external">下载地址</a><br>如果没有意外,安装完动态链接库后一切就正常了.如何还不正常…请问Google!<br>这个需求的唯一关键点就是设置Model的默认访问table名称.因为按照Rails的约定,Model是单数,数据库中的表必须是复数.比如有Account这个Model,如果数据库中的表是account,那么需要按照下面代码中的设置来创建Model.<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Account</span> &lt; ActiveRecord::Base</span></div><div class="line">    <span class="keyword">self</span>.table_name = <span class="string">'account'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
-<p>这样设置之后,就可以愉快的使用ActiveRecord的强大功能了.</p>
+            <p>C#写习惯了,当使用Sublime写Ruby时没有IDE进行debug,实在是不习惯.<br>怎么办?!<br>不能debug,创造条件也要debug!<br>经过一番搜索加实践,记录如下.</p>
+<p>需要的gem<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gem install pry</div><div class="line">gem install pry-byebug <span class="comment">#支持ruby2.0.0,如果需要支持低版本的ruby可以使用 pry-debugger这个gem</span></div></pre></td></tr></table></figure></p>
+<p>安装了上述gem后,在需要debug的代码中添加 binding.pry<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="string">'pry'</span></div><div class="line"></div><div class="line">binding.pry</div><div class="line">quick_sort! [<span class="number">66</span>,<span class="number">13</span>,<span class="number">51</span>,<span class="number">76</span>,<span class="number">81</span>,<span class="number">26</span>,<span class="number">57</span>,<span class="number">69</span>,<span class="number">23</span>], <span class="number">0</span>, <span class="number">8</span></div></pre></td></tr></table></figure></p>
+<p>当代码运行起来后就会停在binding.pry下一行代码的位置.<br>pry是不支持单步调试的,为啥呢?!<br>如果需要单步调试就需要 pry-byebug这个gem.<br><a href="https://github.com/pry/pry" target="_blank" rel="external">pry文档</a><br><a href="https://github.com/deivid-rodriguez/pry-byebug" target="_blank" rel="external">pry-byebug文档</a></p>
+<p>pry-byebug的一些用法</p>
+<p>使用简化的命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#在用户根目录下创建 .pryrc配置文件</div><div class="line">vim ~/.pryrc</div><div class="line">#输入内容</div><div class="line">if defined?(PryByebug)</div><div class="line">  Pry.commands.alias_command &apos;c&apos;, &apos;continue&apos;</div><div class="line">  Pry.commands.alias_command &apos;s&apos;, &apos;step&apos;</div><div class="line">  Pry.commands.alias_command &apos;n&apos;, &apos;next&apos;</div><div class="line">  Pry.commands.alias_command &apos;f&apos;, &apos;finish&apos;</div><div class="line">end</div></pre></td></tr></table></figure></p>
+<p>如果需要通过按enter键达到执行上一次输入的命令的效果,则在配置文件中输入以下内容.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># Hit Enter to repeat last command</div><div class="line">Pry::Commands.command /^$/, &quot;repeat last command&quot; do</div><div class="line">  _pry_.run_command Pry.history.to_a.last</div><div class="line">end</div></pre></td></tr></table></figure></p>
+<p>断点用法:<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">break</span> SomeClass<span class="comment">#run            #断点打在 SomeClass这个类下的run方法上</span></div><div class="line"><span class="keyword">break</span> Foo<span class="comment">#bar if baz?          #当baz?返回true时,断点打在 Foo类下的bar方法上</span></div><div class="line"><span class="keyword">break</span> app/models/user.<span class="symbol">rb:</span><span class="number">15</span>    <span class="comment">#断点打在 user.rb的第15行</span></div><div class="line"><span class="keyword">break</span> <span class="number">14</span>                       <span class="comment">#断点打在第14行</span></div><div class="line"></div><div class="line"><span class="keyword">break</span> --condition <span class="number">4</span> x &gt; <span class="number">2</span>      <span class="comment">#当x&gt;2时,命中第四个断点</span></div><div class="line"><span class="keyword">break</span> --condition <span class="number">3</span>            <span class="comment">#删除命中第三个断点的条件</span></div><div class="line"></div><div class="line"><span class="keyword">break</span> --delete <span class="number">5</span>               <span class="comment">#删除第5个断点</span></div><div class="line"><span class="keyword">break</span> --disable-all            <span class="comment">#禁用所有断点</span></div><div class="line"></div><div class="line"><span class="keyword">break</span>                          <span class="comment">#显示出所有断点的位置</span></div><div class="line"><span class="keyword">break</span> --show <span class="number">2</span>                 <span class="comment">#显示第二个断点附近的代码</span></div><div class="line"></div><div class="line"><span class="keyword">break</span> --delete-all             <span class="comment">#删除所有断点</span></div><div class="line"><span class="keyword">break</span> --enable <span class="number">2</span>               <span class="comment">#启用第二个断点...为毛没有一次启用所有断点的功能?!</span></div></pre></td></tr></table></figure></p>
+<p>退出pry<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">exit!</div></pre></td></tr></table></figure></p>
 
           
         
@@ -917,7 +939,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -958,7 +980,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">30</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -966,7 +988,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -975,7 +997,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1019,7 +1041,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
