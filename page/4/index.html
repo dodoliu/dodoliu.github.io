@@ -295,8 +295,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/22/rails-tip-multiple-database/" itemprop="url">
-                  Rials Tip:多库操作
+                <a class="post-title-link" href="/2016/07/09/rails-error-loaderror-libmysqlclient/" itemprop="url">
+                  Rails Error:libmysqlclient loaderror
                 </a>
               
             
@@ -309,8 +309,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-22T17:53:19+08:00" content="2016-07-22">
-              2016-07-22
+            <time itemprop="dateCreated" datetime="2016-07-09T17:53:19+08:00" content="2016-07-09">
+              2016-07-09
             </time>
           </span>
 
@@ -345,8 +345,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/22/rails-tip-multiple-database/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/22/rails-tip-multiple-database/" itemprop="commentsCount"></span>
+                <a href="/2016/07/09/rails-error-loaderror-libmysqlclient/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/09/rails-error-loaderror-libmysqlclient/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -371,10 +371,10 @@
       
         
           
-            <p>我有个需求需要Rails连接mysql和sqlserver,这就需要rails的多数据库操作支持.<br>rails对mysql原生支持是很好的,所以不需要改动什么.但是操作sqlserver就需要手动配置一下了.<br>查了一堆资料后记录如下:<br>需要用到的gem:<br><a href="https://github.com/rails-sqlserver/activerecord-sqlserver-adapter" target="_blank" rel="external">github地址</a><br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gem <span class="string">'tiny_tds'</span></div><div class="line">gem <span class="string">'activerecord-sqlserver-adapter'</span>, <span class="string">'~&gt; 4.2.0'</span></div></pre></td></tr></table></figure></p>
-<p>database.yml针对sqlserver的配置<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">sqlserver_db:</span></div><div class="line">  <span class="symbol">adapter:</span> sqlserver</div><div class="line">  <span class="symbol">encoding:</span> utf8</div><div class="line">  <span class="symbol">host:</span> localhost</div><div class="line">  <span class="symbol">port:</span> <span class="number">6381</span></div><div class="line">  <span class="symbol">database:</span> sqlserver_db</div><div class="line">  <span class="symbol">username:</span> sa</div><div class="line">  <span class="symbol">password:</span> <span class="number">123456</span></div></pre></td></tr></table></figure></p>
-<p>model的设置:<br><a href="http://technology.customink.com/blog/2015/06/22/rails-multi-database-best-practices-roundup/" target="_blank" rel="external">具体原因参考</a><br>在models文件夹下创建一个sqlserver_base.rb的文件,代码为:<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SqlserverBase</span> &lt; ActiveRecord::Base</span></div><div class="line">  establish_connection configurations[<span class="string">'sqlserver_db'</span>]  <span class="comment">#切换到sqlserver</span></div><div class="line">  <span class="keyword">self</span>.abstract_class = <span class="literal">true</span>  <span class="comment">#声明该类为抽象类</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
-<p>sqlserver表对应的model这样声明:<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Friend</span> &lt; SqlserverBase</span></div><div class="line">  <span class="keyword">self</span>.table_name = <span class="string">'Friend'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+            <p>环境:<br>osx 10.11.5</p>
+<p>ruby ‘2.2.0’<br>gem ‘rails’, ‘4.2.3’<br>gem ‘mysql2’, ‘~&gt; 0.3.18’</p>
+<p>今天在折腾rails时，遇到mysql2与rails版本匹配问题, 虽然mysql2已经指定了 ‘~&gt; 0.3.18’ 版本。报错信息：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">LiudongyuematoMacBook-<span class="symbol">Air:</span>r_admin_demo liudongyue$ rails s</div><div class="line">/Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>/gems/mysql2-<span class="number">0</span>.<span class="number">3.20</span>/lib/mysql2.<span class="symbol">rb:</span><span class="number">31</span><span class="symbol">:in</span> <span class="string">'require'</span>: dlopen(<span class="regexp">/Users/liudongyue</span><span class="regexp">/.rvm/gems</span><span class="regexp">/ruby-2.2.0/gems</span><span class="regexp">/mysql2-0.3.20/lib</span><span class="regexp">/mysql2/mysql</span>2.bundle, <span class="number">9</span>): Library <span class="keyword">not</span> <span class="symbol">loaded:</span> /usr/local/lib/libmysqlclient.<span class="number">18</span>.dylib (LoadError)</div><div class="line">  Referenced <span class="symbol">from:</span> /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>/gems/mysql2-<span class="number">0</span>.<span class="number">3.20</span>/lib/mysql2/mysql2.bundle</div><div class="line">  <span class="symbol">Reason:</span> image <span class="keyword">not</span> found - <span class="regexp">/Users/liudongyue</span><span class="regexp">/.rvm/gems</span><span class="regexp">/ruby-2.2.0/gems</span><span class="regexp">/mysql2-0.3.20/lib</span><span class="regexp">/mysql2/mysql</span>2.bundle</div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>/gems/mysql2-<span class="number">0</span>.<span class="number">3.20</span>/lib/mysql2.<span class="symbol">rb:</span><span class="number">31</span><span class="symbol">:in</span> <span class="string">'&lt;top (required)&gt;'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>@global/gems/bundler-<span class="number">1.9</span>.<span class="number">2</span>/lib/bundler/runtime.<span class="symbol">rb:</span><span class="number">76</span><span class="symbol">:in</span> <span class="string">'require'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>@global/gems/bundler-<span class="number">1.9</span>.<span class="number">2</span>/lib/bundler/runtime.<span class="symbol">rb:</span><span class="number">76</span><span class="symbol">:in</span> <span class="string">'block (2 levels) in require'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>@global/gems/bundler-<span class="number">1.9</span>.<span class="number">2</span>/lib/bundler/runtime.<span class="symbol">rb:</span><span class="number">72</span><span class="symbol">:in</span> <span class="string">'each'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>@global/gems/bundler-<span class="number">1.9</span>.<span class="number">2</span>/lib/bundler/runtime.<span class="symbol">rb:</span><span class="number">72</span><span class="symbol">:in</span> <span class="string">'block in require'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>@global/gems/bundler-<span class="number">1.9</span>.<span class="number">2</span>/lib/bundler/runtime.<span class="symbol">rb:</span><span class="number">61</span><span class="symbol">:in</span> <span class="string">'each'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>@global/gems/bundler-<span class="number">1.9</span>.<span class="number">2</span>/lib/bundler/runtime.<span class="symbol">rb:</span><span class="number">61</span><span class="symbol">:in</span> <span class="string">'require'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>@global/gems/bundler-<span class="number">1.9</span>.<span class="number">2</span>/lib/bundler.<span class="symbol">rb:</span><span class="number">134</span><span class="symbol">:in</span> <span class="string">'require'</span></div><div class="line">  from /Users/liudongyue/LDY/Test/r_admin_demo/config/application.<span class="symbol">rb:</span><span class="number">16</span><span class="symbol">:in</span> <span class="string">'&lt;top (required)&gt;'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>/gems/railties-<span class="number">4.2</span>.<span class="number">3</span>/lib/rails/commands/commands_tasks.<span class="symbol">rb:</span><span class="number">78</span><span class="symbol">:in</span> <span class="string">'require'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>/gems/railties-<span class="number">4.2</span>.<span class="number">3</span>/lib/rails/commands/commands_tasks.<span class="symbol">rb:</span><span class="number">78</span><span class="symbol">:in</span> <span class="string">'block in server'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>/gems/railties-<span class="number">4.2</span>.<span class="number">3</span>/lib/rails/commands/commands_tasks.<span class="symbol">rb:</span><span class="number">75</span><span class="symbol">:in</span> <span class="string">'tap'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>/gems/railties-<span class="number">4.2</span>.<span class="number">3</span>/lib/rails/commands/commands_tasks.<span class="symbol">rb:</span><span class="number">75</span><span class="symbol">:in</span> <span class="string">'server'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>/gems/railties-<span class="number">4.2</span>.<span class="number">3</span>/lib/rails/commands/commands_tasks.<span class="symbol">rb:</span><span class="number">39</span><span class="symbol">:in</span> <span class="string">'run_command!'</span></div><div class="line">  from /Users/liudongyue/.rvm/gems/ruby-<span class="number">2.2</span>.<span class="number">0</span>/gems/railties-<span class="number">4.2</span>.<span class="number">3</span>/lib/rails/commands.<span class="symbol">rb:</span><span class="number">17</span><span class="symbol">:in</span> <span class="string">'&lt;top (required)&gt;'</span></div><div class="line">  from bin/<span class="symbol">rails:</span><span class="number">4</span><span class="symbol">:in</span> <span class="string">'require'</span></div><div class="line">  from bin/<span class="symbol">rails:</span><span class="number">4</span><span class="symbol">:in</span> <span class="string">'&lt;main&gt;'</span></div></pre></td></tr></table></figure></p>
+<p>可能的解决方法：<br>重装mysql,重装mysql2<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">brew uninstall mysql</div><div class="line">brew install mysql</div><div class="line">gem uninstall mysql2</div><div class="line">gem install mysql</div></pre></td></tr></table></figure></p>
 
           
         
@@ -424,8 +424,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/13/rails-tip-select-multiple/" itemprop="url">
-                  Rails Tip:select多选后,后台如何接收参数数组
+                <a class="post-title-link" href="/2016/07/03/js-call-apply/" itemprop="url">
+                  Javascript中的call和apply理解
                 </a>
               
             
@@ -438,8 +438,136 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-13T17:53:19+08:00" content="2016-07-13">
-              2016-07-13
+            <time itemprop="dateCreated" datetime="2016-07-03T14:50:21+08:00" content="2016-07-03">
+              2016-07-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+<span id="busuanzi_container_page_pv">
+       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
+       </span>
+
+
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/03/js-call-apply/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/03/js-call-apply/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Javascript中的call和apply让人觉得很神奇和好玩.有了它俩,js的面向对象编程方便了一大截.<br>下面通过两个例子来理解call和apply.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//有 egg 这样一个类</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">egg</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"></div><div class="line"><span class="comment">//为 egg 设置属性和方法</span></div><div class="line">egg.prototype = &#123;</div><div class="line">  egg_type: <span class="string">'未知动物'</span>,</div><div class="line">  hatch: <span class="function"><span class="keyword">function</span>(<span class="params">legs</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span> (!legs) &#123;</div><div class="line">      legs = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'孵化出一只 '</span> + <span class="keyword">this</span>.egg_type + <span class="string">',有 '</span> + legs + <span class="string">' 条腿'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//实例化一个 egg 类</span></div><div class="line">tmp_egg = <span class="keyword">new</span> egg();</div><div class="line">tmp_egg.hatch();</div><div class="line"><span class="comment">//p 孵化出一只 未知动物,有 0 条腿</span></div><div class="line"></div><div class="line"><span class="comment">//实例化一个 鸭蛋类</span></div><div class="line">duck_egg = &#123; egg_type: <span class="string">'小鸭子'</span> &#125;;</div><div class="line">tmp_egg.hatch.call(duck_egg,<span class="number">2</span>);</div><div class="line"><span class="comment">//p 孵化出一只 小鸭子,有 2 条腿</span></div><div class="line"></div><div class="line"><span class="comment">//实例化一个 鳄鱼蛋类</span></div><div class="line">crocodile_egg = &#123; egg_type: <span class="string">'小鳄鱼'</span>&#125;;</div><div class="line">tmp_egg.hatch.apply(crocodile_egg,[<span class="number">4</span>]);</div><div class="line"><span class="comment">//p 孵化出一只 小鳄鱼,有 4 条腿</span></div></pre></td></tr></table></figure></p>
+<p>多重继承<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//有一个动物类</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">animal</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = <span class="function"><span class="keyword">function</span> (<span class="params">name</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'我是 '</span> + name);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//有一个 动物叫声类</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">cry</span>(<span class="params">sound</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.sound = <span class="function"><span class="keyword">function</span>(<span class="params">sound</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'我的叫声 '</span> + sound);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//有一个 家禽类</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fowl</span>(<span class="params"></span>)</span></div><div class="line">&#123;</div><div class="line">  <span class="comment">//实现多重继承</span></div><div class="line">  animal.call(<span class="keyword">this</span>);</div><div class="line">  cry.apply(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">tmp_chicken = <span class="keyword">new</span> fowl();</div><div class="line">tmp_chicken.name(<span class="string">'鸡'</span>);</div><div class="line">tmp_chicken.sound(<span class="string">'咕咕咕'</span>);</div><div class="line"><span class="comment">//p 我是 鸡</span></div><div class="line"><span class="comment">//p 我的叫声 咕咕咕</span></div><div class="line"></div><div class="line">tmp_duck = <span class="keyword">new</span> fowl();</div><div class="line">tmp_duck.name(<span class="string">'鸭'</span>);</div><div class="line">tmp_duck.sound(<span class="string">'嘎嘎嘎'</span>);</div><div class="line"><span class="comment">//p 我是 鸭</span></div><div class="line"><span class="comment">//p 我的叫声 嘎嘎嘎</span></div></pre></td></tr></table></figure></p>
+<p>总结:<br>call和apply功能相同,都是用来改变函数体内部 this 指向的.<br>call和apply的区别是,apply的第二个参数是个数组.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/18/ruby-existing-mysql-generate-model/" itemprop="url">
+                  基于一个已经存在的MySql库创建Rails的Model
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-18T15:16:27+08:00" content="2016-06-18">
+              2016-06-18
             </time>
           </span>
 
@@ -474,8 +602,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/13/rails-tip-select-multiple/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/13/rails-tip-select-multiple/" itemprop="commentsCount"></span>
+                <a href="/2016/06/18/ruby-existing-mysql-generate-model/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/18/ruby-existing-mysql-generate-model/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -500,8 +628,8 @@
       
         
           
-            <p>在rails中,当下拉框select 可以多选时,如果需要在后台接收到数组参数,需要进行如下设置.<br>1,html中 name属性需要设置为数组形式,如下<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">"site_event[]"</span> <span class="attr">id</span>=<span class="string">"site_event"</span> <span class="attr">v-model</span>=<span class="string">'site_event_selected'</span> <span class="attr">multiple</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"-1"</span> <span class="attr">selected</span>&gt;</span>--选择站点事件--<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">v-for</span>=<span class="string">'option in site_event_options'</span> <span class="attr">v-bind</span>=<span class="string">"&#123;value: option.eventid&#125;"</span> &gt;</span>&#123;&#123;option.actionname&#125;&#125;<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>2,后台接收时如下<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">query_pv_uv_by_day</span></span></div><div class="line">  site_events = params[<span class="symbol">:site_event</span>].flatten</div><div class="line">  puts site_events</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+            <p>我有一个很奇葩的需求!<br>我需要在不改变现有MySql表结构的情况下使用Rails访问MySql.目前只需要用到ActiveRecord的查询功能.<br>为何会有这种奇葩需求呢?!<br>现有系统的数据架构是运行很久且稳定的,且现有系统不允许添加一些方便平时使用的小功能.那只能另辟蹊径了.又因为我想尝试下在Windows下搞Rails开发.于是乎,这个奇葩需求就产生了.<br>既然有想法了,那么就动手做吧!<br>windows下安装Rails环境就不说了,网上一堆.<br>访问MySql使用mysql2.如果在确认数据库配置没有任何问题的前提下,还是无法访问MySql.请尝试下载安装MySql的动态链接库文件libmysql.dll.这是<a href="http://www.mysql.com/downloads/connector/c/" target="_blank" rel="external">下载地址</a><br>如果没有意外,安装完动态链接库后一切就正常了.如何还不正常…请问Google!<br>这个需求的唯一关键点就是设置Model的默认访问table名称.因为按照Rails的约定,Model是单数,数据库中的表必须是复数.比如有Account这个Model,如果数据库中的表是account,那么需要按照下面代码中的设置来创建Model.<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Account</span> &lt; ActiveRecord::Base</span></div><div class="line">    <span class="keyword">self</span>.table_name = <span class="string">'account'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>这样设置之后,就可以愉快的使用ActiveRecord的强大功能了.</p>
 
           
         
@@ -551,8 +679,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/12/rails-error-too-few-arguments/" itemprop="url">
-                  Rails Error:too few arguments
+                <a class="post-title-link" href="/2016/06/10/js-jsonp/" itemprop="url">
+                  JSONP的原理与实现
                 </a>
               
             
@@ -565,8 +693,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-12T17:53:19+08:00" content="2016-07-12">
-              2016-07-12
+            <time itemprop="dateCreated" datetime="2016-06-10T14:34:16+08:00" content="2016-06-10">
+              2016-06-10
             </time>
           </span>
 
@@ -579,8 +707,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Ruby-On-Rails/" itemprop="url" rel="index">
-                    <span itemprop="name">Ruby On Rails</span>
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
                   </a>
                 </span>
 
@@ -601,8 +729,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/12/rails-error-too-few-arguments/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/12/rails-error-too-few-arguments/" itemprop="commentsCount"></span>
+                <a href="/2016/06/10/js-jsonp/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/10/js-jsonp/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -627,11 +755,8 @@
       
         
           
-            <p>报错描述:<br>我有一个ajax请求<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@get_sites = (data) -&gt;</div><div class="line">  $.getJSON <span class="built_in">window</span>.urls.get_sites,&#123;brandsid:data&#125;,(result) -&gt;</div><div class="line">    <span class="built_in">console</span>.log result</div></pre></td></tr></table></figure></p>
-<p>请求的action<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_sites</span></span></div><div class="line">  brandsid = params[<span class="symbol">:brandsid</span>]</div><div class="line">  @sites = Site.find_by_brandsid brandsid</div><div class="line">  respond_to <span class="keyword">do</span> <span class="params">|foramt|</span></div><div class="line">    format.json &#123;render <span class="symbol">json:</span> @sites &#125;</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
-<p>然后报错信息为:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">ArgumentError in Backend::ExportPvUvsController#get_sites</div><div class="line">too few arguments</div><div class="line"></div><div class="line">Rails.root: D:/work/rails_obj/topinsight_query</div><div class="line"></div><div class="line">Application Trace | Framework Trace | Full Trace</div><div class="line">app/controllers/backend/export_pv_uvs_controller.rb:20:in `format'</div><div class="line">app/controllers/backend/export_pv_uvs_controller.rb:20:in `block in get_sites'</div><div class="line">app/controllers/backend/export_pv_uvs_controller.rb:18:in `get_sites'</div><div class="line">Request</div><div class="line"></div><div class="line">Parameters:</div><div class="line"></div><div class="line">&#123;"brandsid"=&gt;"271ee3565366688560fc60eab0f7a5c8"&#125;</div><div class="line">Toggle session dump</div><div class="line">Toggle env dump</div><div class="line">Response</div><div class="line"></div><div class="line">Headers:</div><div class="line"></div><div class="line">None</div></pre></td></tr></table></figure>
-<p>让我郁闷了…我查了一整天的资料都没找到解决方法.所有的问题都是说缺少 respond_to 块.但是我的有啊…<br>实在憋不住了,上ruby china发帖问了一下.帖子发完没几分钟就被关小黑屋了.<br>我就纳闷了,我累死查了一整天的问题会这么简单?!不死心的我一边问管理员为啥关小黑屋,一边继续查.<br>在纠结中等到了李华顺大神的回复.他直接指出是 “format”打错了…<br>得知原因的我真想找个坑跳进去.怎么说我也是一个老程序员了,怎么能这么粗心.<br>总结:写C#一直用编译器能大大降低这种低级错误,但是在编辑器上一定要多注意、多注意、多注意！<br>写此篇文章的目的是警醒自己.</p>
+            <p>之前在做统计分析系统的时候需要跨域请求数据.Jquery已经封装了jsonp的实现,但是考虑到统计代码的大小,决定弃用jquery.自己实现一下.<br>jsonp的原理其实很简单,通过script标签发送一个callback参数到后端,后端返回数据时,使用这个callback函数包裹一下.这样,在前端接收到后端的返回后,就可以执行这个callback函数.<br>在使用jsonp时需要注意,jsonp只能发送get请求.<br>下面是jsonp的实现代码.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> _ajax = &#123;</div><div class="line">    ajax_jsonp: &#123;</div><div class="line">        <span class="comment">//获取当前时间戳</span></div><div class="line">        now: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">Date</span>()).getTime();</div><div class="line">        &#125;,</div><div class="line">        <span class="comment">//获取16位随机数</span></div><div class="line">        rand: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="built_in">Math</span>.random().toString().substr(<span class="number">2</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="comment">//url组装</span></div><div class="line">        parse_data: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> ret = <span class="string">""</span>;</div><div class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> data === <span class="string">"string"</span>) &#123;</div><div class="line">                ret = data;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> data === <span class="string">"object"</span>) &#123;</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> data) &#123;</div><div class="line">                    ret += <span class="string">"&amp;"</span> + key + <span class="string">"="</span> + <span class="built_in">encodeURIComponent</span>(data[key]);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">//加上时间戳</span></div><div class="line">            ret += <span class="string">"&amp;_time="</span> + <span class="keyword">this</span>.now();</div><div class="line">            <span class="keyword">return</span> ret;</div><div class="line">        &#125;,</div><div class="line">        <span class="comment">/**</span></div><div class="line">        * jsonp调用的方法</div><div class="line">        * @param &#123;object&#125; url 请求的url</div><div class="line">        * @param &#123;object&#125; data 请求的data</div><div class="line">        */</div><div class="line">        jsonp: <span class="function"><span class="keyword">function</span> (<span class="params">url, data</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> name;</div><div class="line">            url = url + (url.indexOf(<span class="string">"?"</span>) === <span class="number">-1</span> ? <span class="string">"?"</span> : <span class="string">"&amp;"</span>) + <span class="keyword">this</span>.parse_data(data);</div><div class="line"></div><div class="line">            <span class="comment">//检测callback的函数名是否已经定义</span></div><div class="line">            <span class="keyword">var</span> match = <span class="regexp">/callback=([a-zA-Z\._]+)/</span>.exec(url);</div><div class="line">            <span class="keyword">if</span> (match &amp;&amp; match[<span class="number">1</span>]) &#123;</div><div class="line">                name = match[<span class="number">1</span>].replace(<span class="regexp">/\./g</span>, <span class="string">"_"</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                <span class="comment">//如果url中没有callback,直接返回</span></div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"invalid callback param"</span>);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="comment">//创建script标签</span></div><div class="line">            <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</div><div class="line">            script.type = <span class="string">"text/javascript"</span>;</div><div class="line">            script.src = url;</div><div class="line"></div><div class="line">            <span class="comment">//在head里面插入script元素</span></div><div class="line">            <span class="keyword">var</span> head = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"head"</span>);</div><div class="line">            <span class="keyword">if</span> (head &amp;&amp; head[<span class="number">0</span>]) &#123;</div><div class="line">                head[<span class="number">0</span>].appendChild(script);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>调用<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">_ajax.ajax_jsonp.jsonp(_url, data);</div><div class="line">#比如_url中的callback是这样的参数: ?callback=window.getdata</div><div class="line">#则在js中注册这个window.getdata函数即可</div><div class="line">window.getdata = function(data)</div><div class="line">&#123;</div><div class="line">    console.log(data);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
           
         
@@ -681,8 +806,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/10/algorithm-quick-sort/" itemprop="url">
-                  算法:快速排序
+                <a class="post-title-link" href="/2016/06/05/hexo-blog-source-manage/" itemprop="url">
+                  Hexo搭建静态Blog后的源码管理
                 </a>
               
             
@@ -695,8 +820,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-10T15:23:09+08:00" content="2016-07-10">
-              2016-07-10
+            <time itemprop="dateCreated" datetime="2016-06-05T14:59:18+08:00" content="2016-06-05">
+              2016-06-05
             </time>
           </span>
 
@@ -709,8 +834,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
                   </a>
                 </span>
 
@@ -731,8 +856,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/10/algorithm-quick-sort/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/algorithm-quick-sort/" itemprop="commentsCount"></span>
+                <a href="/2016/06/05/hexo-blog-source-manage/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/05/hexo-blog-source-manage/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -757,136 +882,37 @@
       
         
           
-            <p>快速排序算法的原理:<br>在一个长度不小于3的序列A[0..n-1]中,对于任何 0 &lt; n &lt; n-1,以每一个元素p = A[n]为界,都可以将序列分隔为前、后两个子序列 A1 ＝ A[0..n]和 A2 ＝ A[n..n-1],则称p为序列A的轴点。然后对两个子序列排序，当子序列排序完成即可得到整个序列的排序结果(又称为 分治法)。<br>轴点的要点为：若一个元素是轴点，则经过排序之后，它的位置不应发生变化。<br>但是，实际应用中，序列中可能不存在这样一个轴点。所以需要选取轴点。<br>一般轴点的选取都选择数组的第一项或最后一项,但是最高效的方式是随机选取轴点.<br>下面的代码将采用固定轴点的方式演示快速排序.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="string">'pry'</span></div><div class="line"><span class="comment">#快速排序</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">division</span><span class="params">(arr, left, right)</span></span></div><div class="line">  <span class="comment"># point = arr[Random.new.rand(arr.length - 1)]</span></div><div class="line">  <span class="comment">#确定基点</span></div><div class="line">  point = arr[left]</div><div class="line">  <span class="keyword">while</span> left &lt; right</div><div class="line">    <span class="comment">#如果右边的数大于基点,则不操作,反之交换位置</span></div><div class="line">    <span class="keyword">while</span> left &lt; right &amp;&amp; arr[right] &gt;= point</div><div class="line">      right -= <span class="number">1</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">    swap arr, left, right</div><div class="line">    <span class="comment">#如果左边的数小于基点,则不操作,反之交换位置</span></div><div class="line">    <span class="keyword">while</span> left &lt; right &amp;&amp; arr[left] &lt;= point</div><div class="line">      left += <span class="number">1</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">    swap arr, right, left</div><div class="line">  <span class="keyword">end</span></div><div class="line">  <span class="comment">#返回轴点下标</span></div><div class="line">  left</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="comment">#交换位置</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">swap</span><span class="params">(arr,l,h)</span></span></div><div class="line">  arr[l],arr[h] = arr[h],arr[l]</div><div class="line">  p arr</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort!</span><span class="params">(arr, left, right)</span></span></div><div class="line">  <span class="keyword">if</span> left &lt; right</div><div class="line">    p = division arr, left, right</div><div class="line">    <span class="comment">#递归</span></div><div class="line">    quick_sort! arr, left, p - <span class="number">1</span></div><div class="line">    quick_sort! arr, p + <span class="number">1</span>, right</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">binding.pry</div><div class="line">quick_sort! [<span class="number">66</span>,<span class="number">13</span>,<span class="number">51</span>,<span class="number">76</span>,<span class="number">81</span>,<span class="number">26</span>,<span class="number">57</span>,<span class="number">69</span>,<span class="number">23</span>], <span class="number">0</span>, <span class="number">8</span></div></pre></td></tr></table></figure>
-<p>排序过程<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">66</span>]</div><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">26</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">26</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">26</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">26</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">26</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">69</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">69</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>]</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/10/algorithm-bubble-sort/" itemprop="url">
-                  算法:冒泡排序
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-10T10:40:29+08:00" content="2016-07-10">
-              2016-07-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-<span id="busuanzi_container_page_pv">
-       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
-       </span>
-
-
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/10/algorithm-bubble-sort/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/algorithm-bubble-sort/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>冒泡排序算法的原理:<br>有一组数列A[0..n-1],重复遍历该数列,一次比较两个相邻的元素A[i]和A[i+1],如果A[i]&lt;=A[i+1]则不需要交换位置,如果A[i]&gt;A[i+1],则需要交换位置.<br>实现:<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="string">'benchmark'</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">bubble_sort!</span><span class="params">(args)</span></span></div><div class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..(args.length-<span class="number">1</span>)</div><div class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="number">0</span>..(args.length-i-<span class="number">2</span>)</div><div class="line">      <span class="keyword">if</span> (args[j+<span class="number">1</span>] &lt;=&gt; args[j]) == -<span class="number">1</span></div><div class="line">        args[j], args[j+<span class="number">1</span>] = args[j+<span class="number">1</span>], args[j]</div><div class="line">        <span class="comment"># p args</span></div><div class="line">      <span class="keyword">end</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">Benchmark.bm(<span class="number">7</span>) <span class="keyword">do</span> <span class="params">|x|</span></div><div class="line">  x.report(<span class="string">'冒泡排序:'</span>) &#123; bubble_sort! [<span class="number">8</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">4</span>] &#125;</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
-<p>遍历过程<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[<span class="number">3</span>, <span class="number">1</span>, <span class="number">8</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">4</span>]</div><div class="line">[<span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">8</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">4</span>]</div><div class="line">[<span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">5</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">4</span>]</div><div class="line">[<span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">4</span>]</div><div class="line">[<span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">4</span>, <span class="number">10</span>]</div><div class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">4</span>, <span class="number">10</span>]</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">4</span>, <span class="number">10</span>]</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">4</span>, <span class="number">10</span>]</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">10</span>]</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</div></pre></td></tr></table></figure></p>
+            <p>当我们使用Hexo方便快捷的搭建完静态Blog,并愉快的写完第一篇Blog发布后.可能会遇到这样的问题:<br>我的Blog源码怎么管理啊?!<br>官方的命令咋没有把源码一并提交到GitHub啊?!<br>我要是有多台电脑,还要再安装一遍不成?!<br>同志,不要怕,接下来请跟我一步一步做.</p>
+<h4 id="下面拿我的-dodoliu-blog为例-以下所有的命令操作都假设你处在blog文件夹的根目录下-且你的系统是OSX"><a href="#下面拿我的-dodoliu-blog为例-以下所有的命令操作都假设你处在blog文件夹的根目录下-且你的系统是OSX" class="headerlink" title="下面拿我的 dodoliu blog为例,以下所有的命令操作都假设你处在blog文件夹的根目录下,且你的系统是OSX"></a>下面拿我的 dodoliu blog为例,以下所有的命令操作都假设你处在blog文件夹的根目录下,且你的系统是OSX</h4><ul>
+<li><p>先删除 dodoliu blog文件夹下的 .git 文件夹,该文件夹在windows下默认是隐藏的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> dodoliu</div><div class="line">rm -rf .git</div></pre></td></tr></table></figure>
+</li>
+<li><p>再删除 themes 主题文件夹下的 .git 文件夹,如果发现有 .github 文件夹也一并删掉.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> themes/next</div><div class="line">rm -rf .git .github</div></pre></td></tr></table></figure>
+</li>
+<li><p>然后回到dodoliu blog的根目录,创建git仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> dodoliu</div><div class="line">git init</div></pre></td></tr></table></figure>
+</li>
+<li><p>然后添加文件到git仓库,在添加前确认你blog根目录下的.gitignore文件内容像我这样</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">.DS_Store</div><div class="line">Thumbs.db</div><div class="line">db.json</div><div class="line">*.log</div><div class="line">node_modules/</div><div class="line">public/</div><div class="line">.deploy*/</div></pre></td></tr></table></figure>
+</li>
+<li><p>接下来把本地代码提交到本地git仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git add . &amp;&amp; git commit -m <span class="string">'init'</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>然后copy 线上 github的仓库地址,添加到本地仓库(<a href="https://github.com/dodoliu/dodoliu.github.io.git是我的github仓库地址,请替换成你自己的" target="_blank" rel="external">https://github.com/dodoliu/dodoliu.github.io.git是我的github仓库地址,请替换成你自己的</a>)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote add origin https://github.com/dodoliu/dodoliu.github.io.git</div></pre></td></tr></table></figure>
+</li>
+<li><p>然后创建一个本地分支,并切换到该分支下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git branch blog</div><div class="line">git checkout blog</div></pre></td></tr></table></figure>
+</li>
+<li><p>接下来,提交代码到github线上的blog分支中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin blog</div></pre></td></tr></table></figure>
+</li>
+<li><p>提交到github时,如果不想每次都打这么多命令,可以进行这样的设置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git push --set-upstream origin blog</div><div class="line"><span class="comment">#之后就用下面这个命令推送吧</span></div><div class="line">git push</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>然后到github上看看的master和blog分支的区别吧!<br>以后再次提交请在blog分支下进行操作.<br>到这里,恭喜你!<br>大功告成,开始你的下一篇blog吧!</p>
 
           
         
@@ -919,7 +945,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -960,7 +986,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -968,7 +994,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -977,7 +1003,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

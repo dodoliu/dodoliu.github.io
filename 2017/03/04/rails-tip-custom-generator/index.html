@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Ruby,Ruby On Rails," />
 
 
 
@@ -86,15 +86,16 @@
 
 
 
-<meta name="description" content="爱生活，爱折腾！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="dodoliu的折腾笔记">
-<meta property="og:url" content="http://yoursite.com/tags/Nginx/index.html">
+<meta name="description" content="在Rails项目中,scaffold提供了生成初始代码的强大功能.但任然不能满足日常开发需求.针对部分重复的代码手动ctrl+c,ctrl+v总显得太low.如果能自定义scaffold那就完美了.庆幸的是Rails提供了这种功能.下面以我的开源项目opendoc为例,来自定义scaffold.首先来生成generator.1rails generate generator opendoc_sca">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义generator">
+<meta property="og:url" content="http://yoursite.com/2017/03/04/rails-tip-custom-generator/index.html">
 <meta property="og:site_name" content="dodoliu的折腾笔记">
-<meta property="og:description" content="爱生活，爱折腾！">
+<meta property="og:description" content="在Rails项目中,scaffold提供了生成初始代码的强大功能.但任然不能满足日常开发需求.针对部分重复的代码手动ctrl+c,ctrl+v总显得太low.如果能自定义scaffold那就完美了.庆幸的是Rails提供了这种功能.下面以我的开源项目opendoc为例,来自定义scaffold.首先来生成generator.1rails generate generator opendoc_sca">
+<meta property="og:updated_time" content="2017-03-04T06:09:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="dodoliu的折腾笔记">
-<meta name="twitter:description" content="爱生活，爱折腾！">
+<meta name="twitter:title" content="自定义generator">
+<meta name="twitter:description" content="在Rails项目中,scaffold提供了生成初始代码的强大功能.但任然不能满足日常开发需求.针对部分重复的代码手动ctrl+c,ctrl+v总显得太low.如果能自定义scaffold那就完美了.庆幸的是Rails提供了这种功能.下面以我的开源项目opendoc为例,来自定义scaffold.首先来生成generator.1rails generate generator opendoc_sca">
 
 
 
@@ -112,7 +113,7 @@
   };
 </script>
 
-  <title> 标签: Nginx | dodoliu的折腾笔记 </title>
+  <title> 自定义generator | dodoliu的折腾笔记 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -150,7 +151,7 @@
   
   
 
-  <div class="container one-collumn   ">
+  <div class="container one-collumn  page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -271,74 +272,159 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        Nginx
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/05/28/nginx-virtualbox-centos7-loadbalanciing/" itemprop="url">
-              
-                <span itemprop="name">虚拟机下CentOS中Nginx的反向代理和负载均衡初探</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-05-28T16:16:56+08:00"
-              content="2016-05-28" >
-          05-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/05/20/nginx-simple-usage/" itemprop="url">
-              
-                <span itemprop="name">虚拟机下CentOS7安装Nginx及简单用法</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-05-20T22:36:41+08:00"
-              content="2016-05-20" >
-          05-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                自定义generator
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-04T11:57:15+08:00" content="2017-03-04">
+              2017-03-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Ruby-On-Rails/" itemprop="url" rel="index">
+                    <span itemprop="name">Ruby On Rails</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+<span id="busuanzi_container_page_pv">
+       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
+       </span>
+
+
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/04/rails-tip-custom-generator/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/04/rails-tip-custom-generator/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在Rails项目中,scaffold提供了生成初始代码的强大功能.但任然不能满足日常开发需求.针对部分重复的代码手动ctrl+c,ctrl+v总显得太low.如果能自定义scaffold那就完美了.<br>庆幸的是Rails提供了这种功能.下面以我的开源项目opendoc为例,来自定义scaffold.<br>首先来生成generator.<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rails generate generator opendoc_scaffold</div></pre></td></tr></table></figure></p>
+<p>上面的命令会生成下面这些文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">create  lib/generators/opendoc_scaffold</div><div class="line">create  lib/generators/opendoc_scaffold/opendoc_scaffold_generator.rb</div><div class="line">create  lib/generators/opendoc_scaffold/USAGE</div><div class="line">create  lib/generators/opendoc_scaffold/templates</div><div class="line">invoke  test_unit</div><div class="line">create    <span class="built_in">test</span>/lib/generators/opendoc_scaffold_generator_test.rb</div></pre></td></tr></table></figure></p>
+<p>单从名字上看,我们已经大体上知道这些文件是干啥用的了.<br>USAGE是定义一些说明.<br>templates文件夹下放一些模板.<br>opendoc_scaffold_generator.rb是启动文件.内容如下<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OpendocScaffoldGenerator</span> &lt; Rails::Generators::<span class="title">NamedBase</span></span></div><div class="line">  source_root File.expand_path(<span class="string">'../templates'</span>, __FILE_<span class="number">_</span>) <span class="comment">#指定模板根目录</span></div><div class="line">  <span class="comment">#创建一个启动方法,以下代码不是自动生成的</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">copy_opendoc_scaffold_file</span></span></div><div class="line">    <span class="comment">#controller</span></div><div class="line">    template <span class="string">'controller.rb'</span>, <span class="string">"app/controllers/backend/<span class="subst">#&#123;table_name&#125;</span>_controller.rb"</span></div><div class="line">    <span class="comment">#model</span></div><div class="line">    template <span class="string">'model.rb'</span>, <span class="string">"app/models/<span class="subst">#&#123;singular_table_name&#125;</span>.rb"</span></div><div class="line">    <span class="comment">#views</span></div><div class="line">    copy_file <span class="string">'erb/new.html.erb'</span>, <span class="string">"app/views/backend/<span class="subst">#&#123;file_name&#125;</span>/new.html.erb"</span></div><div class="line">    copy_file <span class="string">'erb/edit.html.erb'</span>, <span class="string">"app/views/backend/<span class="subst">#&#123;file_name&#125;</span>/edit.html.erb"</span></div><div class="line">    template <span class="string">'erb/index.html.erb'</span>, <span class="string">"app/views/backend/<span class="subst">#&#123;file_name&#125;</span>/index.html.erb"</span></div><div class="line">    template <span class="string">'erb/_form.html.erb'</span>, <span class="string">"app/views/backend/<span class="subst">#&#123;file_name&#125;</span>/_form.html.erb"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>上诉代码中用到的template方法的意思是复制模板到指定的地方.<br>比如自动生成model.下面这些代码是我自定义的model模板.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">require 'uuidtools'</div><div class="line"></div><div class="line">class <span class="tag">&lt;<span class="name">%=</span> <span class="attr">singular_table_name.capitalize</span> %&gt;</span> <span class="tag">&lt; <span class="attr">ApplicationRecord</span></span></div><div class="line">  <span class="attr">enum</span> <span class="attr">status:</span> [<span class="attr">:archived</span>, <span class="attr">:active</span>]</div><div class="line"></div><div class="line">  #<span class="attr">validates</span></div><div class="line">  <span class="attr">validates</span> <span class="attr">:TODO</span>, <span class="attr">presence:</span> <span class="attr">true</span>, <span class="attr">length:</span> &#123; <span class="attr">maximum:</span> <span class="attr">50</span> &#125;</div><div class="line">  <span class="attr">validates</span> <span class="attr">:TODO</span>, <span class="attr">numericality:</span> <span class="attr">true</span></div><div class="line"></div><div class="line">  #<span class="attr">scope</span></div><div class="line">  <span class="attr">default_scope</span> &#123; <span class="attr">where</span>("<span class="attr">status</span>&gt;?", <span class="tag">&lt;<span class="name">%=</span>  <span class="attr">singular_table_name.capitalize</span> %&gt;</span>.statuses[:archived]) &#125;</div><div class="line">  scope :name_like, -&gt;(name)&#123; where "name like ? ", "%#&#123;sanitize_sql_like(name)&#125;%" &#125;  #防sql注入</div><div class="line"></div><div class="line">  #假删除</div><div class="line">  def self.delete(<span class="tag">&lt;<span class="name">%=</span> <span class="attr">singular_table_name</span> %&gt;</span>)</div><div class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">singular_table_name</span> %&gt;</span>.status = :archived</div><div class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">singular_table_name</span> %&gt;</span>.save</div><div class="line">  end</div><div class="line"></div><div class="line">  #设置属性值</div><div class="line">  def self.set_attribute(<span class="tag">&lt;<span class="name">%=</span> <span class="attr">singular_table_name</span> %&gt;</span>_params)</div><div class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">singular_table_name</span> %&gt;</span> = <span class="tag">&lt;<span class="name">%=</span> <span class="attr">singular_table_name.capitalize</span> %&gt;</span>.new(<span class="tag">&lt;<span class="name">%=</span> <span class="attr">singular_table_name</span> %&gt;</span>_params)</div><div class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">singular_table_name</span> %&gt;</span>.sid = UUIDTools::UUID.timestamp_create</div><div class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">singular_table_name</span> %&gt;</span>.status = :active</div><div class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">singular_table_name</span> %&gt;</span></div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure></p>
+<p>上面model模板中用到的 singular_table_name 以及 table_name 等这些方法都在 Rails::Generators::NamedBase <a href="http://api.rubyonrails.org/classes/Rails/Generators/NamedBase.html" target="_blank" rel="external">这个类下</a>.<br>定义完模板后就可以像使用scaffold一样使用我们的自定义generator了.<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rails generate opendoc_scaffold groups</div><div class="line">rails generate opendoc_scaffold members</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Ruby/" rel="tag">#Ruby</a>
+          
+            <a href="/tags/Ruby-On-Rails/" rel="tag">#Ruby On Rails</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/06/rails-tip-friendly-id/" rel="next" title="friendly_id的使用">
+                <i class="fa fa-chevron-left"></i> friendly_id的使用
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -346,6 +432,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/04/rails-tip-custom-generator/"
+           data-title="自定义generator" data-url="http://yoursite.com/2017/03/04/rails-tip-custom-generator/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -365,8 +459,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -423,6 +526,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -525,6 +639,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
