@@ -1,5 +1,5 @@
 ---
-title: 用Rails实现一个系统(friendly_id的使用)
+title: friendly_id的使用
 category: Ruby On Rails
 tags:
   - Ruby On Rails
@@ -7,7 +7,7 @@ tags:
 date: 2017-02-06 00:11:18
 ---
 ##### 简介
-如果不对url进行模糊处理,通常的url会像下面这样子:
+在我们的项目中如果不对url进行模糊处理,通常的url会像下面这样子:
 http://localhost:3000/backend/groups/1/edit
 http://localhost:3000/backend/groups/1/interfaces/1/edit
 这直接暴露了数据库里有多少条记录.为了降低风险,我们需要借助friendly_id这个gem对url进行模糊处理.
@@ -85,9 +85,3 @@ end
 
 
 以上就是friendly_id的简单用法.如有不对的地方欢迎指正!
-
-
-
-
-
-
