@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-03-04T06:09:34.000Z</updated>
+  <updated>2017-04-02T14:34:34.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Rails下sidekiq无法异步发送邮件的问题</title>
+    <link href="http://yoursite.com/2017/04/02/rails-tip-sidekiq-async-sendmail/"/>
+    <id>http://yoursite.com/2017/04/02/rails-tip-sidekiq-async-sendmail/</id>
+    <published>2017-04-02T13:48:18.000Z</published>
+    <updated>2017-04-02T14:34:34.000Z</updated>
+    
+    <content type="html">&lt;p&gt;我在研究sidekiq异步发送邮件的过程中,遇到了sidekiq无法执行队列中的任务的情况.&lt;br&gt;明明sidekiq的”已进入队列”已经包含了发送邮件的任务,并且我非常确定发送邮件的程序是没有问题的.&lt;br&gt;但是无论怎么尝试,邮件都发送不出去.&lt;br&gt;rails console中看到的入队信息是这样的&lt;br&gt;&lt;figure class=&quot;highlight ruby&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;2.3.0 :015 &amp;gt;&lt;/span&gt; OrderMailer.confirm_email(&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;).deliver_later&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Enqueued ActionMailer::DeliveryJob (Job &lt;span class=&quot;symbol&quot;&gt;ID:&lt;/span&gt; a7cda76b-&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;f01-&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;f4a-a695-&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;be1c6bb264&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;) to Sidekiq(development_mailers) with &lt;span class=&quot;symbol&quot;&gt;arguments:&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;OrderMailer&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;confirm_email&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;deliver_now&quot;&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这里很明确的指出队列的名称是 development_mailers&lt;br&gt;在我没有查明原因之前我的sidekiq.yml配置项是这样的&lt;br&gt;&lt;figure class=&quot;highlight ruby&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;:concurrency&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;:pidfile&lt;/span&gt;: tmp/pids/sidekiq.pid&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;:queues&lt;/span&gt;:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    - default&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    - [myqueue, &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;development:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;symbol&quot;&gt;:concurrency&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;staging:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;symbol&quot;&gt;:concurrency&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;production:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;symbol&quot;&gt;:concurrency&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;20&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;因为对sidekiq研究不透,当时并没有注意 :queues 这块的含义.&lt;br&gt;在反复google后终于在&lt;a href=&quot;https://gist.github.com/maxivak/690e6c353f65a86a4af9&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这篇教程&lt;/a&gt;里找到了问题的原因所在.&lt;br&gt;其中有这样一句话,让我恍然大悟:&lt;br&gt;“!!! important. You may need to include new queue names in sidekiq.yml file:”&lt;br&gt;我了个大艹!&lt;br&gt;原来是我没有把 development_mailers 队列加到可执行队列中去.&lt;br&gt;添加后的sidekiq.yml配置项是这样的&lt;br&gt;&lt;figure class=&quot;highlight ruby&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;:concurrency&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;:pidfile&lt;/span&gt;: tmp/pids/sidekiq.pid&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;:queues&lt;/span&gt;:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    - default&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    - [myqueue, &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    - development_mailers&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;development:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;symbol&quot;&gt;:concurrency&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;staging:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;symbol&quot;&gt;:concurrency&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;production:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;symbol&quot;&gt;:concurrency&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;20&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;重启sidekiq后,世界美好了!&lt;br&gt;ps:&lt;br&gt;&lt;figure class=&quot;highlight ruby&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;:queues&lt;/span&gt;:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    - default&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    - [myqueue, &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    - development_mailers&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这块的含义是sidekiq可以执行的队列集合,其中 [myqueue, 2] 这里的2 表示被分配到的权重是2.&lt;br&gt;可参考&lt;a href=&quot;http://wdxtub.com/2016/07/06/sidekiq-guide/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我在研究sidekiq异步发送邮件的过程中,遇到了sidekiq无法执行队列中的任务的情况.&lt;br&gt;明明sidekiq的”已进入队列”已经包含了发送邮件的任务,并且我非常确定发送邮件的程序是没有问题的.&lt;br&gt;但是无论怎么尝试,邮件都发送不出去.&lt;br&gt;rails cons
+    
+    </summary>
+    
+      <category term="Rails" scheme="http://yoursite.com/categories/Rails/"/>
+    
+    
+      <category term="Rails" scheme="http://yoursite.com/tags/Rails/"/>
+    
+      <category term="sidekiq" scheme="http://yoursite.com/tags/sidekiq/"/>
+    
+  </entry>
   
   <entry>
     <title>自定义generator</title>
@@ -582,61 +611,6 @@
     
     
       <category term="Javascript" scheme="http://yoursite.com/tags/Javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo搭建静态Blog后的源码管理</title>
-    <link href="http://yoursite.com/2016/06/05/hexo-blog-source-manage/"/>
-    <id>http://yoursite.com/2016/06/05/hexo-blog-source-manage/</id>
-    <published>2016-06-05T06:59:18.000Z</published>
-    <updated>2016-06-05T09:17:12.000Z</updated>
-    
-    <content type="html">&lt;p&gt;当我们使用Hexo方便快捷的搭建完静态Blog,并愉快的写完第一篇Blog发布后.可能会遇到这样的问题:&lt;br&gt;我的Blog源码怎么管理啊?!&lt;br&gt;官方的命令咋没有把源码一并提交到GitHub啊?!&lt;br&gt;我要是有多台电脑,还要再安装一遍不成?!&lt;br&gt;同志,不要怕,接下来请跟我一步一步做.&lt;/p&gt;
-&lt;h4 id=&quot;下面拿我的-dodoliu-blog为例-以下所有的命令操作都假设你处在blog文件夹的根目录下-且你的系统是OSX&quot;&gt;&lt;a href=&quot;#下面拿我的-dodoliu-blog为例-以下所有的命令操作都假设你处在blog文件夹的根目录下-且你的系统是OSX&quot; class=&quot;headerlink&quot; title=&quot;下面拿我的 dodoliu blog为例,以下所有的命令操作都假设你处在blog文件夹的根目录下,且你的系统是OSX&quot;&gt;&lt;/a&gt;下面拿我的 dodoliu blog为例,以下所有的命令操作都假设你处在blog文件夹的根目录下,且你的系统是OSX&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;先删除 dodoliu blog文件夹下的 .git 文件夹,该文件夹在windows下默认是隐藏的&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;cd&lt;/span&gt; dodoliu&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;rm -rf .git&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;再删除 themes 主题文件夹下的 .git 文件夹,如果发现有 .github 文件夹也一并删掉.&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;cd&lt;/span&gt; themes/next&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;rm -rf .git .github&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;然后回到dodoliu blog的根目录,创建git仓库&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;cd&lt;/span&gt; dodoliu&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;git init&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;然后添加文件到git仓库,在添加前确认你blog根目录下的.gitignore文件内容像我这样&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;.DS_Store&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Thumbs.db&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;db.json&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;*.log&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;node_modules/&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;public/&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;.deploy*/&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;接下来把本地代码提交到本地git仓库&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;git add . &amp;amp;&amp;amp; git commit -m &lt;span class=&quot;string&quot;&gt;&#39;init&#39;&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;然后copy 线上 github的仓库地址,添加到本地仓库(&lt;a href=&quot;https://github.com/dodoliu/dodoliu.github.io.git是我的github仓库地址,请替换成你自己的&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/dodoliu/dodoliu.github.io.git是我的github仓库地址,请替换成你自己的&lt;/a&gt;)&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;git remote add origin https://github.com/dodoliu/dodoliu.github.io.git&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;然后创建一个本地分支,并切换到该分支下&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;git branch blog&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;git checkout blog&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;接下来,提交代码到github线上的blog分支中&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;git push origin blog&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;提交到github时,如果不想每次都打这么多命令,可以进行这样的设置&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;git push --set-upstream origin blog&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#之后就用下面这个命令推送吧&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;git push&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;然后到github上看看的master和blog分支的区别吧!&lt;br&gt;以后再次提交请在blog分支下进行操作.&lt;br&gt;到这里,恭喜你!&lt;br&gt;大功告成,开始你的下一篇blog吧!&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;当我们使用Hexo方便快捷的搭建完静态Blog,并愉快的写完第一篇Blog发布后.可能会遇到这样的问题:&lt;br&gt;我的Blog源码怎么管理啊?!&lt;br&gt;官方的命令咋没有把源码一并提交到GitHub啊?!&lt;br&gt;我要是有多台电脑,还要再安装一遍不成?!&lt;br&gt;同志,不要怕,接下
-    
-    </summary>
-    
-      <category term="Hexo" scheme="http://yoursite.com/categories/Hexo/"/>
-    
-    
-      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
-    
-      <category term="Git" scheme="http://yoursite.com/tags/Git/"/>
     
   </entry>
   
