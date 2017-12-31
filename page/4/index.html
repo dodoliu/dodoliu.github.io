@@ -295,6 +295,134 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/10/algorithm-quick-sort/" itemprop="url">
+                  算法:快速排序
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-10T15:23:09+08:00" content="2016-07-10">
+              2016-07-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+<span id="busuanzi_container_page_pv">
+       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
+       </span>
+
+
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/10/algorithm-quick-sort/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/algorithm-quick-sort/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>快速排序算法的原理:<br>在一个长度不小于3的序列A[0..n-1]中,对于任何 0 &lt; n &lt; n-1,以每一个元素p = A[n]为界,都可以将序列分隔为前、后两个子序列 A1 ＝ A[0..n]和 A2 ＝ A[n..n-1],则称p为序列A的轴点。然后对两个子序列排序，当子序列排序完成即可得到整个序列的排序结果(又称为 分治法)。<br>轴点的要点为：若一个元素是轴点，则经过排序之后，它的位置不应发生变化。<br>但是，实际应用中，序列中可能不存在这样一个轴点。所以需要选取轴点。<br>一般轴点的选取都选择数组的第一项或最后一项,但是最高效的方式是随机选取轴点.<br>下面的代码将采用固定轴点的方式演示快速排序.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="string">'pry'</span></div><div class="line"><span class="comment">#快速排序</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">division</span><span class="params">(arr, left, right)</span></span></div><div class="line">  <span class="comment"># point = arr[Random.new.rand(arr.length - 1)]</span></div><div class="line">  <span class="comment">#确定基点</span></div><div class="line">  point = arr[left]</div><div class="line">  <span class="keyword">while</span> left &lt; right</div><div class="line">    <span class="comment">#如果右边的数大于基点,则不操作,反之交换位置</span></div><div class="line">    <span class="keyword">while</span> left &lt; right &amp;&amp; arr[right] &gt;= point</div><div class="line">      right -= <span class="number">1</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">    swap arr, left, right</div><div class="line">    <span class="comment">#如果左边的数小于基点,则不操作,反之交换位置</span></div><div class="line">    <span class="keyword">while</span> left &lt; right &amp;&amp; arr[left] &lt;= point</div><div class="line">      left += <span class="number">1</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">    swap arr, right, left</div><div class="line">  <span class="keyword">end</span></div><div class="line">  <span class="comment">#返回轴点下标</span></div><div class="line">  left</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="comment">#交换位置</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">swap</span><span class="params">(arr,l,h)</span></span></div><div class="line">  arr[l],arr[h] = arr[h],arr[l]</div><div class="line">  p arr</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort!</span><span class="params">(arr, left, right)</span></span></div><div class="line">  <span class="keyword">if</span> left &lt; right</div><div class="line">    p = division arr, left, right</div><div class="line">    <span class="comment">#递归</span></div><div class="line">    quick_sort! arr, left, p - <span class="number">1</span></div><div class="line">    quick_sort! arr, p + <span class="number">1</span>, right</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">binding.pry</div><div class="line">quick_sort! [<span class="number">66</span>,<span class="number">13</span>,<span class="number">51</span>,<span class="number">76</span>,<span class="number">81</span>,<span class="number">26</span>,<span class="number">57</span>,<span class="number">69</span>,<span class="number">23</span>], <span class="number">0</span>, <span class="number">8</span></div></pre></td></tr></table></figure>
+<p>排序过程<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">76</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">66</span>]</div><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">81</span>, <span class="number">26</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">26</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">26</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">23</span>, <span class="number">13</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">26</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">26</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">26</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">57</span>, <span class="number">51</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">81</span>, <span class="number">69</span>, <span class="number">76</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">69</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">76</span>, <span class="number">69</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>]</div><div class="line">[<span class="number">13</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">51</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">76</span>, <span class="number">81</span>]</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/10/algorithm-bubble-sort/" itemprop="url">
                   算法:冒泡排序
                 </a>
@@ -785,133 +913,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/10/js-jsonp/" itemprop="url">
-                  JSONP的原理与实现
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-10T14:34:16+08:00" content="2016-06-10">
-              2016-06-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">Javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-<span id="busuanzi_container_page_pv">
-       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
-       </span>
-
-
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/10/js-jsonp/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/10/js-jsonp/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>之前在做统计分析系统的时候需要跨域请求数据.Jquery已经封装了jsonp的实现,但是考虑到统计代码的大小,决定弃用jquery.自己实现一下.<br>jsonp的原理其实很简单,通过script标签发送一个callback参数到后端,后端返回数据时,使用这个callback函数包裹一下.这样,在前端接收到后端的返回后,就可以执行这个callback函数.<br>在使用jsonp时需要注意,jsonp只能发送get请求.<br>下面是jsonp的实现代码.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> _ajax = &#123;</div><div class="line">    ajax_jsonp: &#123;</div><div class="line">        <span class="comment">//获取当前时间戳</span></div><div class="line">        now: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">Date</span>()).getTime();</div><div class="line">        &#125;,</div><div class="line">        <span class="comment">//获取16位随机数</span></div><div class="line">        rand: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="built_in">Math</span>.random().toString().substr(<span class="number">2</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="comment">//url组装</span></div><div class="line">        parse_data: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> ret = <span class="string">""</span>;</div><div class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> data === <span class="string">"string"</span>) &#123;</div><div class="line">                ret = data;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> data === <span class="string">"object"</span>) &#123;</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> data) &#123;</div><div class="line">                    ret += <span class="string">"&amp;"</span> + key + <span class="string">"="</span> + <span class="built_in">encodeURIComponent</span>(data[key]);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">//加上时间戳</span></div><div class="line">            ret += <span class="string">"&amp;_time="</span> + <span class="keyword">this</span>.now();</div><div class="line">            <span class="keyword">return</span> ret;</div><div class="line">        &#125;,</div><div class="line">        <span class="comment">/**</span></div><div class="line">        * jsonp调用的方法</div><div class="line">        * @param &#123;object&#125; url 请求的url</div><div class="line">        * @param &#123;object&#125; data 请求的data</div><div class="line">        */</div><div class="line">        jsonp: <span class="function"><span class="keyword">function</span> (<span class="params">url, data</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> name;</div><div class="line">            url = url + (url.indexOf(<span class="string">"?"</span>) === <span class="number">-1</span> ? <span class="string">"?"</span> : <span class="string">"&amp;"</span>) + <span class="keyword">this</span>.parse_data(data);</div><div class="line"></div><div class="line">            <span class="comment">//检测callback的函数名是否已经定义</span></div><div class="line">            <span class="keyword">var</span> match = <span class="regexp">/callback=([a-zA-Z\._]+)/</span>.exec(url);</div><div class="line">            <span class="keyword">if</span> (match &amp;&amp; match[<span class="number">1</span>]) &#123;</div><div class="line">                name = match[<span class="number">1</span>].replace(<span class="regexp">/\./g</span>, <span class="string">"_"</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                <span class="comment">//如果url中没有callback,直接返回</span></div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"invalid callback param"</span>);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="comment">//创建script标签</span></div><div class="line">            <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</div><div class="line">            script.type = <span class="string">"text/javascript"</span>;</div><div class="line">            script.src = url;</div><div class="line"></div><div class="line">            <span class="comment">//在head里面插入script元素</span></div><div class="line">            <span class="keyword">var</span> head = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"head"</span>);</div><div class="line">            <span class="keyword">if</span> (head &amp;&amp; head[<span class="number">0</span>]) &#123;</div><div class="line">                head[<span class="number">0</span>].appendChild(script);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<p>调用<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">_ajax.ajax_jsonp.jsonp(_url, data);</div><div class="line">#比如_url中的callback是这样的参数: ?callback=window.getdata</div><div class="line">#则在js中注册这个window.getdata函数即可</div><div class="line">window.getdata = function(data)</div><div class="line">&#123;</div><div class="line">    console.log(data);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -957,7 +958,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

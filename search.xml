@@ -4,6 +4,17 @@
   
     
     <entry>
+      <title><![CDATA[致2018]]></title>
+      <url>http://yoursite.com/2017/12/31/road-to-2018/</url>
+      <content type="html"><![CDATA[<p>2017要走,我拦都拦不住!<br>那就让他走吧!<br>先总结一下2017年的计划完成情况!</p>
+<p>至少读两本文学书! (只读了一本!未完成)<br>学一门新技术语言! (没有学新的技术语言!未完成)<br>至少看两本技术书籍!(完成)<br>坚持写技术Blog!(未完成)<br>坚持看技术blog!(完成)<br>坚持使用默默背单词!(完成)<br>坚持锻炼身体!(完成)</p>
+<p>基于以上各计划的完成情况,自我认为不是太理想.各种原因都有,但这不是借口!希望新的一年严格执行计划!</p>
+<p>回顾这一年的点滴,生活和工作都在向着好的方向发展.印证了那句”努力就会有回报!”.我希望自己在新的一年里更加努力!因为我相信明天会美好的!</p>
+<p>以下为新年计划:<br>至少读两本文学书!<br>至少学一门新技术!<br>至少看两本技术书籍!<br>坚持写技术Blog!<br>坚持看技术blog!<br>坚持使用默默背单词!<br>坚持锻炼身体!</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Rails下sidekiq无法异步发送邮件的问题]]></title>
       <url>http://yoursite.com/2017/04/02/rails-tip-sidekiq-async-sendmail/</url>
       <content type="html"><![CDATA[<p>我在研究sidekiq异步发送邮件的过程中,遇到了sidekiq无法执行队列中的任务的情况.<br>明明sidekiq的”已进入队列”已经包含了发送邮件的任务,并且我非常确定发送邮件的程序是没有问题的.<br>但是无论怎么尝试,邮件都发送不出去.<br>rails console中看到的入队信息是这样的<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">2.3.0 :015 &gt;</span> OrderMailer.confirm_email(<span class="number">1</span>).deliver_later</div><div class="line">Enqueued ActionMailer::DeliveryJob (Job <span class="symbol">ID:</span> a7cda76b-<span class="number">1</span>f01-<span class="number">4</span>f4a-a695-<span class="number">3</span>be1c6bb264<span class="number">0</span>) to Sidekiq(development_mailers) with <span class="symbol">arguments:</span> <span class="string">"OrderMailer"</span>, <span class="string">"confirm_email"</span>, <span class="string">"deliver_now"</span>, <span class="number">1</span></div></pre></td></tr></table></figure></p>
