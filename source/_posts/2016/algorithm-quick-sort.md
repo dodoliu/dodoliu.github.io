@@ -1,5 +1,6 @@
 ---
 title: 算法:快速排序
+permalink: algorithm-quick-sort
 category: 算法
 tags:
   - 算法

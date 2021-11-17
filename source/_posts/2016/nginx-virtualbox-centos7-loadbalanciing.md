@@ -1,5 +1,6 @@
 ---
 title: 虚拟机下CentOS中Nginx的反向代理和负载均衡初探
+permalink: nginx-virtualbox-centos7-loadbalanciing
 category: Linux
 tags:
   - Linux

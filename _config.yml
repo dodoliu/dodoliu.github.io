@@ -15,7 +15,8 @@ avatar: /images/avatar.png
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://yoursite.com
 root: /
-permalink: :year/:month/:day/:title/
+#permalink: :year/:month/:day/:title/
+permalink: :title
 permalink_defaults:
 
 # Directory
@@ -29,7 +30,8 @@ i18n_dir: :lang
 skip_render:
 
 # Writing
-new_post_name: :title.md # File name of new posts
+#new_post_name: :title.md # File name of new posts
+new_post_name: :year/:title # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
@@ -70,7 +72,7 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://github.com/dodoliu/dodoliu.github.io.git
+  repository: git@github.com:dodoliu/dodoliu.github.io.git
   branch: master
 
 #站内搜索

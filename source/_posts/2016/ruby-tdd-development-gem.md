@@ -1,5 +1,6 @@
 ---
 title: 使用BDD方式开发一个gem
+permalink: ruby-tdd-development-gem
 category: Ruby
 tags:
   - Ruby

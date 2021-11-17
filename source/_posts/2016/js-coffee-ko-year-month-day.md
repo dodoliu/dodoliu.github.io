@@ -1,5 +1,6 @@
 ---
 title: 使用CoffeeScript实现KnockoutJS的年月日级联选择插件
+permalink: js-coffee-ko-year-month-day
 category: Javascript
 tags:
   - Javascript

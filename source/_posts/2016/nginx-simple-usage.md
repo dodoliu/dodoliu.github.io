@@ -1,5 +1,6 @@
 ---
 title: 虚拟机下CentOS7安装Nginx及简单用法
+permalink: nginx-simple-usage
 category: Linux
 tags:
   - Linux

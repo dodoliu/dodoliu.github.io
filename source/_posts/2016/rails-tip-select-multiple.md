@@ -1,5 +1,6 @@
 ---
 title: Rails Tip:select多选后,后台如何接收参数数组
+permalink: rails-tip-select-multiple
 category: Ruby On Rails
 tags:
   - Ruby On Rails

@@ -1,5 +1,6 @@
 ---
 title: 算法:冒泡排序
+permalink: algorithm-bubble-sort
 category: 算法
 tags:
   - 算法

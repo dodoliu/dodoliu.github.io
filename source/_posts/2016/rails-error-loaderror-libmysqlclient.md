@@ -1,5 +1,6 @@
 ---
 title: Rails Error:libmysqlclient loaderror
+permalink: rails-error-loaderror-libmysqlclient
 category: Ruby On Rails
 tags:
   - Ruby On Rails

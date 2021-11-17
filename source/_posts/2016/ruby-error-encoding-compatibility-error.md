@@ -1,5 +1,6 @@
 ---
 title: Ruby Error:"in `match':incompatible encoding regexp match (UTF-8 regexp with ASCII-8BIT string) (Encoding::CompatibilityError)"
+permalink: ruby-error-encoding-compatibility-error
 category: Ruby
 tags:
   - Ruby

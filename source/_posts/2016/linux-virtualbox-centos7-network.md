@@ -1,5 +1,6 @@
 ---
 title: 记录一次VirtualBox安装Centos7的网络配置
+permalink: linux-virtualbox-centos7-network
 category: Linux
 tags:
   - Linux

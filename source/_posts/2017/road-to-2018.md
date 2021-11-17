@@ -1,5 +1,6 @@
 ---
 title: 致2018
+permalink: road-to-2018
 category: 心路
 date: 2017-12-31 22:17:30
 ---

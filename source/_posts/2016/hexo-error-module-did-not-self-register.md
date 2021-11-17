@@ -1,5 +1,6 @@
 ---
 title: Hexo Error:Module did not self-register
+permalink: hexo-error-module-did-not-self-register
 category: Hexo
 tags:
   - Hexo

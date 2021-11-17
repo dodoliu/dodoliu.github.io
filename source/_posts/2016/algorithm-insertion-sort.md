@@ -1,5 +1,6 @@
 ---
 title: 算法:插入排序
+permalink: algorithm-insertion-sort
 category: 算法
 tags:
   - 算法

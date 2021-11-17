@@ -1,5 +1,6 @@
 ---
 title: Rails下sidekiq无法异步发送邮件的问题
+permalink: rails-tip-sidekiq-async-sendmail
 category: Rails
 tags:
   - Rails

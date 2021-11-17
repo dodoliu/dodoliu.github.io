@@ -1,5 +1,6 @@
 ---
 title: 基于一个已经存在的MySql库创建Rails的Model
+permalink: ruby-existing-mysql-generate-model
 category: Ruby On Rails
 tags:
   - Ruby On Rails

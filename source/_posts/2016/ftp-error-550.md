@@ -1,5 +1,6 @@
 ---
 title: FTP:远程服务器返回错误:(550)文件不可用
+permalink: ftp-error-550
 category: CSharp
 tags:
   - FTP

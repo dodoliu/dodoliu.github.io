@@ -1,5 +1,6 @@
 ---
 title: Hexo搭建静态Blog后的源码管理
+permalink: hexo-blog-source-manage
 category: Hexo
 tags:
   - Hexo

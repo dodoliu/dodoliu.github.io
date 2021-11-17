@@ -1,5 +1,6 @@
 ---
 title: friendly_id的使用
+permalink: rails-tip-friendly-id
 category: Ruby On Rails
 tags:
   - Ruby On Rails

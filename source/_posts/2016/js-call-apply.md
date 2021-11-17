@@ -1,5 +1,6 @@
 ---
 title: Javascript中的call和apply理解
+permalink: js-call-apply
 category: Javascript
 tags:
   - Javascript

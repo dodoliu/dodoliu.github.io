@@ -1,5 +1,6 @@
 ---
 title: Rials Tip:多库操作
+permalink: rails-tip-multiple-database
 category: Ruby On Rails
 tags:
   - Ruby On Rails

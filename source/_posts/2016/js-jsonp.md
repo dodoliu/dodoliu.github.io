@@ -1,5 +1,6 @@
 ---
 title: JSONP的原理与实现
+permalink: js-jsonp
 category: Javascript
 tags:
   - Javascript

@@ -1,5 +1,6 @@
 ---
 title: 如何单步调试ruby代码
+permalink: ruby-debug
 category: Ruby
 tags:
   - Ruby

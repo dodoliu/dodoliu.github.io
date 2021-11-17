@@ -1,5 +1,6 @@
 ---
 title: 自定义generator
+permalink: rails-tip-custom-generator
 category: Ruby On Rails
 tags:
   - Ruby On Rails

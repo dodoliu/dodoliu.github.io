@@ -1,5 +1,6 @@
 ---
 title: 《Ruby on Rails 教程》读书笔记
+permalink: rails-read-railstutorial4th-notes
 category: Ruby On Rails
 tags:
   - Ruby On Rails

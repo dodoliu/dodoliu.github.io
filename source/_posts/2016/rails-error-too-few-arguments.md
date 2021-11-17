@@ -1,5 +1,6 @@
 ---
 title: Rails Error:too few arguments
+permalink: rails-error-too-few-arguments
 category: Ruby On Rails
 tags:
   - Ruby On Rails

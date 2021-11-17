@@ -1,5 +1,6 @@
 ---
 title: Your Ruby version is *, but your Gemfile specified *
+permalink: rails-error-but-your-gemfile-specified
 category: Ruby On Rails
 tags:
   - Ruby On Rails
