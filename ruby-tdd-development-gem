@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dodoliu.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="你应该遇到过通过区县查省份,通过区县查邮编的时候.一般我们会打开浏览器google一下.但是,我不想,我想敲一行代码就能迅速的查到,谁让咱是程序员呢😊.这就是我这篇记录的产生原因.源码地址本文将记录采用行为驱动开发(BDD)的方式,创建一个gem到发布的真实过程.安装bundler 1gem install bundler 创建gem项目(项目名称为 china_district_code) 1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用BDD方式开发一个gem">
+<meta property="og:url" content="http://dodoliu.github.io/ruby-tdd-development-gem">
+<meta property="og:site_name" content="dodoliu的折腾笔记">
+<meta property="og:description" content="你应该遇到过通过区县查省份,通过区县查邮编的时候.一般我们会打开浏览器google一下.但是,我不想,我想敲一行代码就能迅速的查到,谁让咱是程序员呢😊.这就是我这篇记录的产生原因.源码地址本文将记录采用行为驱动开发(BDD)的方式,创建一个gem到发布的真实过程.安装bundler 1gem install bundler 创建gem项目(项目名称为 china_district_code) 1">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-08-07T01:31:28.000Z">
+<meta property="article:modified_time" content="2021-11-17T09:22:15.711Z">
+<meta property="article:author" content="dodoliu">
+<meta property="article:tag" content="Ruby">
+<meta property="article:tag" content="Gem">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://dodoliu.github.io/ruby-tdd-development-gem">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>使用BDD方式开发一个gem | dodoliu的折腾笔记</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="dodoliu的折腾笔记" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">dodoliu的折腾笔记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">生命不息，折腾不止！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://dodoliu.github.io/ruby-tdd-development-gem">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="dodoliu">
+      <meta itemprop="description" content="爱生活，爱折腾！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="dodoliu的折腾笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用BDD方式开发一个gem
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-07 09:31:28" itemprop="dateCreated datePublished" datetime="2016-08-07T09:31:28+08:00">2016-08-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-17 17:22:15" itemprop="dateModified" datetime="2021-11-17T17:22:15+08:00">2021-11-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Ruby/" itemprop="url" rel="index"><span itemprop="name">Ruby</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>你应该遇到过通过区县查省份,通过区县查邮编的时候.一般我们会打开浏览器google一下.但是,我不想,我想敲一行代码就能迅速的查到,谁让咱是程序员呢😊.这就是我这篇记录的产生原因.<br><a target="_blank" rel="noopener" href="https://github.com/dodoliu/china_district_code">源码地址</a><br>本文将记录采用行为驱动开发(BDD)的方式,创建一个gem到发布的真实过程.<br>安装bundler</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install bundler</span><br></pre></td></tr></table></figure>
+<p>创建gem项目(项目名称为 china_district_code)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bundler gem china_district_code</span><br></pre></td></tr></table></figure>
+<p>生成的目录结构应该是这样</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">china_district_code</span><br><span class="line">- bin</span><br><span class="line">- lib</span><br><span class="line">.gitignore</span><br><span class="line">china_district_code.gemspec</span><br><span class="line">Gemfile</span><br><span class="line">Rakefile</span><br><span class="line">README.md</span><br></pre></td></tr></table></figure>
+<p>引入测试gem.打开gemfile文件,输入以下内容后运行命令: bundle install</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">source <span class="string">&#x27;https://gems.ruby-china.org&#x27;</span></span><br><span class="line"></span><br><span class="line">gem <span class="string">&#x27;rspec&#x27;</span></span><br><span class="line">gem <span class="string">&#x27;rspec-core&#x27;</span></span><br><span class="line">gem <span class="string">&#x27;guard-rspec&#x27;</span> <span class="comment">#自动化测试插件</span></span><br></pre></td></tr></table></figure>
+<p>生成配置文件</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rspec --init <span class="comment">#初始化rspec</span></span><br></pre></td></tr></table></figure>
+<p>执行完成后,目录结构应该像这样子</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">china_district_code</span><br><span class="line">- bin</span><br><span class="line">- lib</span><br><span class="line">- spec</span><br><span class="line">- - spec_helper.rb</span><br><span class="line">.gitignore</span><br><span class="line">.rspec</span><br><span class="line">china_district_code.gemspec</span><br><span class="line">Gemfile</span><br><span class="line">Rakefile</span><br><span class="line">README.md</span><br></pre></td></tr></table></figure>
+<p>然后生成我们的测试文件</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch spec/china_district_code_spec.rb</span><br></pre></td></tr></table></figure>
+<p>生成自动化测试配置文件,下面的命令执行完成后,文件夹内会多出一个Guardfile文件(自动化测试Guard的配置文件,默认不用修改).</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">guard init rspec</span><br></pre></td></tr></table></figure>
+<p>然后可以启动我们的自动化测试,监控文件变化.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bundle exec guard</span><br></pre></td></tr></table></figure>
+<p>关于自动化测试插件 guard的用法可以参考<br><a target="_blank" rel="noopener" href="https://github.com/guard/guard#readme">Guard的Github地址</a><br><a target="_blank" rel="noopener" href="https://github.com/guard/guard/wiki/Command-line-options-for-Guard">命令说明地址</a><br>以上的基础工作完成,下面开始写我们的行为测试.<br>打开china_district_code_spec.rb,输入以下内容(请无视我的中国味英语o(╯□╰)o)</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">&#x27;spec_helper&#x27;</span></span><br><span class="line"></span><br><span class="line">describe <span class="string">&quot;China district code&quot;</span> <span class="keyword">do</span></span><br><span class="line">  context <span class="string">&quot;district&quot;</span> <span class="keyword">do</span></span><br><span class="line">    it <span class="string">&quot;get province,city,area info&quot;</span></span><br><span class="line">    it <span class="string">&quot;find citys by province&quot;</span></span><br><span class="line">    it <span class="string">&quot;find areas by city&quot;</span></span><br><span class="line">    it <span class="string">&quot;find province by city&quot;</span></span><br><span class="line">    it <span class="string">&quot;find city,province by area&quot;</span></span><br><span class="line">    it <span class="string">&quot;find area by district code&quot;</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  context <span class="string">&quot;post code&quot;</span> <span class="keyword">do</span></span><br><span class="line">    it <span class="string">&quot;find post code  by district code&quot;</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>保存后,你会发现Guard已经自动运行了测试,并给出提示,所有的测试都是pending状态.<br>shell中应该像这样:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">00:13:39 - INFO - Running: spec/china<span class="emphasis">_district_</span>code<span class="emphasis">_spec.rb</span></span><br><span class="line"><span class="emphasis"><span class="strong">****</span><span class="strong">**<span class="emphasis">*</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis"></span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">Pending: (Failures listed here are expected and do not affect your suite&#x27;s status)</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis"></span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">  1) China district code district get province,city,area info</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">     # Not yet implemented</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">     # ./spec/china_district_code_spec.rb:5</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis"></span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">  2) China district code district find citys by province</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">     # Not yet implemented</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">     # ./spec/china_district_code_spec.rb:6</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis"></span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">  3) China district code district find areas by city</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">     # Not yet implemented</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">     # ./spec/china_district_code_spec.rb:7</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis"></span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">  4) China district code district find province by city</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">     # Not yet implemented</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">     # ./spec/china_district_code_spec.rb:8</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis"></span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">  5) China district code district find city,province by area</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">     # Not yet implemented</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">     # ./spec/china_district_code_spec.rb:9</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis"></span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">  6) China district code district find area by district code</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">     # Not yet implemented</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">     # ./spec/china_district_code_spec.rb:10</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis"></span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">  7) China district code post code find post code  by district code</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">     # Not yet implemented</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">     # ./spec/china_district_code_spec.rb:14</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis"></span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis"></span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">Finished in 0.00123 seconds (files took 0.14289 seconds to load)</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="emphasis">7 examples, 0 failures, 7 pending</span></span></span></span><br></pre></td></tr></table></figure>
+<p>然后,我们来实现我们的行为,忽略折腾的过程….直接上完成的code.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">china_district_code_spec.rb</span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;spec_helper&#x27;</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;china_district_code&#x27;</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;csv&#x27;</span></span><br><span class="line"></span><br><span class="line">describe <span class="string">&quot;China district code&quot;</span> <span class="keyword">do</span></span><br><span class="line">  context <span class="string">&quot;district&quot;</span> <span class="keyword">do</span></span><br><span class="line">    it <span class="string">&quot;get province,city,area info&quot;</span> <span class="keyword">do</span></span><br><span class="line">      ChinaDistrictCode::load_china_district_code</span><br><span class="line">      csv_folder_path = File.join(File.expand_path(<span class="string">&#x27;../..&#x27;</span>,<span class="keyword">__FILE__</span>),<span class="string">&#x27;lib&#x27;</span>,<span class="string">&#x27;china_district_code&#x27;</span>,<span class="string">&#x27;csv&#x27;</span>)</span><br><span class="line">      provinces = CSV.read(File.join(csv_folder_path,<span class="string">&#x27;province.csv&#x27;</span>))</span><br><span class="line">      expect(provinces[<span class="number">0</span>][<span class="number">0</span>]).to eq(<span class="string">&#x27;11&#x27;</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    it <span class="string">&quot;find citys by province&quot;</span> <span class="keyword">do</span></span><br><span class="line">      expect(ChinaDistrictCode::find_citys_by_province(<span class="string">&#x27;河北省&#x27;</span>)).to <span class="keyword">include</span>([<span class="string">&quot;130100&quot;</span>, <span class="string">&quot;石家庄市&quot;</span>])</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    it <span class="string">&quot;find areas by city&quot;</span> <span class="keyword">do</span></span><br><span class="line">      expect(ChinaDistrictCode::find_areas_by_city(<span class="string">&#x27;石家庄市&#x27;</span>)).to <span class="keyword">include</span>([<span class="string">&quot;130103&quot;</span>, <span class="string">&quot;桥东区&quot;</span>])</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    it <span class="string">&quot;find province by city&quot;</span> <span class="keyword">do</span></span><br><span class="line">      expect(ChinaDistrictCode::find_province_by_city(<span class="string">&#x27;太原&#x27;</span>)).to eql([<span class="string">&quot;140000&quot;</span>, <span class="string">&quot;山西省&quot;</span>])</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    it <span class="string">&quot;find city,province by area&quot;</span> <span class="keyword">do</span></span><br><span class="line">      expect(ChinaDistrictCode::find_province_city_by_area(<span class="string">&#x27;桥东区&#x27;</span>)).to eql([[<span class="string">&quot;130000&quot;</span>, <span class="string">&quot;河北省&quot;</span>], [<span class="string">&quot;130100&quot;</span>, <span class="string">&quot;石家庄市&quot;</span>]])</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="comment"># it &quot;find area by district code&quot;</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  context <span class="string">&quot;post code&quot;</span> <span class="keyword">do</span></span><br><span class="line">    it <span class="string">&quot;find post code  by district code&quot;</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>然后,一个个实现我们的需求,享受由红变绿的过程(囧)</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding: utf-8</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;logger&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">&quot;china_district_code/version&quot;</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;china_district_code/china_district_code/loader&#x27;</span></span><br><span class="line"></span><br><span class="line">LOGGER = Logger.new(File.join(File.dirname(<span class="keyword">__FILE__</span>),<span class="string">&#x27;/china_district_code/log/debug.log&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">ChinaDistrictCode</span></span></span><br><span class="line"></span><br><span class="line">  load_file <span class="string">&#x27;models&#x27;</span></span><br><span class="line">  load_file <span class="string">&#x27;helpers&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">include</span> CsvHelper</span><br><span class="line">  <span class="keyword">include</span> DistrictHelper</span><br><span class="line"></span><br><span class="line">  <span class="comment">#reload china district code from &#x27;http://www.stats.gov.cn/tjsj/tjbz/xzqhdm/201401/t20140116_501070.html&#x27;</span></span><br><span class="line">  def <span class="keyword">self</span>.load_china_district_code</span><br><span class="line">    DistrictHelper::get_china_district_code</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">#find citys by province  </span></span><br><span class="line">  def <span class="keyword">self</span>.find_citys_by_province(name)</span><br><span class="line">    result = DistrictHelper::find_citys_by_province(name)</span><br><span class="line">    puts result.to_s</span><br><span class="line">    result</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">#find areas by city</span></span><br><span class="line">  def <span class="keyword">self</span>.find_areas_by_city(name)</span><br><span class="line">    result = DistrictHelper::find_areas_by_city(name)</span><br><span class="line">    puts result.to_s</span><br><span class="line">    result</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">#find province by city</span></span><br><span class="line">  def <span class="keyword">self</span>.find_province_by_city(name)</span><br><span class="line">    result = DistrictHelper::find_province_by_city(name)</span><br><span class="line">    puts result.to_s</span><br><span class="line">    result</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">#find province,city by area</span></span><br><span class="line">  def <span class="keyword">self</span>.find_province_city_by_area(name)</span><br><span class="line">    result = DistrictHelper::find_province_city_by_area(name)</span><br><span class="line">    puts result.to_s</span><br><span class="line">    result</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>完成了gem的开发,接下来需要编译并发布.我们先修改一下gem的配置项.<br>打开 ‘china_district_code.gemspec’,修改如下</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line">lib = File.expand_path(<span class="string">&#x27;../lib&#x27;</span>, <span class="keyword">__FILE__</span>)</span><br><span class="line"><span class="variable">$LOAD_PATH</span>.unshift(lib) <span class="keyword">unless</span> <span class="variable">$LOAD_PATH</span>.<span class="keyword">include</span>?(lib)</span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;china_district_code/version&#x27;</span></span><br><span class="line"></span><br><span class="line">Gem::Specification.new <span class="keyword">do</span> <span class="params">|spec|</span></span><br><span class="line">  spec.name          = <span class="string">&quot;china_district_code&quot;</span></span><br><span class="line">  spec.version       = ChinaDistrictCode::VERSION</span><br><span class="line">  spec.authors       = [<span class="string">&quot;dodoliu&quot;</span>]</span><br><span class="line">  spec.email         = [<span class="string">&quot;donliu29@gmail.com&quot;</span>]</span><br><span class="line"></span><br><span class="line">  spec.summary       = <span class="string">%q&#123; China District Code Query plugin &#125;</span></span><br><span class="line">  spec.description   = <span class="string">%q&#123; China District Code Query plugin &#125;</span></span><br><span class="line">  spec.homepage      = <span class="string">&quot;https://github.com/dodoliu/china_district_code&quot;</span></span><br><span class="line"></span><br><span class="line">  spec.files         = <span class="string">`git ls-files -z`</span>.split(<span class="string">&quot;\x0&quot;</span>).reject &#123; <span class="params">|f|</span> f.match(<span class="regexp">%r&#123;^(test|spec|features)/&#125;</span>) &#125;</span><br><span class="line">  spec.bindir        = <span class="string">&quot;exe&quot;</span></span><br><span class="line">  spec.executables   = spec.files.grep(<span class="regexp">%r&#123;^exe/&#125;</span>) &#123; <span class="params">|f|</span> File.basename(f) &#125;</span><br><span class="line">  spec.require_paths = [<span class="string">&quot;lib&quot;</span>]</span><br><span class="line"></span><br><span class="line">  spec.add_development_dependency <span class="string">&quot;bundler&quot;</span>, <span class="string">&quot;~&gt; 1.12&quot;</span></span><br><span class="line">  spec.add_development_dependency <span class="string">&quot;rake&quot;</span>, <span class="string">&quot;~&gt; 10.0&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在发布之前,我们先安装到本地试用一下,(可以用 rake -T 查看rake任务)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">修改版本号为 VERSION = <span class="string">&quot;0.0.1&quot;</span></span><br><span class="line">rake build <span class="comment">#编译gem</span></span><br><span class="line">rake install <span class="comment">#安装到本地</span></span><br><span class="line"></span><br><span class="line"> -&gt; ⮀ china_district_code ⮀ ⭠ master± ⮀ rake build</span><br><span class="line">china_district_code 0.0.1 built to pkg/china_district_code-0.0.1.gem.</span><br><span class="line"> -&gt; ⮀ china_district_code ⮀ ⭠ master± ⮀ rake install</span><br><span class="line">china_district_code 0.0.1 built to pkg/china_district_code-0.0.1.gem.</span><br><span class="line">china_district_code (0.0.1) installed.</span><br><span class="line"><span class="comment">#然后irb调用一下</span></span><br><span class="line">2.3.1 :003 &gt; require <span class="string">&#x27;china_district_code&#x27;</span></span><br><span class="line"> =&gt; <span class="literal">true</span></span><br><span class="line">2.3.1 :004 &gt; ChinaDistrictCode.find_citys_by_province <span class="string">&#x27;湖南&#x27;</span></span><br><span class="line">[[<span class="string">&quot;430100&quot;</span>, <span class="string">&quot;长沙市&quot;</span>], [<span class="string">&quot;430200&quot;</span>, <span class="string">&quot;株洲市&quot;</span>], [<span class="string">&quot;430300&quot;</span>, <span class="string">&quot;湘潭市&quot;</span>], [<span class="string">&quot;430400&quot;</span>, <span class="string">&quot;衡阳市&quot;</span>], [<span class="string">&quot;430500&quot;</span>, <span class="string">&quot;邵阳市&quot;</span>], [<span class="string">&quot;430600&quot;</span>, <span class="string">&quot;岳阳市&quot;</span>], [<span class="string">&quot;430700&quot;</span>, <span class="string">&quot;常德市&quot;</span>], [<span class="string">&quot;430800&quot;</span>, <span class="string">&quot;张家界市&quot;</span>], [<span class="string">&quot;430900&quot;</span>, <span class="string">&quot;益阳市&quot;</span>], [<span class="string">&quot;431000&quot;</span>, <span class="string">&quot;郴州市&quot;</span>], [<span class="string">&quot;431100&quot;</span>, <span class="string">&quot;永州市&quot;</span>], [<span class="string">&quot;431200&quot;</span>, <span class="string">&quot;怀化市&quot;</span>], [<span class="string">&quot;431300&quot;</span>, <span class="string">&quot;娄底市&quot;</span>], [<span class="string">&quot;433100&quot;</span>, <span class="string">&quot;湘西土家族苗族自治州&quot;</span>]]</span><br><span class="line"> =&gt; [[<span class="string">&quot;430100&quot;</span>, <span class="string">&quot;长沙市&quot;</span>], [<span class="string">&quot;430200&quot;</span>, <span class="string">&quot;株洲市&quot;</span>], [<span class="string">&quot;430300&quot;</span>, <span class="string">&quot;湘潭市&quot;</span>], [<span class="string">&quot;430400&quot;</span>, <span class="string">&quot;衡阳市&quot;</span>], [<span class="string">&quot;430500&quot;</span>, <span class="string">&quot;邵阳市&quot;</span>], [<span class="string">&quot;430600&quot;</span>, <span class="string">&quot;岳阳市&quot;</span>], [<span class="string">&quot;430700&quot;</span>, <span class="string">&quot;常德市&quot;</span>], [<span class="string">&quot;430800&quot;</span>, <span class="string">&quot;张家界市&quot;</span>], [<span class="string">&quot;430900&quot;</span>, <span class="string">&quot;益阳市&quot;</span>], [<span class="string">&quot;431000&quot;</span>, <span class="string">&quot;郴州市&quot;</span>], [<span class="string">&quot;431100&quot;</span>, <span class="string">&quot;永州市&quot;</span>], [<span class="string">&quot;431200&quot;</span>, <span class="string">&quot;怀化市&quot;</span>], [<span class="string">&quot;431300&quot;</span>, <span class="string">&quot;娄底市&quot;</span>], [<span class="string">&quot;433100&quot;</span>, <span class="string">&quot;湘西土家族苗族自治州&quot;</span>]]</span><br><span class="line">2.3.1 :005 &gt;</span><br></pre></td></tr></table></figure>
+<p>完成以上步骤后,可以确认我们的gem是没有问题的.下面打包发布到<a target="_blank" rel="noopener" href="https://rubygems.org/">https://rubygems.org/</a></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rake release</span><br></pre></td></tr></table></figure>
+<p>你有可能会遇到这样的错误提示!(可以通过将代码提交到本地git仓库解决.(git add . &amp;&amp; git commit -m ‘first commit’))</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> -&gt; ⮀ china_district_code ⮀ ⭠ master± ⮀ rake release</span><br><span class="line">china_district_code 0.0.1 built to pkg/china_district_code-0.0.1.gem.</span><br><span class="line">rake aborted!</span><br><span class="line">There are files that need to be committed first.</span><br><span class="line">/Users/dodoliu/.rvm/gems/ruby-2.3.1/gems/bundler-1.12.5/lib/bundler/gem_helper.rb:131:in `guard_clean&#x27;</span><br><span class="line">/Users/dodoliu/.rvm/gems/ruby-2.3.1/gems/bundler-1.12.5/lib/bundler/gem_helper.rb:60:in `block in install&#x27;</span><br><span class="line">Tasks: TOP =&gt; release =&gt; release:guard_clean</span><br><span class="line">(See full trace by running task with --trace)</span><br></pre></td></tr></table></figure>
+<p>然后再次运行 rake release时,可能还会遇到下面这个错误(这是要求你的代码需要提交到远程仓库.我选择提交到github)</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"> ✘ ⮀ -&gt; ⮀ china<span class="emphasis">_district_</span>code ⮀ ⭠ master± ⮀ rake release</span><br><span class="line">china<span class="emphasis">_district_</span>code 0.0.1 built to pkg/china<span class="emphasis">_district_</span>code-0.0.1.gem.</span><br><span class="line">Tagged v0.0.1.</span><br><span class="line">Untagging v0.0.1 due to error.</span><br><span class="line">rake aborted!</span><br><span class="line">Couldn&#x27;t git push. `git push &#x27; failed with the following output:</span><br><span class="line"></span><br><span class="line">fatal: No configured push destination.</span><br><span class="line">Either specify the URL from the command-line or configure a remote repository using</span><br><span class="line"></span><br><span class="line"><span class="code">    git remote add &lt;name&gt; &lt;url&gt;</span></span><br><span class="line"><span class="code"></span></span><br><span class="line">and then push using the remote name</span><br><span class="line"></span><br><span class="line"><span class="code">    git push &lt;name&gt;</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"></span><br><span class="line">/Users/dodoliu/.rvm/gems/ruby-2.3.1/gems/bundler-1.12.5/lib/bundler/gem<span class="emphasis">_helper.rb:121:in `perform_</span>git<span class="emphasis">_push&#x27;</span></span><br><span class="line"><span class="emphasis">/Users/dodoliu/.rvm/gems/ruby-2.3.1/gems/bundler-1.12.5/lib/bundler/gem_</span>helper.rb:113:in `git<span class="emphasis">_push&#x27;</span></span><br><span class="line"><span class="emphasis">/Users/dodoliu/.rvm/gems/ruby-2.3.1/gems/bundler-1.12.5/lib/bundler/gem_</span>helper.rb:64:in `block (2 levels) in install&#x27;</span><br><span class="line">/Users/dodoliu/.rvm/gems/ruby-2.3.1/gems/bundler-1.12.5/lib/bundler/gem<span class="emphasis">_helper.rb:145:in `tag_</span>version&#x27;</span><br><span class="line">/Users/dodoliu/.rvm/gems/ruby-2.3.1/gems/bundler-1.12.5/lib/bundler/gem<span class="emphasis">_helper.rb:64:in `block in install&#x27;</span></span><br><span class="line"><span class="emphasis">Tasks: TOP =&gt; release =&gt; release:source_</span>control<span class="emphasis">_push</span></span><br><span class="line"><span class="emphasis">(See full trace by running task with --trace)</span></span><br></pre></td></tr></table></figure>
+<p>提交完成后,再次执行 rake release,看到以下内容则表示成功了.啦啦啦</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> -&gt; ⮀ china_district_code ⮀ ⭠ master ⮀ rake release</span><br><span class="line">china_district_code 0.0.1 built to pkg/china_district_code-0.0.1.gem.</span><br><span class="line">Tagged v0.0.1.</span><br><span class="line">Pushed git commits and tags.</span><br><span class="line">Pushed china_district_code 0.0.1 to rubygems.org.</span><br></pre></td></tr></table></figure>
+<p>然后自己装一下,让下载次数加1…😄</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Ruby/" rel="tag"># Ruby</a>
+              <a href="/tags/Gem/" rel="tag"># Gem</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/algorithm-insertion-sort" rel="prev" title="算法:插入排序">
+      <i class="fa fa-chevron-left"></i> 算法:插入排序
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/ruby-error-encoding-compatibility-error" rel="next" title="Ruby Error:"in `match':incompatible encoding regexp match (UTF-8 regexp with ASCII-8BIT string) (Encoding::CompatibilityError)"">
+      Ruby Error:"in `match':incompatible encoding regexp match (UTF-8 regexp with ASCII-8BIT string) (Encoding::CompatibilityError)" <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">dodoliu</p>
+  <div class="site-description" itemprop="description">爱生活，爱折腾！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">dodoliu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

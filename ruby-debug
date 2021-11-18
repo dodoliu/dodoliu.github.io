@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dodoliu.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="C#写习惯了,当使用Sublime写Ruby时没有IDE进行debug,实在是不习惯.怎么办?!不能debug,创造条件也要debug!经过一番搜索加实践,记录如下. 需要的gem 12gem install prygem install pry-byebug #支持ruby2.0.0,如果需要支持低版本的ruby可以使用 pry-debugger这个gem 安装了上述gem后,在需要debug的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何单步调试ruby代码">
+<meta property="og:url" content="http://dodoliu.github.io/ruby-debug">
+<meta property="og:site_name" content="dodoliu的折腾笔记">
+<meta property="og:description" content="C#写习惯了,当使用Sublime写Ruby时没有IDE进行debug,实在是不习惯.怎么办?!不能debug,创造条件也要debug!经过一番搜索加实践,记录如下. 需要的gem 12gem install prygem install pry-byebug #支持ruby2.0.0,如果需要支持低版本的ruby可以使用 pry-debugger这个gem 安装了上述gem后,在需要debug的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-07-23T06:31:48.000Z">
+<meta property="article:modified_time" content="2021-11-17T09:22:12.777Z">
+<meta property="article:author" content="dodoliu">
+<meta property="article:tag" content="Ruby On Rails">
+<meta property="article:tag" content="Ruby">
+<meta property="article:tag" content="MySql">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://dodoliu.github.io/ruby-debug">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>如何单步调试ruby代码 | dodoliu的折腾笔记</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="dodoliu的折腾笔记" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">dodoliu的折腾笔记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">生命不息，折腾不止！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://dodoliu.github.io/ruby-debug">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="dodoliu">
+      <meta itemprop="description" content="爱生活，爱折腾！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="dodoliu的折腾笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何单步调试ruby代码
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-07-23 14:31:48" itemprop="dateCreated datePublished" datetime="2016-07-23T14:31:48+08:00">2016-07-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-17 17:22:12" itemprop="dateModified" datetime="2021-11-17T17:22:12+08:00">2021-11-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Ruby/" itemprop="url" rel="index"><span itemprop="name">Ruby</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>C#写习惯了,当使用Sublime写Ruby时没有IDE进行debug,实在是不习惯.<br>怎么办?!<br>不能debug,创造条件也要debug!<br>经过一番搜索加实践,记录如下.</p>
+<p>需要的gem</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gem install pry</span><br><span class="line">gem install pry-byebug <span class="comment">#支持ruby2.0.0,如果需要支持低版本的ruby可以使用 pry-debugger这个gem</span></span><br></pre></td></tr></table></figure>
+<p>安装了上述gem后,在需要debug的代码中添加 binding.pry</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">&#x27;pry&#x27;</span></span><br><span class="line"></span><br><span class="line">binding.pry</span><br><span class="line">quick_sort! [<span class="number">66</span>,<span class="number">13</span>,<span class="number">51</span>,<span class="number">76</span>,<span class="number">81</span>,<span class="number">26</span>,<span class="number">57</span>,<span class="number">69</span>,<span class="number">23</span>], <span class="number">0</span>, <span class="number">8</span></span><br></pre></td></tr></table></figure>
+<p>当代码运行起来后就会停在binding.pry下一行代码的位置.<br>pry是不支持单步调试的,为啥呢?!<br>如果需要单步调试就需要 pry-byebug这个gem.<br><a target="_blank" rel="noopener" href="https://github.com/pry/pry">pry文档</a><br><a target="_blank" rel="noopener" href="https://github.com/deivid-rodriguez/pry-byebug">pry-byebug文档</a></p>
+<p>pry-byebug的一些用法</p>
+<p>使用简化的命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#在用户根目录下创建 .pryrc配置文件</span><br><span class="line">vim ~/.pryrc</span><br><span class="line">#输入内容</span><br><span class="line">if defined?(PryByebug)</span><br><span class="line">  Pry.commands.alias_command &#x27;c&#x27;, &#x27;continue&#x27;</span><br><span class="line">  Pry.commands.alias_command &#x27;s&#x27;, &#x27;step&#x27;</span><br><span class="line">  Pry.commands.alias_command &#x27;n&#x27;, &#x27;next&#x27;</span><br><span class="line">  Pry.commands.alias_command &#x27;f&#x27;, &#x27;finish&#x27;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>如果需要通过按enter键达到执行上一次输入的命令的效果,则在配置文件中输入以下内容.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Hit Enter to repeat last command</span><br><span class="line">Pry::Commands.command /^$/, &quot;repeat last command&quot; do</span><br><span class="line">  _pry_.run_command Pry.history.to_a.last</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>断点用法:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">break</span> SomeClass<span class="comment">#run            #断点打在 SomeClass这个类下的run方法上</span></span><br><span class="line"><span class="keyword">break</span> Foo<span class="comment">#bar if baz?          #当baz?返回true时,断点打在 Foo类下的bar方法上</span></span><br><span class="line"><span class="keyword">break</span> app/models/user.<span class="symbol">rb:</span><span class="number">15</span>    <span class="comment">#断点打在 user.rb的第15行</span></span><br><span class="line"><span class="keyword">break</span> <span class="number">14</span>                       <span class="comment">#断点打在第14行</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">break</span> --condition <span class="number">4</span> x &gt; <span class="number">2</span>      <span class="comment">#当x&gt;2时,命中第四个断点</span></span><br><span class="line"><span class="keyword">break</span> --condition <span class="number">3</span>            <span class="comment">#删除命中第三个断点的条件</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">break</span> --delete <span class="number">5</span>               <span class="comment">#删除第5个断点</span></span><br><span class="line"><span class="keyword">break</span> --disable-all            <span class="comment">#禁用所有断点</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">break</span>                          <span class="comment">#显示出所有断点的位置</span></span><br><span class="line"><span class="keyword">break</span> --show <span class="number">2</span>                 <span class="comment">#显示第二个断点附近的代码</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">break</span> --delete-all             <span class="comment">#删除所有断点</span></span><br><span class="line"><span class="keyword">break</span> --enable <span class="number">2</span>               <span class="comment">#启用第二个断点...为毛没有一次启用所有断点的功能?!</span></span><br></pre></td></tr></table></figure>
+<p>退出pry</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit!</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Ruby-On-Rails/" rel="tag"># Ruby On Rails</a>
+              <a href="/tags/Ruby/" rel="tag"># Ruby</a>
+              <a href="/tags/MySql/" rel="tag"># MySql</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/rails-tip-multiple-database" rel="prev" title="Rials Tip:多库操作">
+      <i class="fa fa-chevron-left"></i> Rials Tip:多库操作
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/algorithm-insertion-sort" rel="next" title="算法:插入排序">
+      算法:插入排序 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">dodoliu</p>
+  <div class="site-description" itemprop="description">爱生活，爱折腾！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">dodoliu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
