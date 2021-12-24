@@ -149,6 +149,80 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://dodoliu.github.io/ruby-error-encoding-compatibility-error">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="dodoliu">
+      <meta itemprop="description" content="爱生活，爱折腾！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="dodoliu的折腾笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/ruby-error-encoding-compatibility-error" class="post-title-link" itemprop="url">Ruby Error:"in `match':incompatible encoding regexp match (UTF-8 regexp with ASCII-8BIT string) (Encoding::CompatibilityError)"</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-10 23:42:43" itemprop="dateCreated datePublished" datetime="2016-08-10T23:42:43+08:00">2016-08-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-17 17:22:13" itemprop="dateModified" datetime="2021-11-17T17:22:13+08:00">2021-11-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Ruby/" itemprop="url" rel="index"><span itemprop="name">Ruby</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>我在抓取一个中文网页时遇到该问题.<br>出现该问题的原因是字符编码不一致导致的.查看获取到的网页内容编码是 ASCII-8BIT的,所以需要强制转换为UTF-8.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">code_html = HTTP.get(<span class="string">&#x27;http://www.stats.gov.cn/tjsj/tjbz/xzqhdm/201401/t20140116_501070.html&#x27;</span>).to_s</span><br><span class="line">puts code_html.encoding.name</span><br><span class="line">tmp_result = code_html.force_encoding(<span class="string">&quot;UTF-8&quot;</span>).scan(<span class="regexp">/\d&#123;6&#125;&amp;nbsp;&amp;nbsp;&amp;nbsp; [\u4e00-\u9fa5]+/</span>)</span><br><span class="line">puts tmp_result</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://dodoliu.github.io/ruby-tdd-development-gem">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -892,85 +966,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://dodoliu.github.io/js-call-apply">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="dodoliu">
-      <meta itemprop="description" content="爱生活，爱折腾！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="dodoliu的折腾笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/js-call-apply" class="post-title-link" itemprop="url">Javascript中的call和apply理解</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-07-03 14:50:21" itemprop="dateCreated datePublished" datetime="2016-07-03T14:50:21+08:00">2016-07-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-17 17:22:00" itemprop="dateModified" datetime="2021-11-17T17:22:00+08:00">2021-11-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Javascript/" itemprop="url" rel="index"><span itemprop="name">Javascript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Javascript中的call和apply让人觉得很神奇和好玩.有了它俩,js的面向对象编程方便了一大截.<br>下面通过两个例子来理解call和apply.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//有 egg 这样一个类</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">egg</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//为 egg 设置属性和方法</span></span><br><span class="line">egg.prototype = &#123;</span><br><span class="line">  <span class="attr">egg_type</span>: <span class="string">&#x27;未知动物&#x27;</span>,</span><br><span class="line">  <span class="attr">hatch</span>: <span class="function"><span class="keyword">function</span>(<span class="params">legs</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!legs) &#123;</span><br><span class="line">      legs = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;孵化出一只 &#x27;</span> + <span class="built_in">this</span>.egg_type + <span class="string">&#x27;,有 &#x27;</span> + legs + <span class="string">&#x27; 条腿&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//实例化一个 egg 类</span></span><br><span class="line">tmp_egg = <span class="keyword">new</span> egg();</span><br><span class="line">tmp_egg.hatch();</span><br><span class="line"><span class="comment">//p 孵化出一只 未知动物,有 0 条腿</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//实例化一个 鸭蛋类</span></span><br><span class="line">duck_egg = &#123; <span class="attr">egg_type</span>: <span class="string">&#x27;小鸭子&#x27;</span> &#125;;</span><br><span class="line">tmp_egg.hatch.call(duck_egg,<span class="number">2</span>);</span><br><span class="line"><span class="comment">//p 孵化出一只 小鸭子,有 2 条腿</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//实例化一个 鳄鱼蛋类</span></span><br><span class="line">crocodile_egg = &#123; <span class="attr">egg_type</span>: <span class="string">&#x27;小鳄鱼&#x27;</span>&#125;;</span><br><span class="line">tmp_egg.hatch.apply(crocodile_egg,[<span class="number">4</span>]);</span><br><span class="line"><span class="comment">//p 孵化出一只 小鳄鱼,有 4 条腿</span></span><br></pre></td></tr></table></figure>
-<p>多重继承</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//有一个动物类</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">animal</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = <span class="function"><span class="keyword">function</span> (<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;我是 &#x27;</span> + name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//有一个 动物叫声类</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cry</span>(<span class="params">sound</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.sound = <span class="function"><span class="keyword">function</span>(<span class="params">sound</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;我的叫声 &#x27;</span> + sound);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//有一个 家禽类</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fowl</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">//实现多重继承</span></span><br><span class="line">  animal.call(<span class="built_in">this</span>);</span><br><span class="line">  cry.apply(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tmp_chicken = <span class="keyword">new</span> fowl();</span><br><span class="line">tmp_chicken.name(<span class="string">&#x27;鸡&#x27;</span>);</span><br><span class="line">tmp_chicken.sound(<span class="string">&#x27;咕咕咕&#x27;</span>);</span><br><span class="line"><span class="comment">//p 我是 鸡</span></span><br><span class="line"><span class="comment">//p 我的叫声 咕咕咕</span></span><br><span class="line"></span><br><span class="line">tmp_duck = <span class="keyword">new</span> fowl();</span><br><span class="line">tmp_duck.name(<span class="string">&#x27;鸭&#x27;</span>);</span><br><span class="line">tmp_duck.sound(<span class="string">&#x27;嘎嘎嘎&#x27;</span>);</span><br><span class="line"><span class="comment">//p 我是 鸭</span></span><br><span class="line"><span class="comment">//p 我的叫声 嘎嘎嘎</span></span><br></pre></td></tr></table></figure>
-
-<p>总结:<br>call和apply功能相同,都是用来改变函数体内部 this 指向的.<br>call和apply的区别是,apply的第二个参数是个数组.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1040,7 +1035,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

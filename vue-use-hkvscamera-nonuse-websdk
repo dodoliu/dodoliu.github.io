@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dodoliu.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言海康威视官方提供了Web3.0和Web3.2的SDK, Web3.0需要浏览器支持NPAPI,但是高版本的浏览器都已经禁用了这种功能. Web3.2需要设备支持WebSocket. 这两个Web SDK都无法适用于高版本浏览器显示海康威视老设备的视频流. 无奈只能求助官方技术支持. 官方技术支持响应还是很迅速的.描述完我的需求后,技术小哥哥(小姐姐)立马给我了一个方案(估计是被咨询了很多次):">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不使用海康威视的WEBSDK如何在浏览器中展示实时视频流">
+<meta property="og:url" content="http://dodoliu.github.io/vue-use-hkvscamera-nonuse-websdk">
+<meta property="og:site_name" content="dodoliu的折腾笔记">
+<meta property="og:description" content="前言海康威视官方提供了Web3.0和Web3.2的SDK, Web3.0需要浏览器支持NPAPI,但是高版本的浏览器都已经禁用了这种功能. Web3.2需要设备支持WebSocket. 这两个Web SDK都无法适用于高版本浏览器显示海康威视老设备的视频流. 无奈只能求助官方技术支持. 官方技术支持响应还是很迅速的.描述完我的需求后,技术小哥哥(小姐姐)立马给我了一个方案(估计是被咨询了很多次):">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/dodoliu/dodoliuimg/raw/master/2021/image-20211213174237900.png">
+<meta property="og:image" content="https://gitee.com/dodoliu/dodoliuimg/raw/master/2021/image-20211213175059382.png">
+<meta property="og:image" content="https://gitee.com/dodoliu/dodoliuimg/raw/master/2021/image-20211213175204858.png">
+<meta property="article:published_time" content="2021-12-24T02:52:14.000Z">
+<meta property="article:modified_time" content="2021-12-24T02:58:09.563Z">
+<meta property="article:author" content="dodoliu">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="海康威视">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/dodoliu/dodoliuimg/raw/master/2021/image-20211213174237900.png">
+
+<link rel="canonical" href="http://dodoliu.github.io/vue-use-hkvscamera-nonuse-websdk">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>不使用海康威视的WEBSDK如何在浏览器中展示实时视频流 | dodoliu的折腾笔记</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="dodoliu的折腾笔记" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">dodoliu的折腾笔记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">生命不息，折腾不止！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://dodoliu.github.io/vue-use-hkvscamera-nonuse-websdk">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="dodoliu">
+      <meta itemprop="description" content="爱生活，爱折腾！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="dodoliu的折腾笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          不使用海康威视的WEBSDK如何在浏览器中展示实时视频流
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-12-24 10:52:14 / 修改时间：10:58:09" itemprop="dateCreated datePublished" datetime="2021-12-24T10:52:14+08:00">2021-12-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>海康威视官方提供了Web3.0和Web3.2的SDK,</p>
+<p>Web3.0需要浏览器支持NPAPI,但是高版本的浏览器都已经禁用了这种功能.</p>
+<p>Web3.2需要设备支持WebSocket.</p>
+<p>这两个Web SDK都无法适用于高版本浏览器显示海康威视老设备的视频流.</p>
+<p>无奈只能求助官方技术支持.</p>
+<p>官方技术支持响应还是很迅速的.描述完我的需求后,技术小哥哥(小姐姐)立马给我了一个方案(估计是被咨询了很多次):</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">您可以用RTSP协议取流，然后用第三方比如FFmpeg对数据处理成FLV或者RTMP，在谷歌网页上播放</span><br></pre></td></tr></table></figure>
+
+<p>又经过一通查询发现高版本浏览器也不支持RTMP流的显示了.只能使用flv,然后使用bilibili开源的flv.js进行展示.</p>
+<p>方案确认了,那还愁啥,搞起来!嗨起来!</p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>因为我的项目部署环境是windows,所以所有软件都是windows版本.</p>
+<p>ffmpeg下载地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://ffmpeg.org/download.html#build-windows</span><br></pre></td></tr></table></figure>
+
+<p>通过查询,rtsp要处理成flv需要借助nginx的nginx-http-flv-module模块.windows下编译带该模块的nginx超级麻烦,不过有人在CSDN上提供了编译好后的可用包.</p>
+<p>下载地址:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://download.csdn.net/download/KayChanGEEK/12270210</span><br></pre></td></tr></table></figure>
+
+<p>为了方便测试,建议再下载一个vlc:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.videolan.org/</span><br></pre></td></tr></table></figure>
+
+<h2 id="Nginx配置"><a href="#Nginx配置" class="headerlink" title="Nginx配置"></a>Nginx配置</h2><p>配置文件参考</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br></pre></td><td class="code"><pre><span class="line">#user  nobody;</span><br><span class="line"># multiple workers works !</span><br><span class="line">worker_processes  2;</span><br><span class="line"> </span><br><span class="line">#error_log  logs/error.log;</span><br><span class="line">#error_log  logs/error.log  notice;</span><br><span class="line">#error_log  logs/error.log  info;</span><br><span class="line"> </span><br><span class="line">#pid        logs/nginx.pid;</span><br><span class="line"> </span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  8192;</span><br><span class="line">    # max value 32768, nginx recycling connections+registry optimization = </span><br><span class="line">    #   this.value * 20 = max concurrent connections currently tested with one worker</span><br><span class="line">    #   C1000K should be possible depending there is enough ram/cpu power</span><br><span class="line">    # multi_accept on;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">rtmp &#123;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 1935;</span><br><span class="line">        chunk_size 4000;</span><br><span class="line">        application live &#123;</span><br><span class="line">             live on;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">http &#123;</span><br><span class="line">    #include      /nginx/conf/naxsi_core.rules;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"> </span><br><span class="line">    #log_format  main  &#x27;$remote_addr:$remote_port - $remote_user [$time_local] &quot;$request&quot; &#x27;</span><br><span class="line">    #                  &#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span><br><span class="line">    #                  &#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;;</span><br><span class="line"> </span><br><span class="line">    #access_log  logs/access.log  main;</span><br><span class="line"> </span><br><span class="line">#     # loadbalancing PHP</span><br><span class="line">#     upstream myLoadBalancer &#123;</span><br><span class="line">#         server 127.0.0.1:9001 weight=1 fail_timeout=5;</span><br><span class="line">#         server 127.0.0.1:9002 weight=1 fail_timeout=5;</span><br><span class="line">#         server 127.0.0.1:9003 weight=1 fail_timeout=5;</span><br><span class="line">#         server 127.0.0.1:9004 weight=1 fail_timeout=5;</span><br><span class="line">#         server 127.0.0.1:9005 weight=1 fail_timeout=5;</span><br><span class="line">#         server 127.0.0.1:9006 weight=1 fail_timeout=5;</span><br><span class="line">#         server 127.0.0.1:9007 weight=1 fail_timeout=5;</span><br><span class="line">#         server 127.0.0.1:9008 weight=1 fail_timeout=5;</span><br><span class="line">#         server 127.0.0.1:9009 weight=1 fail_timeout=5;</span><br><span class="line">#         server 127.0.0.1:9010 weight=1 fail_timeout=5;</span><br><span class="line">#         least_conn;</span><br><span class="line">#     &#125;</span><br><span class="line"> </span><br><span class="line">    sendfile        off;</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line"> </span><br><span class="line">    server_names_hash_bucket_size 128;</span><br><span class="line"> </span><br><span class="line">## Start: Timeouts ##</span><br><span class="line">    client_body_timeout   10;</span><br><span class="line">    client_header_timeout 10;</span><br><span class="line">    keepalive_timeout     30;</span><br><span class="line">    send_timeout          10;</span><br><span class="line">    keepalive_requests    10;</span><br><span class="line">## End: Timeouts ##</span><br><span class="line"> </span><br><span class="line">    #gzip  on;</span><br><span class="line"> </span><br><span class="line">    server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">        location /stat &#123;</span><br><span class="line">            rtmp_stat all;</span><br><span class="line">            rtmp_stat_stylesheet stat.xsl;</span><br><span class="line">        &#125;</span><br><span class="line">        location /stat.xsl &#123;</span><br><span class="line">            root nginx-rtmp-module/;</span><br><span class="line">        &#125;</span><br><span class="line">        location /control &#123;</span><br><span class="line">            rtmp_control all;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">    # 重要 http-flv  转流配置 </span><br><span class="line">        location /live &#123;</span><br><span class="line">            flv_live on; #打开 HTTP 播放 FLV 直播流功能</span><br><span class="line">            chunked_transfer_encoding on; #支持 &#x27;Transfer-Encoding: chunked&#x27; 方式回复</span><br><span class="line"> </span><br><span class="line">            add_header &#x27;Access-Control-Allow-Origin&#x27; &#x27;*&#x27;; #添加额外的 HTTP 头</span><br><span class="line">            add_header &#x27;Access-Control-Allow-Credentials&#x27; &#x27;true&#x27;; #添加额外的 HTTP 头</span><br><span class="line">            add_header &#x27;Cache-Control&#x27; &#x27;no-cache&#x27;;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        #charset koi8-r;</span><br><span class="line">        #access_log  logs/host.access.log  main;</span><br><span class="line"> </span><br><span class="line">        ## Caching Static Files, put before first location</span><br><span class="line">        #location ~* \.(jpg|jpeg|png|gif|ico|css|js)$ &#123;</span><br><span class="line">        #    expires 14d;</span><br><span class="line">        #    add_header Vary Accept-Encoding;</span><br><span class="line">        #&#125;</span><br><span class="line"> </span><br><span class="line"># For Naxsi remove the single # line for learn mode, or the ## lines for full WAF mode</span><br><span class="line">        location / &#123;</span><br><span class="line">      add_header Cache-Control no-cache;</span><br><span class="line">      add_header &#x27;Access-Control-Allow-Origin&#x27; &#x27;*&#x27; always;</span><br><span class="line">      add_header &#x27;Access-Control-Expose-Headers&#x27; &#x27;Content-Length,Content-Range&#x27;;</span><br><span class="line">      add_header &#x27;Access-Control-Allow-Headers&#x27; &#x27;Range&#x27;;</span><br><span class="line">    </span><br><span class="line">            #include    /nginx/conf/mysite.rules; # see also http block naxsi include line</span><br><span class="line">            ##SecRulesEnabled;</span><br><span class="line">         ##DeniedUrl &quot;/RequestDenied&quot;;</span><br><span class="line">         ##CheckRule &quot;$SQL &gt;= 8&quot; BLOCK;</span><br><span class="line">         ##CheckRule &quot;$RFI &gt;= 8&quot; BLOCK;</span><br><span class="line">         ##CheckRule &quot;$TRAVERSAL &gt;= 4&quot; BLOCK;</span><br><span class="line">         ##CheckRule &quot;$XSS &gt;= 8&quot; BLOCK;</span><br><span class="line">            root   html;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line"># For Naxsi remove the ## lines for full WAF mode, redirect location block used by naxsi</span><br><span class="line">        ##location /RequestDenied &#123;</span><br><span class="line">        ##    return 412;</span><br><span class="line">        ##&#125;</span><br><span class="line"> </span><br><span class="line">## Lua examples !</span><br><span class="line">#         location /robots.txt &#123;</span><br><span class="line">#           rewrite_by_lua &#x27;</span><br><span class="line">#             if ngx.var.http_host ~= &quot;localhost&quot; then</span><br><span class="line">#               return ngx.exec(&quot;/robots_disallow.txt&quot;);</span><br><span class="line">#             end</span><br><span class="line">#           &#x27;;</span><br><span class="line">#         &#125;</span><br><span class="line"> </span><br><span class="line">        #error_page  404              /404.html;</span><br><span class="line"> </span><br><span class="line">        # redirect server error pages to the static page /50x.html</span><br><span class="line">        #</span><br><span class="line">        error_page   500 502 503 504  /50x.html;</span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">            root   html;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span><br><span class="line">        #</span><br><span class="line">        #location ~ \.php$ &#123;</span><br><span class="line">        #    proxy_pass   http://127.0.0.1;</span><br><span class="line">        #&#125;</span><br><span class="line"> </span><br><span class="line">        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">        #</span><br><span class="line">        #location ~ \.php$ &#123;</span><br><span class="line">        #    root           html;</span><br><span class="line">        #    fastcgi_pass   127.0.0.1:9000; # single backend process</span><br><span class="line">        #    fastcgi_pass   myLoadBalancer; # or multiple, see example above</span><br><span class="line">        #    fastcgi_index  index.php;</span><br><span class="line">        #    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;</span><br><span class="line">        #    include        fastcgi_params;</span><br><span class="line">        #&#125;</span><br><span class="line"> </span><br><span class="line">        # deny access to .htaccess files, if Apache&#x27;s document root</span><br><span class="line">        # concurs with nginx&#x27;s one</span><br><span class="line">        #</span><br><span class="line">        #location ~ /\.ht &#123;</span><br><span class="line">        #    deny  all;</span><br><span class="line">        #&#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    # another virtual host using mix of IP-, name-, and port-based configuration</span><br><span class="line">    #</span><br><span class="line">    #server &#123;</span><br><span class="line">    #    listen       8000;</span><br><span class="line">    #    listen       somename:8080;</span><br><span class="line">    #    server_name  somename  alias  another.alias;</span><br><span class="line"> </span><br><span class="line">    #    location / &#123;</span><br><span class="line">    #        root   html;</span><br><span class="line">    #        index  index.html index.htm;</span><br><span class="line">    #    &#125;</span><br><span class="line">    #&#125;</span><br><span class="line"> </span><br><span class="line">    # HTTPS server</span><br><span class="line">    #</span><br><span class="line">    #server &#123;</span><br><span class="line">    #    listen       443 ssl spdy;</span><br><span class="line">    #    server_name  localhost;</span><br><span class="line"> </span><br><span class="line">    #    ssl                  on;</span><br><span class="line">    #    ssl_certificate      cert.pem;</span><br><span class="line">    #    ssl_certificate_key  cert.key;</span><br><span class="line">    #    ssl_session_timeout  5m;</span><br><span class="line">    #    ssl_prefer_server_ciphers On;</span><br><span class="line">    #    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">    #    ssl_ciphers ECDH+AESGCM:ECDH+AES256:ECDH+AES128:ECDH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!eNULL:!MD5:!DSS:!EXP:!ADH:!LOW:!MEDIUM;</span><br><span class="line"> </span><br><span class="line">    #    location / &#123;</span><br><span class="line">    #        root   html;</span><br><span class="line">    #        index  index.html index.htm;</span><br><span class="line">    #    &#125;</span><br><span class="line">    #&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>有两个地方需要特殊说明:</p>
+<p>第一处:这里是配置rtmp, 1935端口是默认端口.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">rtmp &#123;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 1935;</span><br><span class="line">        chunk_size 4000;</span><br><span class="line">        application live &#123;</span><br><span class="line">             live on;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第二处: flv拉流的配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">location /live &#123;</span><br><span class="line">            flv_live on; #打开 HTTP 播放 FLV 直播流功能</span><br><span class="line">            chunked_transfer_encoding on; #支持 &#x27;Transfer-Encoding: chunked&#x27; 方式回复</span><br><span class="line"> </span><br><span class="line">            add_header &#x27;Access-Control-Allow-Origin&#x27; &#x27;*&#x27;; #添加额外的 HTTP 头</span><br><span class="line">            add_header &#x27;Access-Control-Allow-Credentials&#x27; &#x27;true&#x27;; #添加额外的 HTTP 头</span><br><span class="line">            add_header &#x27;Cache-Control&#x27; &#x27;no-cache&#x27;;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="海康威视摄像头RTSP流获取"><a href="#海康威视摄像头RTSP流获取" class="headerlink" title="海康威视摄像头RTSP流获取"></a>海康威视摄像头RTSP流获取</h2><p>网上一堆介绍,可自行搜索学习.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">rtsp://admin:123456@192.168.10.54:554/Streaming/Channels/101?transportmode=unicast</span><br><span class="line"></span><br><span class="line">rtsp:协议</span><br><span class="line">admin:摄像头登录用户名</span><br><span class="line">123456:摄像头登录密码</span><br><span class="line">192.168.10.54:摄像头ip</span><br><span class="line">554:拉rtsp流的端口</span><br><span class="line">101:通道表示(主码流通道)</span><br><span class="line">transportmode=unicast:传输模式</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用ffmpeg进行流转换"><a href="#使用ffmpeg进行流转换" class="headerlink" title="使用ffmpeg进行流转换"></a>使用ffmpeg进行流转换</h2><p>在命令行中输入一下命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg  -rtsp_transport tcp -i rtsp://admin:123456@192.168.10.54:554/Streaming/Channels/101?transportmode=unicast -vcodec copy -an -acodec copy -f flv rtmp://127.0.0.1:1935/live/mystream</span><br><span class="line"></span><br><span class="line">rtmp://127.0.0.1:1935/live/mystream: 这个地址是nginx中配置的rtmp节点的地址, live是配置的app名称,mystream可以随意指定</span><br></pre></td></tr></table></figure>
+
+<p>出现下图所示效果且进程不终止,表明转换流成功了.</p>
+<p><img src="https://gitee.com/dodoliu/dodoliuimg/raw/master/2021/image-20211213174237900.png" alt="image-20211213174237900"></p>
+<p>有了上面的rtmp地址后,我们可以知道flv取流的地址为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1/live?port=1935&amp;app=live&amp;stream=mystream</span><br><span class="line"></span><br><span class="line">这是通过nginx中http节点配置的.请注意app的值和stream的值</span><br><span class="line">对应的是</span><br><span class="line">rtmp://127.0.0.1:1935/live/mystream</span><br><span class="line">中的 live和mystream</span><br></pre></td></tr></table></figure>
+
+<p>有了flv拉流的地址后,我们就可以在vlc中进行校验</p>
+<h2 id="在vlc中进行测试"><a href="#在vlc中进行测试" class="headerlink" title="在vlc中进行测试"></a>在vlc中进行测试</h2><p>点击vlc菜单中的 “媒体”,然后选择 “流”</p>
+<p>然后选择”网络”</p>
+<p><img src="https://gitee.com/dodoliu/dodoliuimg/raw/master/2021/image-20211213175059382.png" alt="image-20211213175059382"></p>
+<p>然后将右下方的 “串流” 选择为 “播放”,在等待几秒后就可以看到正常的视频图像了.</p>
+<p><img src="https://gitee.com/dodoliu/dodoliuimg/raw/master/2021/image-20211213175204858.png" alt="image-20211213175204858"></p>
+<p>如果没有显示,请继续爬坑吧!!!</p>
+<h2 id="在vue中显示"><a href="#在vue中显示" class="headerlink" title="在vue中显示"></a>在vue中显示</h2><p>我的前端项目是个vue项目.</p>
+<p>先安装flv.js</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save flv.js</span><br></pre></td></tr></table></figure>
+
+<p>html主要代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;video</span><br><span class="line">  id=&quot;vPull&quot;</span><br><span class="line">  autoplay</span><br><span class="line">  style=&quot;height: 100%; width: 100%; object-fit: fill&quot;</span><br><span class="line">  muted</span><br><span class="line">&gt;&lt;/video&gt;</span><br></pre></td></tr></table></figure>
+
+<p>js主要代码.</p>
+<p>参考: <a target="_blank" rel="noopener" href="https://blog.csdn.net/HJFQC/article/details/109626836">https://blog.csdn.net/HJFQC/article/details/109626836</a></p>
+<p>感谢原作者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mounted() &#123;</span><br><span class="line">  this.play(&quot;http://127.0.0.1/live?port=1935&amp;app=live&amp;stream=mystream&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我需要想说明一下如何调用,在mounted方法中直接调用play方法,然后传入准备好的flv流地址.</p>
+<p>没有意外的话,vue项目启动后就可以正常查看视频了.</p>
+<h2 id="net-core后台动态切换摄像头地址"><a href="#net-core后台动态切换摄像头地址" class="headerlink" title=".net core后台动态切换摄像头地址"></a>.net core后台动态切换摄像头地址</h2><p>经过上面所有操作后,我们已经可以在前端进行视频展示了.但是如果想切换摄像头该怎么搞?</p>
+<p>可以参考以下思路:</p>
+<p>通过后端代码进行ffmpeg的进程创建和关闭.</p>
+<p>我的后端是.net core项目,参考代码如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 启动ffmpeg进程</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">/// &lt;returns&gt;&lt;/returns&gt;</span><br><span class="line">[HttpGet(&quot;TestCmd54&quot;)]</span><br><span class="line">public async Task&lt;int&gt; TestCmd54()</span><br><span class="line">&#123;    </span><br><span class="line">    var psi = new System.Diagnostics.ProcessStartInfo(&quot;D:\\App\\ffmpeg\\bin\\ffmpeg.exe&quot;, &quot;-rtsp_transport tcp -i rtsp://admin:123456@192.168.10.54:554/Streaming/Channels/101?transportmode=unicast -vcodec copy -an -acodec copy -f flv rtmp://127.0.0.1:1935/live/mystream&quot;);</span><br><span class="line">    var ss = System.Diagnostics.Process.Start(psi);</span><br><span class="line">    return await Task.FromResult(ss.Id);</span><br><span class="line">&#125;</span><br><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 关闭ffmpeg进程</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">/// &lt;returns&gt;&lt;/returns&gt;</span><br><span class="line">[HttpGet(&quot;TestCmd54Stop&quot;)]</span><br><span class="line">public async Task&lt;int&gt; TestCmd54Stop(int processId)</span><br><span class="line">&#123; </span><br><span class="line">    var stopProcess = System.Diagnostics.Process.GetProcessById(processId);</span><br><span class="line">    if (!stopProcess.HasExited)</span><br><span class="line">    &#123;</span><br><span class="line">        stopProcess.Kill();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return await Task.FromResult(1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Vue/" rel="tag"># Vue</a>
+              <a href="/tags/%E6%B5%B7%E5%BA%B7%E5%A8%81%E8%A7%86/" rel="tag"># 海康威视</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/vue-use-hkvscamera-web3-0" rel="prev" title="Vue下使用海康威视WEB无插件开发包V3.2的使用记录">
+      <i class="fa fa-chevron-left"></i> Vue下使用海康威视WEB无插件开发包V3.2的使用记录
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">Nginx配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%B7%E5%BA%B7%E5%A8%81%E8%A7%86%E6%91%84%E5%83%8F%E5%A4%B4RTSP%E6%B5%81%E8%8E%B7%E5%8F%96"><span class="nav-number">4.</span> <span class="nav-text">海康威视摄像头RTSP流获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8ffmpeg%E8%BF%9B%E8%A1%8C%E6%B5%81%E8%BD%AC%E6%8D%A2"><span class="nav-number">5.</span> <span class="nav-text">使用ffmpeg进行流转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8vlc%E4%B8%AD%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95"><span class="nav-number">6.</span> <span class="nav-text">在vlc中进行测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8vue%E4%B8%AD%E6%98%BE%E7%A4%BA"><span class="nav-number">7.</span> <span class="nav-text">在vue中显示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#net-core%E5%90%8E%E5%8F%B0%E5%8A%A8%E6%80%81%E5%88%87%E6%8D%A2%E6%91%84%E5%83%8F%E5%A4%B4%E5%9C%B0%E5%9D%80"><span class="nav-number">8.</span> <span class="nav-text">.net core后台动态切换摄像头地址</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">dodoliu</p>
+  <div class="site-description" itemprop="description">爱生活，爱折腾！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">dodoliu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

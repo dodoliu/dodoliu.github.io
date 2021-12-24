@@ -230,7 +230,7 @@
 <p>配置一个端口映射的规则即可<br>如下图<br><img src="http://githubblog-10030337.cos.myqcloud.com/linux-virtualbox-centos7-network.png?sign=pzMiwzChOjnJP2exdey0+5h05MZhPTEwMDMwMzM3Jms9QUtJRGNDZFJ2aDZITWsyTE1SNDFEMHo1SERFbzlORndwcWcxJmU9MTQ2OTE1NDk0MiZ0PTE0NjY1NjI5NDImcj0xNDM1NjQyOTUxJmY9L2xpbnV4LXZpcnR1YWxib3gtY2VudG9zNy1uZXR3b3JrLnBuZyZiPWdpdGh1YmJsb2c=" alt="1"></p>
 </blockquote>
 <h3 id="配置虚拟机的22端口映射"><a href="#配置虚拟机的22端口映射" class="headerlink" title="配置虚拟机的22端口映射"></a>配置虚拟机的22端口映射</h3><blockquote>
-<p>win下使用putty进行ssh登陆<br>mac下使用 ssh登陆 ssh -p 12022 <a href="mailto:&#x72;&#x6f;&#x6f;&#116;&#64;&#x31;&#50;&#55;&#46;&#48;&#x2e;&#x30;&#x2e;&#49;">&#x72;&#x6f;&#x6f;&#116;&#64;&#x31;&#50;&#55;&#46;&#48;&#x2e;&#x30;&#x2e;&#49;</a></p>
+<p>win下使用putty进行ssh登陆<br>mac下使用 ssh登陆 ssh -p 12022 <a href="mailto:&#114;&#x6f;&#111;&#116;&#64;&#x31;&#50;&#55;&#46;&#x30;&#46;&#48;&#46;&#49;">&#114;&#x6f;&#111;&#116;&#64;&#x31;&#50;&#55;&#46;&#x30;&#46;&#48;&#46;&#49;</a></p>
 </blockquote>
 <table>
 <thead>
@@ -347,7 +347,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
